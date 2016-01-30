@@ -9,7 +9,7 @@
 (defn splash []
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (pr-str ["Hello" :from "cloudxmark clojure Heroku"])})
+   :body (pr-str ["Hello from cloudxmark Heroku"])})
 
 (defroutes app
   (GET "/hello" []
