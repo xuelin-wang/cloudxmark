@@ -6,17 +6,17 @@
             [ring.adapter.jetty :as jetty]
             [environ.core :refer [env]]))
 
-(defn splash []
+(defn ping []
   {:status 200
    :headers {"Content-Type" "text/plain"}
    :body (pr-str ["Hello from cloudxmark Heroku"])})
 
 (defroutes app
-  (GET "/hello" []
-       (splash))
-  (route/resources "/")
+  (GET "/ping" []
+       (ping))
+  (GET "/" [] (redirect “pubic/xmark_app.html”))
   (ANY "*" []
-       (route/not-found (slurp (io/resource "404.html")))))
+       (route/not-found (slurp (io/resource "public/xmark_app.html")))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
