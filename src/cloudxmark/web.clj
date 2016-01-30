@@ -14,7 +14,7 @@
 (defroutes app
   (GET "/ping" []
        (ping))
-  (GET "/" [] (redirect “pubic/xmark_app.html”))
+  (GET "/" [] (resp/file-response "xmark_app.html" {:root "public"}))
   (ANY "*" []
        (route/not-found (slurp (io/resource "public/xmark_app.html")))))
 
