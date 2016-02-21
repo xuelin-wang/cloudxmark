@@ -4,20 +4,23 @@
             [compojure.route :as route]
             [clojure.java.io :as io]
             [ring.adapter.jetty :as jetty]
+            [compojure.response :as response]
             [ring.util.response :as resp]
-            [environ.core :refer [env]]))
+            [cheshire.core :refer :all]
+            [environ.core :refer [env]]
+            [cloudxmark.bookmark :refer [get-bookmarks]]
+    ))
 
-(defn ping []
+(defn ping [id]
   {:status 200
    :headers {"Content-Type" "text/plain"}
-   :body (pr-str ["Hello from cloudxmark Heroku"])})
+   :body (str "Hello, " id)})
 
 (defroutes app
-  (GET "/ping" []
-       (ping))
-  (GET "/" [] (resp/file-response "xmark_app.html" {:root "public"}))
-  (ANY "*" []
-       (route/not-found (slurp (io/resource "public/xmark_app.html")))))
+  (GET "/user/:id" [id] (ping id))
+  (GET "/getBookmarks" [] (get-bookmarks))
+  (route/resources "/")
+  (route/not-found "Page not found"))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
