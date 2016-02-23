@@ -11,7 +11,9 @@
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
             [cloudxmark.bookmark-store :refer [migrate]]
-    ))
+    )
+    (:gen-class)
+    )
 
 (defn ping [id]
   {:status 200
