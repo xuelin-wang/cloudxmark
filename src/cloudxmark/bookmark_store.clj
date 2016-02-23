@@ -6,12 +6,12 @@
 
 (def store-uri (or (System/getenv "BOOKMARK_STORE_URI") "postgresql://localhost:5432/bookmark"))
 
-(defn create-schema []
+(defn- create-schema []
       (sql/db-do-commands store-uri
-                          (sql/create-table-ddl :bookmark [:folder "varchar(1024)"]
-                                                [:link "varchar(4096)" :primary :key]
-                                                [:description "varchar(4096)"]
-                                                [:labels "varchar(1024)"]))
+                          (sql/create-table-ddl :bookmark [:folder "varchar(1024)" "NOT NULL"]
+                                                [:link "varchar(4096)" "PRIMARY KEY"]
+                                                [:description "varchar(4096)" "NOT NULL"]
+                                                [:labels "varchar(1024)" "NOT NULL"]))
       )
 
 (defn find-by-link [link]
@@ -20,6 +20,18 @@
         (sql/query store-uri ["SELECT * FROM bookmark WHERE link = ?" link])
         )
       )
+
+
+(defn migrated? []
+      (-> (sql/query store-uri
+                     [(str "select count(*) from information_schema.tables "
+                           "where table_name='bookmark'")])
+          first :count pos?))
+
+(defn migrate []
+      (when (not (migrated?))
+            (create-schema)
+            (println " done")))
 
 (defn- to-labels [labels-str]
       (str/split labels-str #",")
