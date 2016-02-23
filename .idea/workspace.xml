@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f175fec-bf6f-41c5-ab92-c4653ff58020" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.clj" afterPath="$PROJECT_DIR$/project.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj" afterPath="$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cloudxmark/web.clj" afterPath="$PROJECT_DIR$/src/cloudxmark/web.clj" />
     </list>
     <ignored path="cloudxmark.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +56,8 @@
       <file leaf-file-name="bookmark_store.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.813449">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.6182213">
+              <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -97,8 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="203" />
-    <option name="y" value="85" />
+    <option name="x" value="155" />
+    <option name="y" value="90" />
     <option name="width" value="1143" />
     <option name="height" value="624" />
   </component>
@@ -534,7 +532,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="203" y="85" width="1143" height="624" extended-state="0" />
+    <frame x="155" y="90" width="1143" height="624" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -796,8 +794,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.813449">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.6182213">
+          <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
           <folding />
         </state>
       </provider>
