@@ -19,4 +19,6 @@
          :init cloudxmark.bookmark-store/migrate}
   :hooks [environ.leiningen.hooks]
   :uberjar-name "cloudxmark.jar"
-  :profiles {:production {:env {:production true}}})
+  :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
+                                  [ring-mock "0.1.5"]]}
+             :uberjar {:aot :all}})
