@@ -1,6 +1,7 @@
 (defproject cloudxmark "1.0.0-SNAPSHOT"
   :description "Cloudxmark web app"
   :url "http://cloudxmark.com"
+  :min-lein-version "2.0.0"
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
@@ -17,7 +18,6 @@
   :plugins [[environ/environ.lein "0.3.1"] [lein-ring "0.8.13"]]
   :ring {:handler cloudxmark.web/application
          :init cloudxmark.bookmark-store/migrate}
-  :hooks [environ.leiningen.hooks]
   :uberjar-name "cloudxmark.jar"
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring-mock "0.1.5"]]}
