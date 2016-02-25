@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/cloudxmark.jar clojure.main -m cloudxmark.web
+web: java $JVM_OPTS -jar target/cloudxmark.jar
