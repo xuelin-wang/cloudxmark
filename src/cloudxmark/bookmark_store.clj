@@ -4,7 +4,7 @@
       [clojure.string :as str]
       ))
 
-(def store-uri (or (System/getenv "DATABASE_URI") "postgresql://localhost:5432/bookmark"))
+(def store-uri (or (System/getenv "DATABASE_URL") "postgresql://localhost:5432/bookmark"))
 
 (defn- create-schema []
       (sql/db-do-commands store-uri
