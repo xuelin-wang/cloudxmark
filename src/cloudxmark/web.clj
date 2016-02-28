@@ -7,21 +7,72 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [compojure.response :as response]
             [ring.util.response :as resp]
+            [ring.middleware.session :as sess]
             [cheshire.core :refer :all]
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
-            [cloudxmark.bookmark-store :refer [migrate]]
+            [cloudxmark.auth :refer [login add-auth]]
+            [cloudxmark.bookmark-store :refer [migrate get-pass]]
     )
+    (:import java.security.MessageDigest
+      java.util.Base64)
     (:gen-class)
     )
 
-(defn ping [id]
-  {:status 200
-   :headers {"Content-Type" "text/plain"}
-   :body (str "Hello, " id)})
+(defn- handle-userid [session]
+       {
+        :status 200
+        :headers {"Content-Type" "text/html"}
+        :body (str "user id: " (:userid session "none"))
+        }
+       )
+
+(defn- handle-login [id pass session]
+       (if (login id pass)
+         {:session (assoc session :userid id)
+          :status 200
+          :headers {"Content-Type" "text/html"}
+          :body (str "user id: " id)
+          }
+         {:session (assoc session :userid nil)
+          :status 200
+          :headers {"Content-Type" "text/html"}
+          :body ("Failed to login")
+          }
+         )
+       )
+
+(defn- handle-add-auth [id pass desc session]
+       (if (= (:userid session) "xuelin")
+         (do
+           (add-auth {:id id :password pass :description desc})
+           {:session session
+            :status 200
+            :headers {"Content-Type" "text/html"}
+            :body "Success"
+            }
+           )
+         {:session session
+          :status 200
+          :headers {"Content-Type" "text/html"}
+          :body "Permission denied"
+          }
+         )
+       )
 
 (defroutes routes
-  (GET "/user/:id" [id] (ping id))
+ (GET "/userid"  [ :as {session :session}]
+      (handle-userid session)
+      )
+
+ (GET "/login/:id/:pass"  [id pass :as {session :session}]
+      (handle-login id pass session)
+       )
+
+ (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {session :session}]
+      (handle-add-auth id pass desc session)
+      )
+
   (GET "/getBookmarks" [] (get-bookmarks))
   (route/resources "/")
   (route/not-found "Page not found"))
