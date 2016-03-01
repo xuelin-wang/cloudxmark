@@ -37,6 +37,14 @@
            )
       )
 
+(defn has-auth? []
+      (let [
+            results (sql/query store-uri ["SELECT count(*) AS cnt FROM auth"])
+            ]
+           (zero? (:cnt (first results)))
+           )
+      )
+
 
 (defn hasBookmarkTable? []
       (-> (sql/query store-uri
