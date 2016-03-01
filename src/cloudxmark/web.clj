@@ -12,7 +12,7 @@
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
             [cloudxmark.auth :refer [login add-auth]]
-            [cloudxmark.bookmark-store :refer [migrate get-pass has-auth?]]
+            [cloudxmark.bookmark-store :refer [migrate get-pass no-auth?]]
     )
     (:import java.security.MessageDigest
       java.util.Base64)
@@ -43,7 +43,7 @@
        )
 
 (defn- handle-add-auth [id pass desc session]
-       (if (or (not (has-auth?)) (= (:userid session) "xuelin"))
+       (if (or (no-auth?) (= (:userid session) "xuelin"))
          (do
            (add-auth {:id id :password pass :description desc})
            {:session session

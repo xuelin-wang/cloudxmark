@@ -24,21 +24,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="web.clj" pinned="false" current-in-tab="true">
+      <file leaf-file-name="web.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cloudxmark/web.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5168375">
-              <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bookmark_store.clj" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bookmark_store.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.4612006">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -881,18 +881,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
+    <entry file="file://$PROJECT_DIR$/src/cloudxmark/web.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="12" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cloudxmark/web.clj">
+    <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5168375">
-          <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.4612006">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
           <folding />
         </state>
       </provider>

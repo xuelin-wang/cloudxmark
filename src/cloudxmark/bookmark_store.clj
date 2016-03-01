@@ -37,7 +37,7 @@
            )
       )
 
-(defn has-auth? []
+(defn no-auth? []
       (let [
             results (sql/query store-uri ["SELECT count(*) AS cnt FROM auth"])
             ]
