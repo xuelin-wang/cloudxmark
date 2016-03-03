@@ -8,10 +8,14 @@
 
 (defn- create-schema-bookmark []
       (sql/db-do-commands store-uri
-                          (sql/create-table-ddl :bookmark [:folder "varchar(1024)" "NOT NULL"]
-                                                [:link "varchar(4096)" "PRIMARY KEY"]
-                                                [:description "varchar(4096)" "NOT NULL"]
-                                                [:labels "varchar(1024)" "NOT NULL"]))
+                          (sql/create-table-ddl :bookmark
+                                                [:owner "varchar(64)" "NOT NULL"]
+                                                [:folder "varchar(1024)" "NOT NULL"]
+                                                [:link "varchar(4096)" "NOT NULL"]
+                                                [:description "varchar(4096)"]
+                                                [:labels "varchar(1024)"]
+                                                ["PRIMARY KEY" "(owner, link)"]
+                                                ))
       )
 
 (defn- create-schema-auth []
@@ -22,10 +26,10 @@
                                                  ))
        )
 
-(defn find-by-link [link]
+(defn find-by-link [link owner]
       (if (nil? link)
-        (sql/query store-uri ["SELECT * FROM bookmark"])
-        (sql/query store-uri ["SELECT * FROM bookmark WHERE link = ?" link])
+        (sql/query store-uri ["SELECT * FROM bookmark WHERE owner = ?" owner])
+        (sql/query store-uri ["SELECT * FROM bookmark WHERE link = ? AND owner = ?" link owner])
         )
       )
 
@@ -70,9 +74,9 @@
       (str/split labels-str #",")
       )
 
-(defn find-by-labels [labels allOrAny]
+(defn find-by-labels [labels allOrAny owner]
   (let [all
-        (sql/query store-uri ["SELECT * FROM bookmark"])
+        (sql/query store-uri ["SELECT * FROM bookmark WHERE owner = ?" owner])
         ]
        (cond
          (nil? labels) all
@@ -111,27 +115,26 @@
         )
       )
 
-(defn delete-bookmark [link]
+(defn delete-bookmark [link owner]
       (if link
-        (sql/delete! store-uri :bookmark ["link = ?" link])
+        (sql/delete! store-uri :bookmark ["link = ? AND owner = ?" link owner])
         )
       )
 
 (defn update-bookmark [from to]
       (cond
         (nil? from) (add-bookmark to)
-        (nil? to) (delete-bookmark (from :link))
+        (nil? to) (delete-bookmark (from :link) (:owner to))
         :else
         (do
           (if (not= (from :link) (to :link))
-            (delete-bookmark (from :link))
+            (delete-bookmark (from :link) (from :owner))
             )
-          (let [bookmarks (find-by-link (to :link))]
+          (let [bookmarks (find-by-link (to :link) (to :owner))]
                (if (first bookmarks)
-                 (sql/update! store-uri :bookmark to ["link = ?" (to :link)])
+                 (sql/update! store-uri :bookmark to ["link = ? AND owner = ?" (to :link) (to :owner)])
                  (add-bookmark to)
                  )
                )
-          )
-        )
+          ))
       )

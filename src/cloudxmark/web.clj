@@ -73,7 +73,7 @@
       (handle-add-auth id pass desc session)
       )
 
-  (GET "/getBookmarks" [] (get-bookmarks))
+  (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
   (route/resources "/")
   (route/not-found "Page not found"))
 
