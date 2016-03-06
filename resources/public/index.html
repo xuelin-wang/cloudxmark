@@ -20,8 +20,8 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
 
-        document.getElementById("_googleSignin").style.visibility = 'hidden';
-        document.getElementById("_googleSignout").style.visibility = 'visible';
+        document.getElementById("_googleSignin").style.display = 'none';
+        document.getElementById("_googleSignout").style.display = '';
       };
 
   function signOut() {
@@ -29,8 +29,8 @@
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-        document.getElementById("_googleSignin").style.visibility = 'visible';
-        document.getElementById("_googleSignout").style.visibility = 'hidden';
+        document.getElementById("_googleSignin").style.display = '';
+        document.getElementById("_googleSignout").style.display = 'none';
   }
     </script>
 </body>
