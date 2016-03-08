@@ -60,7 +60,14 @@
          )
        )
 
+(defn wrap-dir-index [handler]
+      (fn [req]
+          (handler
+            (update-in req [:uri]
+                       #(if (= "/" %) "/index.html" %)))))
+
 (defroutes routes
+ (route/resources "/")
  (GET "/userid"  [ :as {session :session}]
       (handle-userid session)
       )
@@ -74,10 +81,9 @@
       )
 
   (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
-  (route/resources "/")
   (route/not-found "Page not found"))
 
-(def application (wrap-defaults routes site-defaults))
+(def application (wrap-dir-index (wrap-defaults routes site-defaults)) )
 
 (defn -main [& [port]]
       (migrate)
