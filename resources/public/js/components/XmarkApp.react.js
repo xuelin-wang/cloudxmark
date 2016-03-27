@@ -283,7 +283,7 @@ console.log("addTitle = " + addTitle);
   var signinoutButton;
   if (this.state.googleUser == null) {
     signinoutButton = (
-<div class="g-signin2" data-onsuccess="onSignInGoogle" ref={button => this._signinGoogleButton = button} data-theme="dark"
+<div className="g-signin2" data-onsuccess="onSignInGoogle" ref={button => this._signinGoogleButton = button} data-theme="dark"
      ></div>
     );
   }

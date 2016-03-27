@@ -22927,7 +22927,7 @@
 	
 	    var signinoutButton;
 	    if (this.state.googleUser == null) {
-	      signinoutButton = _react2.default.createElement('div', { 'class': 'g-signin2', 'data-onsuccess': 'onSignInGoogle', ref: function ref(button) {
+	      signinoutButton = _react2.default.createElement('div', { className: 'g-signin2', 'data-onsuccess': 'onSignInGoogle', ref: function ref(button) {
 	          return _this._signinGoogleButton = button;
 	        }, 'data-theme': 'dark'
 	      });
