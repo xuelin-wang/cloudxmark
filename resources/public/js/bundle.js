@@ -22369,6 +22369,7 @@
 	
 	function bookmarksToTreeNodes(bookmarksMap) {
 	  var sortedNodes = [];
+	  if (!bookmarksMap) return sortedNodes;
 	  bookmarksMap.forEach(function (bookmark) {
 	    var path = bookmark.get("path");
 	    if (!path) path = new _immutable.List();
