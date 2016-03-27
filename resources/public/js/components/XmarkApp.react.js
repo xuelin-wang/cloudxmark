@@ -147,8 +147,8 @@ var XmarkApp = React.createClass({
 
   _addPathInput: null,
   _addUrlInput: null,
-  _signinGoogleButton: null;
-  _singoutButton: null;
+  _signinGoogleButton: null,
+  _singoutButton: null,
 
   _addBookmark: function(){
     if (!this._authorized())

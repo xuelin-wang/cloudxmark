@@ -97,15 +97,7 @@
 	
 	var gotInitialState = function gotInitialState() {
 	  var store = createStoreWithMiddleware(_reducers2.default, initialState);
-	
-	  var tabElement = document.getElementById('xmarkTab');
-	  var popupElement = document.getElementById('xmark');
-	  var rootElement;
-	  if (tabElement != null) {
-	    rootElement = tabElement;
-	  } else {
-	    rootElement = popupElement;
-	  }
+	  var rootElement = document.getElementById('xmark');
 	
 	  _reactDom2.default.render(_react2.default.createElement(
 	    _reactRedux.Provider,
@@ -22837,6 +22829,8 @@
 	
 	  _addPathInput: null,
 	  _addUrlInput: null,
+	  _signinGoogleButton: null,
+	  _singoutButton: null,
 	
 	  _addBookmark: function _addBookmark() {
 	    if (!this._authorized()) return;
@@ -22877,6 +22871,7 @@
 	  _close: function _close() {
 	    window.close();
 	  },
+	
 	  render: function render() {
 	    var _this = this;
 	
@@ -22938,18 +22933,54 @@
 	      { bsSize: 'small', onClick: thisXmarkApp._openMeInTab },
 	      'Open in tab'
 	    );
+	
+	    var onSignInGoogle = function onSignInGoogle(googleUser) {
+	      // Useful data for your client-side scripts:
+	      var profile = googleUser.getBasicProfile();
+	      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+	      console.log("Name: " + profile.getName());
+	      console.log("Image URL: " + profile.getImageUrl());
+	      console.log("Email: " + profile.getEmail());
+	
+	      // The ID token you need to pass to your backend:
+	      var id_token = googleUser.getAuthResponse().id_token;
+	      console.log("ID Token: " + id_token);
+	
+	      thisXmarkApp.setState({ auth: { googleUser: googleUser } });
+	    };
+	
+	    var signOutGoogle = function signOutGoogle() {
+	      var auth2 = gapi.auth2.getAuthInstance();
+	      auth2.signOut().then(function () {
+	        console.log('User signed out.');
+	      });
+	      thisXmarkApp.setState({ auth: { googleUser: null } });
+	    };
+	
+	    var signinoutButton;
+	    if (this.state.googleUser == null) {
+	      signinoutButton = _react2.default.createElement('div', { 'class': 'g-signin2', 'data-onsuccess': 'onSignInGoogle', ref: function ref(button) {
+	          return _this._signinGoogleButton = button;
+	        }, 'data-theme': 'dark',
+	        style: 'position:absolute;left:0px;top:0px;visibility:visible' });
+	    } else {
+	      signinoutButton = _react2.default.createElement(
+	        'a',
+	        { href: '#', onClick: 'signOutGoogle();', ref: function ref(button) {
+	            return _this._signoutButton = button;
+	          }, style: 'position:absolute;left:0px;top:0px;visibility:hidden' },
+	        'Sign out'
+	      );
+	    }
+	
 	    return _react2.default.createElement(
 	      'div',
 	      null,
 	      _react2.default.createElement(
-	        _reactBootstrap.ButtonToolbar,
+	        'div',
 	        null,
+	        signinoutButton,
 	        openTabButton,
-	        _react2.default.createElement(
-	          _reactBootstrap.Button,
-	          { bsSize: 'small', onClick: thisXmarkApp._toggleAuth },
-	          authorizeLabel
-	        ),
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
 	          { bsSize: 'small', onClick: thisXmarkApp._close },
