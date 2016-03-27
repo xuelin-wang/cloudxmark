@@ -22929,14 +22929,14 @@
 	    if (this.state.googleUser == null) {
 	      signinoutButton = _react2.default.createElement('div', { 'class': 'g-signin2', 'data-onsuccess': 'onSignInGoogle', ref: function ref(button) {
 	          return _this._signinGoogleButton = button;
-	        }, 'data-theme': 'dark',
-	        style: 'position:absolute;left:0px;top:0px;visibility:visible' });
+	        }, 'data-theme': 'dark'
+	      });
 	    } else {
 	      signinoutButton = _react2.default.createElement(
 	        'a',
 	        { href: '#', onClick: 'signOutGoogle();', ref: function ref(button) {
 	            return _this._signoutButton = button;
-	          }, style: 'position:absolute;left:0px;top:0px;visibility:hidden' },
+	          } },
 	        'Sign out'
 	      );
 	    }
