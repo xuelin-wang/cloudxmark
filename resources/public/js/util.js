@@ -111,6 +111,8 @@ function findNode(node, sortedNodes) {
 
 export function bookmarksToTreeNodes(bookmarksMap) {
   var sortedNodes = [];
+  if (!bookmarksMap)
+    return sortedNodes;
   bookmarksMap.forEach(function(bookmark) {
     var path = bookmark.get("path");
     if (!path)
