@@ -1,38 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <title>Xmark</title>
+
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="755306085034-l0fk2fka8136lu7qrq4vpau7evs896hl.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" media="all" href="css/main.css">
+    <base target="_blank">
 </head>
 <body>
-<div class="g-signin2" data-onsuccess="onSignInGoogle" id="_googleSignin" data-theme="dark"
-     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
-<a href="#" onclick="signOutGoogle();" id="_googleSignout" style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out google</a>
-<script>
-      function onSignInGoogle(googleUser) {
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
+    <section id="xmark"
+         style="width: 800px;height: 700px;minWidth: 800px;minHeight: 600px;"
+    />
+    <script src="js/bundle.js"></script>
 
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-        document.getElementById("_googleSignin").style.visibility = 'hidden';
-        document.getElementById("_googleSignout").style.visibility = 'visible';
-      };
-
-  function signOutGoogle() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-        document.getElementById("_googleSignin").style.visibility = 'visible';
-        document.getElementById("_googleSignout").style.visibility = 'hidden';
-  }
-    </script>
 </body>
 </html>

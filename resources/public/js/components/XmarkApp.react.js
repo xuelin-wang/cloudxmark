@@ -147,6 +147,8 @@ var XmarkApp = React.createClass({
 
   _addPathInput: null,
   _addUrlInput: null,
+  _signinGoogleButton: null;
+  _singoutButton: null;
 
   _addBookmark: function(){
     if (!this._authorized())
@@ -190,31 +192,6 @@ console.log("addTitle = " + addTitle);
   },
 
   _close: function(){window.close();},
-
-  _onSignInGoogle: function(googleUser) {
-          // Useful data for your client-side scripts:
-          var profile = googleUser.getBasicProfile();
-          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-          console.log("Name: " + profile.getName());
-          console.log("Image URL: " + profile.getImageUrl());
-          console.log("Email: " + profile.getEmail());
-
-          // The ID token you need to pass to your backend:
-          var id_token = googleUser.getAuthResponse().id_token;
-          console.log("ID Token: " + id_token);
-
-          document.getElementById("_googleSignin").style.visibility = 'hidden';
-          document.getElementById("_googleSignout").style.visibility = 'visible';
-  };
-
-  _signOutGoogle: function() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
-          document.getElementById("_googleSignin").style.visibility = 'visible';
-          document.getElementById("_googleSignout").style.visibility = 'hidden';
-  };
 
   render: function() {
     var authorizeLabel = this._authorized() ? "Log Out Google" : "Log In Google";
@@ -279,14 +256,49 @@ console.log("addTitle = " + addTitle);
       openTabButton = (
           <Button bsSize="small" onClick={thisXmarkApp._openMeInTab}>Open in tab</Button>
       );
+
+    var onSignInGoogle = function onSignInGoogle(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log("Name: " + profile.getName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+
+        thisXmarkApp.setState({auth: {googleUser: googleUser}});
+      };
+
+  var signOutGoogle = function () {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+        thisXmarkApp.setState({auth: {googleUser: null}});
+  };
+
+  var signinoutButton;
+  if (this.state.googleUser == null) {
+    signinoutButton = (
+<div class="g-signin2" data-onsuccess="onSignInGoogle" ref={button => this._signinGoogleButton = button} data-theme="dark"
+     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
+    );
+  }
+  else {
+    signinoutButton = (
+<a href="#" onClick="signOutGoogle();" ref={button => this._signoutButton = button} style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out</a>
+    );
+  }
+
+
     return (
       <div>
           <div>
 
-<div class="g-signin2" data-onsuccess="_onSignInGoogle" data-theme="dark"
-     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
-<a href="#" onClick="thisXmarkApp._signOutGoogle();" style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out google</a>
-
+            {signinoutButton}
             {openTabButton}
 
             <Button bsSize="small" onClick={thisXmarkApp._close}>Close</Button>
