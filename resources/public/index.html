@@ -5,11 +5,11 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
-<div class="g-signin2" data-onsuccess="onSignIn" id="_googleSignin" data-theme="dark"
-     style="position:absolute;left:100px;top:100px;visibility:visible"></div>
-<a href="#" onclick="signOut();" id="_googleSignout" style="position:absolute;left:100px;top:100px;visibility:hidden">Sign out</a>
+<div class="g-signin2" data-onsuccess="onSignInGoogle" id="_googleSignin" data-theme="dark"
+     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
+<a href="#" onclick="signOutGoogle();" id="_googleSignout" style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out google</a>
 <script>
-      function onSignIn(googleUser) {
+      function onSignInGoogle(googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
@@ -25,7 +25,7 @@
         document.getElementById("_googleSignout").style.visibility = 'visible';
       };
 
-  function signOut() {
+  function signOutGoogle() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');

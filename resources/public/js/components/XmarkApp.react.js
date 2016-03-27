@@ -190,6 +190,32 @@ console.log("addTitle = " + addTitle);
   },
 
   _close: function(){window.close();},
+
+  _onSignInGoogle: function(googleUser) {
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log("Name: " + profile.getName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+
+          document.getElementById("_googleSignin").style.visibility = 'hidden';
+          document.getElementById("_googleSignout").style.visibility = 'visible';
+  };
+
+  _signOutGoogle: function() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+          document.getElementById("_googleSignin").style.visibility = 'visible';
+          document.getElementById("_googleSignout").style.visibility = 'hidden';
+  };
+
   render: function() {
     var authorizeLabel = this._authorized() ? "Log Out Google" : "Log In Google";
     var thisXmarkApp = this;
@@ -255,11 +281,16 @@ console.log("addTitle = " + addTitle);
       );
     return (
       <div>
-          <ButtonToolbar>
+          <div>
+
+<div class="g-signin2" data-onsuccess="_onSignInGoogle" data-theme="dark"
+     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
+<a href="#" onClick="thisXmarkApp._signOutGoogle();" style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out google</a>
+
             {openTabButton}
-            <Button bsSize="small" onClick={thisXmarkApp._toggleAuth}>{authorizeLabel}</Button>
+
             <Button bsSize="small" onClick={thisXmarkApp._close}>Close</Button>
-          </ButtonToolbar>
+          </div>
 
 <Grid>
   <Row>
