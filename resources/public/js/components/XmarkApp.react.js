@@ -284,12 +284,12 @@ console.log("addTitle = " + addTitle);
   if (this.state.googleUser == null) {
     signinoutButton = (
 <div class="g-signin2" data-onsuccess="onSignInGoogle" ref={button => this._signinGoogleButton = button} data-theme="dark"
-     style="position:absolute;left:0px;top:0px;visibility:visible"></div>
+     ></div>
     );
   }
   else {
     signinoutButton = (
-<a href="#" onClick="signOutGoogle();" ref={button => this._signoutButton = button} style="position:absolute;left:0px;top:0px;visibility:hidden">Sign out</a>
+<a href="#" onClick="signOutGoogle();" ref={button => this._signoutButton = button} >Sign out</a>
     );
   }
 
