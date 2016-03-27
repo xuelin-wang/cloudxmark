@@ -31,41 +31,4 @@ var gotInitialState = function() {
     );
 };
 
-
-
-try {
-  var authCallback = function(token) {
-    initialState.auth.accessToken = token;
-    if (token) {
-      var bookmarksCallback = function(xmarksFileId, responseText) {
-        initialState.auth.bookmarksFileId = xmarksFileId;
-        var parsedObj = parseBookmarks(responseText);
-        var bookmarksMap = parsedObj[0];
-        var collapsedPathsSet = parsedObj[1];
-        initialState.auth.bookmarks = bookmarksMap;
-        initialState.auth.collapsedPaths = collapsedPathsSet;
-        chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function (tabs) {
-         if (tabs.length != 0 && tabs[0]) {
-           var activeTab = tabs[0];
-           var newUrl = activeTab.url;
-           var title = activeTab.title;
-           initialState.auth.activeTabUrl = newUrl;
-           initialState.auth.activeTabTitle = title;
-         }
-         console.log("init state: ")
-         console.log(initialState.auth);
-         gotInitialState();
-    });
-      };
-      fetchBookmarks(token, bookmarksCallback);
-    }
-    else {
-      gotInitialState();
-    }
-  };
-  chrome.identity.getAuthToken({interactive: false}, authCallback);
-} catch(e) {
-  console.log(e);
-  authCallback(null);
-}
-
+gotInitialState();
