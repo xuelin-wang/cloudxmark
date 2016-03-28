@@ -18,12 +18,24 @@
                                                 ))
       )
 
+(defn- drop-schema-bookmark []
+       (sql/db-do-commands store-uri
+                           (sql/drop-table-ddl :bookmark
+                                                 ))
+       )
+
 (defn- create-schema-auth []
        (sql/db-do-commands store-uri
                            (sql/create-table-ddl :auth [:id "varchar(64)" "NOT NULL" "PRIMARY KEY"]
                                                  [:password "varchar(512)" "NOT NULL"]
                                                  [:description "varchar(4096)" "NOT NULL"]
                                                  ))
+       )
+
+(defn- drop-schema-auth []
+       (sql/db-do-commands store-uri
+                           (sql/drop-table-ddl :auth
+                                               ))
        )
 
 (defn find-by-link [link owner]
@@ -68,6 +80,14 @@
             (println " done"))
       (when (not (hasBookmarkTable?))
             (create-schema-bookmark)
+            (println " done")))
+
+(defn dropTables []
+      (when hasAuthTable?
+            (drop-schema-auth)
+            (println " done"))
+      (when hasBookmarkTable?
+            (drop-schema-bookmark)
             (println " done")))
 
 (defn- to-labels [labels-str]

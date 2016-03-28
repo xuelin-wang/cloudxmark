@@ -12,7 +12,7 @@
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
             [cloudxmark.auth :refer [login add-auth]]
-            [cloudxmark.bookmark-store :refer [migrate get-pass no-auth?]]
+            [cloudxmark.bookmark-store :refer [migrate dropTables get-pass no-auth?]]
     )
     (:import java.security.MessageDigest
       java.util.Base64)
@@ -38,6 +38,17 @@
           :status 200
           :headers {"Content-Type" "text/html"}
           :body ("Failed to login")
+          }
+         )
+       )
+
+(defn- handle-drop-tables [session]
+       (if (or (no-auth?) (= (:userid session) "xuelin"))
+         (dropTables)
+         {:session session
+          :status 200
+          :headers {"Content-Type" "text/html"}
+          :body "Permission denied"
           }
          )
        )
@@ -75,6 +86,10 @@
  (GET "/login/:id/:pass"  [id pass :as {session :session}]
       (handle-login id pass session)
        )
+
+ (GET "/dropTables" [ :as {session :session}]
+      (handle-drop-tables session)
+      )
 
  (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {session :session}]
       (handle-add-auth id pass desc session)
