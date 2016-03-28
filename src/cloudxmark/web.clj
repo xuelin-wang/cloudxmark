@@ -37,14 +37,21 @@
          {:session (assoc session :userid nil)
           :status 200
           :headers {"Content-Type" "text/html"}
-          :body ("Failed to login")
+          :body "Failed to login"
           }
          )
        )
 
 (defn- handle-drop-tables [session]
        (if (or (no-auth?) (= (:userid session) "xuelin"))
-         (dropTables)
+         (do
+           (dropTables)
+           {:session session
+            :status 200
+            :headers {"Content-Type" "text/html"}
+            :body "Success"
+            }
+           )
          {:session session
           :status 200
           :headers {"Content-Type" "text/html"}

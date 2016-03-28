@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f175fec-bf6f-41c5-ab92-c4653ff58020" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj" afterPath="$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cloudxmark/web.clj" afterPath="$PROJECT_DIR$/src/cloudxmark/web.clj" />
     </list>
     <ignored path="cloudxmark.iws" />
@@ -48,8 +46,18 @@
       <file leaf-file-name="web.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cloudxmark/web.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33280507">
-              <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.38034865">
+              <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.clj" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cloudxmark/auth.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -58,7 +66,7 @@
       <file leaf-file-name="bookmark_store.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.612904">
+            <state vertical-scroll-proportion="-40.64516">
               <caret line="84" column="16" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="16" />
               <folding />
             </state>
@@ -109,8 +117,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="253" />
-    <option name="y" value="78" />
+    <option name="x" value="266" />
+    <option name="y" value="52" />
     <option name="width" value="1327" />
     <option name="height" value="766" />
   </component>
@@ -598,7 +606,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="253" y="78" width="1327" height="766" extended-state="0" />
+    <frame x="266" y="52" width="1327" height="766" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -857,13 +865,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cloudxmark/auth.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/public/hanoi.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10159652">
@@ -1002,16 +1003,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cloudxmark/bookmark_store.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.612904">
+        <state vertical-scroll-proportion="-40.64516">
           <caret line="84" column="16" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cloudxmark/auth.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cloudxmark/web.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33280507">
-          <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.38034865">
+          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
           <folding />
         </state>
       </provider>
