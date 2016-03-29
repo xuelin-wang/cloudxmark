@@ -42,8 +42,13 @@
          )
        )
 
+(defn- isAdmin? [session]
+       (let [user-id (:userid session)]
+            (or (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
+       )
+
 (defn- handle-drop-tables [session]
-       (if (or (no-auth?) (= (:userid session) "xuelin"))
+       (if (or (no-auth?) (isAdmin? session))
          (do
            (dropTables)
            {:session session
@@ -61,7 +66,7 @@
        )
 
 (defn- handle-add-auth [id pass desc session]
-       (if (or (no-auth?) (= (:userid session) "xuelin"))
+       (if (or (no-auth?) (isAdmin? session))
          (do
            (add-auth {:id id :password pass :description desc})
            {:session session
