@@ -257,7 +257,7 @@ console.log("addTitle = " + addTitle);
           <Button bsSize="small" onClick={thisXmarkApp._openMeInTab}>Open in tab</Button>
       );
 
-    var onSignInGoogle = function onSignInGoogle(googleUser) {
+    var onSignInGoogle = function (googleUser) {
         // Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
