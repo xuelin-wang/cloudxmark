@@ -299,6 +299,11 @@ console.log("addTitle = " + addTitle);
         thisXmarkApp.setState({accessToken: profile});
       };
 
+  if (this.state.accessToken == null) {
+    return (
+    <LoginButton onSignIn={onSignInGoogle} />
+    );
+  }
   var signOutGoogle = function () {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
@@ -307,24 +312,16 @@ console.log("addTitle = " + addTitle);
         thisXmarkApp.setState({accessToken: null});
   };
 
-  var signinoutButton;
-  if (this.state.accessToken == null) {
-    signinoutButton = (
-    <LoginButton onSignIn={onSignInGoogle} />
-    );
-  }
-  else {
-    signinoutButton = (
+    var signoutButton = (
 <a href="#" onClick={signOutGoogle} ref={button => this._signoutButton = button} >Sign out</a>
     );
-  }
 
 
     return (
       <div>
           <div>
 
-            {signinoutButton}
+            {signoutButton}
             {openTabButton}
 
             <Button bsSize="small" onClick={thisXmarkApp._close}>Close</Button>

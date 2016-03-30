@@ -22942,6 +22942,9 @@
 	      thisXmarkApp.setState({ accessToken: profile });
 	    };
 	
+	    if (this.state.accessToken == null) {
+	      return _react2.default.createElement(LoginButton, { onSignIn: onSignInGoogle });
+	    }
 	    var signOutGoogle = function signOutGoogle() {
 	      var auth2 = gapi.auth2.getAuthInstance();
 	      auth2.signOut().then(function () {
@@ -22950,18 +22953,13 @@
 	      thisXmarkApp.setState({ accessToken: null });
 	    };
 	
-	    var signinoutButton;
-	    if (this.state.accessToken == null) {
-	      signinoutButton = _react2.default.createElement(LoginButton, { onSignIn: onSignInGoogle });
-	    } else {
-	      signinoutButton = _react2.default.createElement(
-	        'a',
-	        { href: '#', onClick: signOutGoogle, ref: function ref(button) {
-	            return _this._signoutButton = button;
-	          } },
-	        'Sign out'
-	      );
-	    }
+	    var signoutButton = _react2.default.createElement(
+	      'a',
+	      { href: '#', onClick: signOutGoogle, ref: function ref(button) {
+	          return _this._signoutButton = button;
+	        } },
+	      'Sign out'
+	    );
 	
 	    return _react2.default.createElement(
 	      'div',
@@ -22969,7 +22967,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        signinoutButton,
+	        signoutButton,
 	        openTabButton,
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
