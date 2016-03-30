@@ -92,8 +92,7 @@
 	loggerMiddleware // neat middleware that logs actions
 	)(_redux.createStore);
 	
-	var initialState = { auth: { accessToken: null }
-	};
+	var initialState = { auth: null };
 	
 	var gotInitialState = function gotInitialState() {
 	  var store = createStoreWithMiddleware(_reducers2.default, initialState);
@@ -22940,7 +22939,7 @@
 	      var id_token = googleUser.getAuthResponse().id_token;
 	      console.log("ID Token: " + id_token);
 	
-	      thisXmarkApp.setState({ auth: { googleUser: googleUser } });
+	      thisXmarkApp.setState({ auth: profile });
 	    };
 	
 	    var signOutGoogle = function signOutGoogle() {
@@ -22948,11 +22947,11 @@
 	      auth2.signOut().then(function () {
 	        console.log('User signed out.');
 	      });
-	      thisXmarkApp.setState({ auth: { googleUser: null } });
+	      thisXmarkApp.setState({ auth: null });
 	    };
 	
 	    var signinoutButton;
-	    if (this.state.googleUser == null) {
+	    if (this.state.auth == null) {
 	      signinoutButton = _react2.default.createElement(LoginButton, { onSignIn: onSignInGoogle });
 	    } else {
 	      signinoutButton = _react2.default.createElement(
