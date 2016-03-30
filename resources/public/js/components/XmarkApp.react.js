@@ -296,7 +296,7 @@ console.log("addTitle = " + addTitle);
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
 
-        thisXmarkApp.setState({auth: profile});
+        thisXmarkApp.setState({accessToken: profile});
       };
 
   var signOutGoogle = function () {
@@ -304,11 +304,11 @@ console.log("addTitle = " + addTitle);
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-        thisXmarkApp.setState({auth: null});
+        thisXmarkApp.setState({accessToken: null});
   };
 
   var signinoutButton;
-  if (this.state.auth == null) {
+  if (this.state.accessToken == null) {
     signinoutButton = (
     <LoginButton onSignIn={onSignInGoogle} />
     );
