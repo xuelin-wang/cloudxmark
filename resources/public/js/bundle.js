@@ -22940,7 +22940,7 @@
 	      thisXmarkApp.setState({ auth: { accessToken: profile } });
 	    };
 	
-	    if (this.state.auth.accessToken == null) {
+	    if (this.state.auth == null || this.state.auth.accessToken == null) {
 	      return _react2.default.createElement(LoginButton, { onSignIn: onSignInGoogle });
 	    }
 	    var signOutGoogle = function signOutGoogle() {

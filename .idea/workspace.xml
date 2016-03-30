@@ -27,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/resources/public/js/components/XmarkApp.react.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.4087102">
-              <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
+              <caret line="299" column="50" selection-start-line="299" selection-start-column="50" selection-end-line="299" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -157,8 +157,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="279" />
-    <option name="y" value="129" />
+    <option name="x" value="246" />
+    <option name="y" value="102" />
     <option name="width" value="1279" />
     <option name="height" value="760" />
   </component>
@@ -646,7 +646,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="279" y="129" width="1279" height="760" extended-state="0" />
+    <frame x="246" y="102" width="1279" height="760" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1053,7 +1053,7 @@
     <entry file="file://$PROJECT_DIR$/resources/public/js/components/XmarkApp.react.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4087102">
-          <caret line="299" column="22" selection-start-line="299" selection-start-column="22" selection-end-line="299" selection-end-column="22" />
+          <caret line="299" column="50" selection-start-line="299" selection-start-column="50" selection-end-line="299" selection-end-column="50" />
           <folding />
         </state>
       </provider>
