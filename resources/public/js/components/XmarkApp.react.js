@@ -297,7 +297,7 @@ console.log("addTitle = " + addTitle);
         thisXmarkApp.setState({auth: {accessToken: profile}});
       };
 
-  if (this.state.accessToken == null) {
+  if (this.state.auth.accessToken == null) {
     return (
     <LoginButton onSignIn={onSignInGoogle} />
     );
