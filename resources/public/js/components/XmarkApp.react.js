@@ -104,6 +104,33 @@ var XmarkNode = React.createClass({
   }
 });
 
+var LoginButton = React.createClass({
+
+  renderGoogleLoginButton: function() {
+    console.log('rendering google signin button')
+    gapi.signin2.render('my-signin2', {
+      'scope': 'https://www.googleapis.com/auth/plus.login',
+      'width': 200,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'light',
+      'onsuccess': this.props.onSignIn
+    })
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('google-loaded',this.renderGoogleLoginButton);
+  },
+
+  render: function() {
+    let displayText = "Sign in with Google";
+    return (
+       <div id="my-signin2"></div>
+    );
+  }
+
+});
+
 var XmarkApp = React.createClass({
   getInitialState: function(){
     return {};
@@ -283,8 +310,7 @@ console.log("addTitle = " + addTitle);
   var signinoutButton;
   if (this.state.googleUser == null) {
     signinoutButton = (
-<div className="g-signin2" data-onsuccess="onSignInGoogle" ref={button => this._signinGoogleButton = button} data-theme="dark"
-     ></div>
+    <LoginButton onSignIn={onSignInGoogle} />
     );
   }
   else {

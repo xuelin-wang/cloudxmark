@@ -22752,6 +22752,32 @@
 	  }
 	});
 	
+	var LoginButton = _react2.default.createClass({
+	  displayName: 'LoginButton',
+	
+	  renderGoogleLoginButton: function renderGoogleLoginButton() {
+	    console.log('rendering google signin button');
+	    gapi.signin2.render('my-signin2', {
+	      'scope': 'https://www.googleapis.com/auth/plus.login',
+	      'width': 200,
+	      'height': 50,
+	      'longtitle': true,
+	      'theme': 'light',
+	      'onsuccess': this.props.onSignIn
+	    });
+	  },
+	
+	  componentDidMount: function componentDidMount() {
+	    window.addEventListener('google-loaded', this.renderGoogleLoginButton);
+	  },
+	
+	  render: function render() {
+	    var displayText = "Sign in with Google";
+	    return _react2.default.createElement('div', { id: 'my-signin2' });
+	  }
+	
+	});
+	
 	var XmarkApp = _react2.default.createClass({
 	  displayName: 'XmarkApp',
 	
@@ -22927,10 +22953,7 @@
 	
 	    var signinoutButton;
 	    if (this.state.googleUser == null) {
-	      signinoutButton = _react2.default.createElement('div', { className: 'g-signin2', 'data-onsuccess': 'onSignInGoogle', ref: function ref(button) {
-	          return _this._signinGoogleButton = button;
-	        }, 'data-theme': 'dark'
-	      });
+	      signinoutButton = _react2.default.createElement(LoginButton, { onSignIn: onSignInGoogle });
 	    } else {
 	      signinoutButton = _react2.default.createElement(
 	        'a',
