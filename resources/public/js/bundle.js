@@ -22956,7 +22956,7 @@
 	    } else {
 	      signinoutButton = _react2.default.createElement(
 	        'a',
-	        { href: '#', onClick: 'signOutGoogle();', ref: function ref(button) {
+	        { href: '#', onClick: signOutGoogle, ref: function ref(button) {
 	            return _this._signoutButton = button;
 	          } },
 	        'Sign out'

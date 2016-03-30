@@ -315,7 +315,7 @@ console.log("addTitle = " + addTitle);
   }
   else {
     signinoutButton = (
-<a href="#" onClick="signOutGoogle();" ref={button => this._signoutButton = button} >Sign out</a>
+<a href="#" onClick={signOutGoogle} ref={button => this._signoutButton = button} >Sign out</a>
     );
   }
 
