@@ -294,7 +294,7 @@ console.log("addTitle = " + addTitle);
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
 
-        thisXmarkApp.setState({accessToken: profile});
+        thisXmarkApp.setState({auth: {accessToken: profile}});
       };
 
   if (this.state.accessToken == null) {
@@ -307,12 +307,13 @@ console.log("addTitle = " + addTitle);
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-        thisXmarkApp.setState({accessToken: null});
+        thisXmarkApp.setState({auth: {accessToken: null}});
   };
 
     return (
       <div>
           <div>
+    <LoginButton onSignIn={onSignInGoogle} />
 
             <Button bsSize="small" onClick={signOutGoogle}>Sign out</Button>
             {openTabButton}

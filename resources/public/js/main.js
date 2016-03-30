@@ -16,7 +16,7 @@ const createStoreWithMiddleware = applyMiddleware(
   loggerMiddleware // neat middleware that logs actions
 )(createStore)
 
-var initialState = {accessToken: null};
+var initialState = {auth: {accessToken: null}};
 
 var gotInitialState = function() {
     var store = createStoreWithMiddleware(xmarkReducer, initialState)
