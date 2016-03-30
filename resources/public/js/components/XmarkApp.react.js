@@ -174,8 +174,6 @@ var XmarkApp = React.createClass({
 
   _addPathInput: null,
   _addUrlInput: null,
-  _signinGoogleButton: null,
-  _singoutButton: null,
 
   _addBookmark: function(){
     if (!this._authorized())
@@ -312,16 +310,11 @@ console.log("addTitle = " + addTitle);
         thisXmarkApp.setState({accessToken: null});
   };
 
-    var signoutButton = (
-<a href="#" onClick={signOutGoogle} ref={button => this._signoutButton = button} >Sign out</a>
-    );
-
-
     return (
       <div>
           <div>
 
-            {signoutButton}
+            <Button bsSize="small" onClick={signOutGoogle}>Sign out</Button>
             {openTabButton}
 
             <Button bsSize="small" onClick={thisXmarkApp._close}>Close</Button>

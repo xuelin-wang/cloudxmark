@@ -22822,8 +22822,6 @@
 	
 	  _addPathInput: null,
 	  _addUrlInput: null,
-	  _signinGoogleButton: null,
-	  _singoutButton: null,
 	
 	  _addBookmark: function _addBookmark() {
 	    if (!this._authorized()) return;
@@ -22953,21 +22951,17 @@
 	      thisXmarkApp.setState({ accessToken: null });
 	    };
 	
-	    var signoutButton = _react2.default.createElement(
-	      'a',
-	      { href: '#', onClick: signOutGoogle, ref: function ref(button) {
-	          return _this._signoutButton = button;
-	        } },
-	      'Sign out'
-	    );
-	
 	    return _react2.default.createElement(
 	      'div',
 	      null,
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        signoutButton,
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          { bsSize: 'small', onClick: signOutGoogle },
+	          'Sign out'
+	        ),
 	        openTabButton,
 	        _react2.default.createElement(
 	          _reactBootstrap.Button,
