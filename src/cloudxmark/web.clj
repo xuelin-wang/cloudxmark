@@ -11,6 +11,7 @@
             [cheshire.core :refer :all]
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
+            [cloudxmark.password :refer [get-password-list get-password]]
             [cloudxmark.auth :refer [login add-auth]]
             [cloudxmark.bookmark-store :refer [migrate dropTables get-pass no-auth?]]
     )
@@ -107,7 +108,12 @@
       (handle-add-auth id pass desc session)
       )
 
-  (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
+ (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
+
+ (GET "/getPasswordList/:owner" [owner] (get-password-list owner))
+
+ (GET "/getPassword/:owner/:site" [owner site] (get-password owner site))
+
   (route/not-found "Page not found"))
 
 (def application (wrap-dir-index (wrap-defaults routes site-defaults)) )

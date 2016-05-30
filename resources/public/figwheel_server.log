@@ -1,0 +1,104 @@
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying jar:file:/home/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20151016-61277aea/google-closure-library-0.0-20151016-61277aea.jar!/goog/net/jsonp.js to js/goog/net/jsonp.js
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.343 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.211 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.199 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.219 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.243 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.31 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.291 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.632 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.329 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.352 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 14.012 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter } on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 103, column 41
+[32mSuccessfully compiled "js/main.js" in 1.596 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter } on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 102, column 41
+[32mSuccessfully compiled "js/main.js" in 0.85 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter } on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 102, column 41
+[32mSuccessfully compiled "js/main.js" in 0.368 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.315 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.441 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.663 seconds.[0m
