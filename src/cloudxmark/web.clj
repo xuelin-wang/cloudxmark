@@ -8,6 +8,7 @@
             [compojure.response :as response]
             [ring.util.response :as resp]
             [ring.middleware.session :as sess]
+            [ring.middleware.params :as params]
             [cheshire.core :refer :all]
             [environ.core :refer [env]]
             [cloudxmark.bookmark :refer [get-bookmarks]]
@@ -84,6 +85,21 @@
          )
        )
 
+(defn- handle-pw-list [pwlist callback]
+  (if callback
+       {
+        :status 200
+        :headers {"Content-Type" "application/javascript" "charset" "utf-8"}
+        :body (str callback "(" pwlist ")")
+        }
+       {
+        :status 200
+        :headers {"Content-Type" "application/json" "charset" "utf-8"}
+        :body pwlist
+        }
+       )
+       )
+
 (defn wrap-dir-index [handler]
       (fn [req]
           (handler
@@ -110,7 +126,10 @@
 
  (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
 
- (GET "/getPasswordList/:owner" [owner] (get-password-list owner))
+ (GET "/getPasswordList" {params :params}
+      (let [{:keys [owner callback]} params]
+          (handle-pw-list (get-password-list owner) callback)
+      ))
 
  (GET "/getPassword/:owner/:site" [owner site] (get-password owner site))
 

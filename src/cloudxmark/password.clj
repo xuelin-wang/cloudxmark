@@ -5,8 +5,8 @@
 
 (defn get-password-list [owner]
       (let []
-        ["www.google.com", "www.yahoo.com"]
-           )
+        (generate-string [owner ["www.google.com" "www.yahoo.com"]])
+        )
       )
 
 (defn get-password [owner site]

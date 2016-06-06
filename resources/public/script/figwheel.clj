@@ -12,6 +12,7 @@
                 :asset-path "js"
                 :output-to "js/main.js"
                 :output-dir "js"
+                :source-map true
                 :verbose true}}]})
 
 (ra/cljs-repl)
