@@ -52,6 +52,13 @@
   (dom/ul #js {:key "result-list"}
           (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))
 
+(defn password-list [results]
+  (dom/div #js {:key "password-list"}
+           (map-indexed (fn [idx itm] (dom/div #js {:key (str password-list idx)}
+                                               (dom/input #js {:type "checkbox"})
+                                               (dom/span #js {:key (str password-list idx "span")} itm)
+                                               )) results)))
+
 (defn search-field [comp query type]
   (let [[elem-key query-key]
         (case type :wiki ["wiki-search-field" :wiki-query] :password ["password-search-field" :password-query])
@@ -80,7 +87,7 @@
 
                      (cond->
                          [(search-field this (:password-query (om/get-params this)) :password)]
-                                 (not (empty? lst)) (conj (result-list lst)))))))
+                                 (not (empty? lst)) (conj (password-list lst)))))))
 
 (defui AutoCompleter
   static om/IQueryParams

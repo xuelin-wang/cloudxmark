@@ -851,3 +851,31 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 notifying browser that file changed:  out/cloudxmark/core.js
 [32mSuccessfully compiled "js/main.js" in 0.528 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.81 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.887 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.492 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.474 seconds.[0m
