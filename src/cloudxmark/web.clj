@@ -53,7 +53,7 @@
 
 (defn- isAdmin? [session]
        (let [user-id (:userid session)]
-            (or (= user-id "xwang") (= user-id "xuelin.wang@gmail.com")))
+            (or (= user-id "xwang") (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
        )
 
 (defn- handle-drop-table [table session]
