@@ -39,6 +39,9 @@
                                )
                              ) {} result)
         ]
+    (if-let [the-lsts (vals lsts-by-id)]
            (generate-string (vals lsts-by-id))
+      "[]"
+      )
            )
       )
