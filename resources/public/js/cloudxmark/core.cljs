@@ -13,8 +13,8 @@
 (def wiki-url
   "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=")
 
-(def password-url
-  "http://localhost:5000/getPasswordList?owner=abc")
+(def lst-url
+  "http://localhost:5000/getItems")
 
 (defn jsonp
   ([uri] (jsonp (chan) uri))
@@ -36,38 +36,53 @@
    )
   )
 
-(defmethod read :password/lst
-  [{:keys [state ast] :as env} k {:keys [query]}]
-  (merge
-   {:value (get @state k [])}
-   (when (nil? (get @state k))
-     (println (str "query pw list:" k (nil? (get @state k))))
-     {:password-search ast}))
+(defmethod read :lst/lst
+  [{:keys [state ast] :as env} _ {:keys [query]}]
+  (let [curr-list (get @state :lst/lst) curr-ver (get @state :lst/lst-ver)]
+    (println (str "query:" query ", curr-list" curr-list ", curr-ver:" curr-ver))
+  (if (or (> query curr-ver) (nil? curr-list))
+    (do
+      (println (str "query lists:"  (nil? curr-list)))
+      (merge {:value []} {:lst-search ast} )
+      )
+    (do
+      (println (str "no query, lst: " curr-list ", ver:" curr-ver))
+      {:value curr-list}
+      )
+    )
+      )
   )
 
-(defmethod read :password/curr
+(defmethod read :lst/curr
+  [{:keys [state ast] :as env} k _]
+   {:value (get @state k [])}
+  )
+
+(defmethod read :lst/lst-ver
   [{:keys [state ast] :as env} k _]
    {:value (get @state k [])}
   )
 
 (defmulti mutate om/dispatch)
 
-(defmethod mutate 'password/set-curr
-  [{:keys [state] :as env} _ {:keys [password/curr]}]
+(defmethod mutate 'lst/set-curr
+  [{:keys [state] :as env} _ {:keys [lst/curr]}]
   {:action (fn []
              (do
-               (swap! state update-in [:password/curr] (constantly curr))
+               (swap! state update-in [:lst/curr] (constantly curr))
                (println (str "set to " curr))
              ))
    }
   )
 
-(defmethod mutate 'password/set-list
-  [{:keys [state] :as env} _ {:keys [password/lst]}]
+(defmethod mutate 'lst/set-list
+  [{:keys [state] :as env} _ {:keys [lst/lst]}]
   {:action (fn []
              (do
-               (swap! state update-in [:password/lst] (constantly lst))
-               (println (str "set to " lst))
+               (println (str "ver:" (get @state :lst/lst-ver) "list:" (get @state :lst/lst)))
+               (swap! state update-in [:lst/lst] (constantly (js->clj lst)))
+               (swap! state update-in [:lst/lst-ver] inc)
+               (println (str "set list to " lst ", list becomes: " (get @state :lst/lst)))
              ))
    }
   )
@@ -75,8 +90,9 @@
 (def app-state
   (atom {
          :wiki/lst []
-         :password/lst nil
-         :password/curr 0
+         :lst/lst nil
+         :lst/lst-ver 0
+         :lst/curr 0
          })
   )
 
@@ -84,32 +100,78 @@
   (dom/ul #js {:key "result-list"}
           (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))
 
+(defn refresh-lists-button [comp lst-ver]
+  (dom/button #js {:type "button" :key "refreshPwButton"
+                   :onClick (fn [e] (om/set-query! comp {:params {:lst-query (inc lst-ver)}}))
+                   }
+              (dom/span nil "Refresh List") )
+  )
+
+(defn add-list-button [comp]
+  (dom/button #js {:type "button" :key "addListButton"
+                   :onClick (fn [e] nil)
+                   }
+              (dom/span nil "Add List")
+              )
+  )
+
 (defn list-select-field [comp idx curr-idx]
   (let [
         ]
   (dom/input
-   #js {:key (str "password-list-check-" idx)
+   #js {:key (str "lst-list-check-" idx)
         :type "radio"
         :checked (= idx curr-idx)
         :onChange
         (fn [e]
           (if (.. e -target -checked)
-            (om/transact! comp `[(password/set-curr {:password/curr ~idx})])
+            (om/transact! comp `[(lst/set-curr {:lst/curr ~idx})])
             (println (str "unchecked: " idx))
           )
           )
         })))
 
-(defn password-list [comp results curr-idx]
-  (dom/div #js {:key "password-list"}
-           (map-indexed (fn [idx itm] (dom/div #js {:key (str password-list idx)}
+(defn list-edit-area [comp idx curr-idx lsts]
+  (let [items (get (nth lsts curr-idx) "items")
+        ]
+    (dom/div #js {}
+             )
+    (dom/div #js {:key (str "list-edit-area-" idx)}
+             (map-indexed (fn [idx itm]
+                            (dom/div #js {:key (str "itm-" idx)}
+                                     (str (get itm "name") ": " )
+                                     (dom/input #js {:value (get itm "value")})
+                                     )
+                                      )
+                 items)
+             )
+    )
+  )
+
+(defn list-add-area [comp]
+  (let []
+    (dom/div #js {:key (str "list-edit-area-" -1)}
+             "List name: "
+             (dom/input nil)
+             (add-list-button comp)
+             )
+    )
+  )
+
+(defn lst-list [comp results curr-idx]
+  (dom/div #js {:key "lst-list"}
+           (map-indexed (fn [idx itm] (dom/div #js {:key (str lst-list idx)}
                                                (list-select-field comp idx curr-idx)
-                                               (dom/span #js {:key (str password-list idx "span")} itm)
-                                               )) results)))
+                                               (dom/span #js {:key (str lst-list idx "span")} (itm "name" "?"))
+                                               (if (= idx curr-idx) (list-edit-area comp idx curr-idx results) )
+                                               )) results)
+           (dom/h3 nil "Add new list:")
+           (list-add-area comp)
+           ))
 
 (defn search-field [comp query type]
   (let [[elem-key query-key]
-        (case type :wiki ["wiki-search-field" :wiki-query] :password ["password-search-field" :password-query])
+        (case type :wiki ["wiki-search-field" :wiki-query] :lst ["lst-search-field" :lst-query])
         ]
     (println (str "elem-key" elem-key " query-key:" query-key))
   (dom/input
@@ -120,20 +182,22 @@
           (om/set-query! comp
                          {:params {query-key (.. e -target -value)}}))})))
 
-(defui PasswordList
+(defui Lsts
   static om/IQueryParams
   (params [_]
-          {:password-query "list"})
+          {:lst-query 1})
   static om/IQuery
   (query [_]
-         '[:password/curr (:password/lst {:query ?password-query})])
+         '[:lst/curr :lst/lst-ver (:lst/lst {:query ?lst-query})])
   Object
   (render [this]
-          (let [{:keys [password/lst password/curr]} (om/props this)]
+          (let [{:keys [lst/lst lst/lst-ver lst/curr]} (om/props this)]
+            (println (str "in render list: " lst ", ver:" lst-ver ", curr:" curr))
             (dom/div nil
-                     (dom/h2 nil "Password List")
+                     (dom/h2 nil "Lists")
+                     (refresh-lists-button this lst-ver)
                      (if-not (empty? lst)
-                       (password-list this lst (if (nil? curr) 0 curr)))))))
+                       (lst-list this lst (if (nil? curr) 0 curr)))))))
 
 (defui AutoCompleter
   static om/IQueryParams
@@ -153,16 +217,16 @@
                                  (not (empty? lst)) (conj (result-list lst)))))))
 
 (defn send-to-chan [c]
-  (fn [{:keys [wiki-search password-search]} cb]
+  (fn [{:keys [wiki-search lst-search]} cb]
     (cond
       wiki-search
       (let [{[wiki-search] :children} (om/query->ast wiki-search)
             query (get-in wiki-search [:params :query])]
         (put! c [query :wiki cb]))
-      password-search
-      (let [{[password-search] :children} (om/query->ast password-search)
-           query (get-in password-search [:params :query])]
-        (put! c [query :password cb]))
+      lst-search
+      (let [{[lst-search] :children} (om/query->ast lst-search)
+           query (get-in lst-search [:params :query])]
+        (put! c [query :lst cb]))
       )
     ))
 
@@ -173,32 +237,36 @@
    {:state   app-state
     :parser  (om/parser {:read read :mutate mutate})
     :send    (send-to-chan send-chan)
-    :remotes [:remote :wiki-search :password-search]}))
+    :remotes [:remote :wiki-search]}))
 
-(def password-reconciler
+(def lst-reconciler
   (om/reconciler
    {:state   app-state
     :parser  (om/parser {:read read :mutate mutate})
     :send    (send-to-chan send-chan)
-    :remotes [:remote :wiki-search :password-search]}))
+    :remotes [:lst-search]}))
 
 (defn search-loop [c]
   (go
     (loop [[query type cb] (<! c)]
-        (let [[key url]
-              (case type
-                :wiki [:wiki/lst wiki-url]
-                :password [:password/lst password-url]
-                )
-              [_ results] (<! (jsonp (str url query)))
+      (cond
+        (= type :wiki)
+          (let [
+              [_ results] (<! (jsonp (str wiki-url query)))
               ]
-          (println (str key ": " "results: " results))
-          (cb {key results})
-          (case type
-            :wiki (cb {key results})
-            :password (om/transact! password-reconciler `[(password/set-list {:password/lst ~results})])
+          (println (str "wiki: " "results: " results))
+              (cb {:wiki/lst results})
             )
+        (= type :lst)
+          (let [
+              results (<! (jsonp lst-url))
+                ]
+          (println (str "lst: " "results: " results))
+            (om/transact! lst-reconciler `[(lst/set-list {:lst/lst ~results})])
           )
+        :else
+          nil
+        )
        (recur (<! c)))
     ))
 
@@ -208,5 +276,5 @@
 (om/add-root! wiki-reconciler AutoCompleter
               (gdom/getElement "wiki"))
 
-(om/add-root! password-reconciler PasswordList
-              (gdom/getElement "password"))
+(om/add-root! lst-reconciler Lsts
+              (gdom/getElement "lsts"))

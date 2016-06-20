@@ -9,12 +9,13 @@
 (defn- create-schema-bookmark []
       (sql/db-do-commands store-uri
                           (sql/create-table-ddl :bookmark
-                                                [:owner "varchar(64)" "NOT NULL"]
+                                                [[:owner "varchar(64)" "NOT NULL"]
                                                 [:folder "varchar(1024)" "NOT NULL"]
                                                 [:link "varchar(4096)" "NOT NULL"]
                                                 [:description "varchar(4096)"]
                                                 [:labels "varchar(1024)"]
-                                                ["PRIMARY KEY" "(owner, link)"]
+                                                [:constraint " PK_bookmark PRIMARY KEY(owner, link) "]
+                                                ]
                                                 ))
       )
 
@@ -26,9 +27,9 @@
 
 (defn- create-schema-auth []
        (sql/db-do-commands store-uri
-                           (sql/create-table-ddl :auth [:id "varchar(64)" "NOT NULL" "PRIMARY KEY"]
+                           (sql/create-table-ddl :auth [ [:id "varchar(64)" "NOT NULL" "PRIMARY KEY"]
                                                  [:password "varchar(512)" "NOT NULL"]
-                                                 [:description "varchar(4096)" "NOT NULL"]
+                                                 [:description "varchar(4096)" "NOT NULL"]]
                                                  ))
        )
 

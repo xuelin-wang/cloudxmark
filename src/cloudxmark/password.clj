@@ -1,11 +1,11 @@
 (ns cloudxmark.password
     (:require
-      [cloudxmark.bookmark-store :as store]
+      [cloudxmark.lst-store :as store]
       [cheshire.core :refer :all]))
 
 (defn get-password-list [owner]
       (let []
-        (generate-string [owner ["www.google.com" "www.yahoo.com"]])
+        (generate-string [owner [(str "www.google.com" (System/currentTimeMillis)) "www.yahoo.com"]])
         )
       )
 

@@ -11,15 +11,22 @@
             [ring.middleware.params :as params]
             [cheshire.core :refer :all]
             [environ.core :refer [env]]
-            [cloudxmark.bookmark :refer [get-bookmarks]]
-            [cloudxmark.password :refer [get-password-list get-password]]
+            [cloudxmark.lst :refer [get-lsts get-items]]
             [cloudxmark.auth :refer [login add-auth]]
-            [cloudxmark.bookmark-store :refer [migrate dropTables get-pass no-auth?]]
+            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst]]
     )
     (:import java.security.MessageDigest
       java.util.Base64)
     (:gen-class)
     )
+
+(defn- permission-denied [session]
+         {:session session
+          :status 200
+          :headers {"Content-Type" "text/html"}
+          :body "Permission denied"
+          }
+  )
 
 (defn- handle-userid [session]
        {
@@ -46,24 +53,20 @@
 
 (defn- isAdmin? [session]
        (let [user-id (:userid session)]
-            (or (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
+            (or (= user-id "xwang") (= user-id "xuelin.wang@gmail.com")))
        )
 
-(defn- handle-drop-tables [session]
+(defn- handle-drop-table [table session]
        (if (or (no-auth?) (isAdmin? session))
          (do
-           (dropTables)
+           (drop-table table)
            {:session session
             :status 200
             :headers {"Content-Type" "text/html"}
             :body "Success"
             }
            )
-         {:session session
-          :status 200
-          :headers {"Content-Type" "text/html"}
-          :body "Permission denied"
-          }
+         (permission-denied session)
          )
        )
 
@@ -77,25 +80,35 @@
             :body "Success"
             }
            )
-         {:session session
-          :status 200
-          :headers {"Content-Type" "text/html"}
-          :body "Permission denied"
-          }
+         (permission-denied session)
          )
        )
 
-(defn- handle-pw-list [pwlist callback]
+(defn- handle-add-lst [name desc session]
+       (if-let [user-id (:userid session)]
+         (do
+           (add-lst {:owner user-id :name name :description desc})
+           {:session session
+            :status 200
+            :headers {"Content-Type" "text/html"}
+            :body "Success"
+            }
+           )
+         (permission-denied session)
+         )
+       )
+
+(defn- handle-callback [result callback]
   (if callback
        {
         :status 200
         :headers {"Content-Type" "application/javascript" "charset" "utf-8"}
-        :body (str callback "(" pwlist ")")
+        :body (str callback "(" result ")")
         }
        {
         :status 200
         :headers {"Content-Type" "application/json" "charset" "utf-8"}
-        :body pwlist
+        :body (str result)
         }
        )
        )
@@ -108,7 +121,7 @@
 
 (defroutes routes
  (route/resources "/")
- (GET "/userid"  [ :as {session :session}]
+ (GET "/userId"  [ :as {session :session}]
       (handle-userid session)
       )
 
@@ -116,22 +129,51 @@
       (handle-login id pass session)
        )
 
- (GET "/dropTables" [ :as {session :session}]
-      (handle-drop-tables session)
+ (GET "/dropTable/:table" [table :as {session :session}]
+      (handle-drop-table table session)
       )
 
  (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {session :session}]
       (handle-add-auth id pass desc session)
       )
 
- (GET "/getBookmarks/:owner" [owner] (get-bookmarks owner))
+ (GET "/addLst/:name/:desc"  [name desc :as {session :session}]
+      (handle-add-lst name desc session)
+      )
 
- (GET "/getPasswordList" {params :params}
-      (let [{:keys [owner callback]} params]
-          (handle-pw-list (get-password-list owner) callback)
-      ))
+ (GET "/getLsts" {params :params session :session}
+      (if-let [user-id (:userid session)]
+        (let [{:keys [callback]} params]
+          (handle-callback (get-lsts user-id nil) callback)
+          )
+        (permission-denied session)
+        )
+      )
+ (GET "/getItems" {params :params session :session}
+      (if-let [user-id (:userid session)]
+        (let [{:keys [callback]} params]
+          (handle-callback (get-items user-id nil) callback)
+          )
+        (permission-denied session)
+        )
+      )
 
- (GET "/getPassword/:owner/:site" [owner site] (get-password owner site))
+ (GET "/getLst/:name" [name :as {params :params session :session}]
+      (if-let [user-id (:userid session)]
+        (let [{:keys [callback]} params]
+          (handle-callback (get-lsts user-id name) callback)
+          )
+        (permission-denied session)
+        )
+      )
+ (GET "/getItemsByLst/:name" [name :as {params :params session :session}]
+      (if-let [user-id (:userid session)]
+        (let [{:keys [callback]} params]
+          (handle-callback (get-items user-id name) callback)
+          )
+        (permission-denied session)
+        )
+      )
 
   (route/not-found "Page not found"))
 

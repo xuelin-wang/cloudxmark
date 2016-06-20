@@ -1,6 +1,6 @@
 (ns cloudxmark.auth
     (:require
-      [cloudxmark.bookmark-store :as store]
+      [cloudxmark.lst-store :as store]
       )
     (:import java.security.MessageDigest
       java.util.Base64)
@@ -29,4 +29,3 @@
            (store/add-auth {:id id :password pass :description desc})
            )
       )
-
