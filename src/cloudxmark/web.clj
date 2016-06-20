@@ -46,7 +46,7 @@
          {:session (assoc session :userid nil)
           :status 200
           :headers {"Content-Type" "text/html"}
-          :body "Failed to login"
+          :body "Failed login"
           }
          )
        )
