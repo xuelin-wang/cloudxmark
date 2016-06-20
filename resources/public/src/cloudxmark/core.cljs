@@ -43,7 +43,7 @@
   (if (or (> query curr-ver) (nil? curr-list))
     (do
       (println (str "query lists:"  (nil? curr-list)))
-      (merge {:value []} {:lst-search ast} )
+      {:lst-search ast}
       )
     (do
       (println (str "no query, lst: " curr-list ", ver:" curr-ver))
@@ -54,8 +54,13 @@
   )
 
 (defmethod read :lst/curr
-  [{:keys [state ast] :as env} k _]
-   {:value (get @state k [])}
+  [{:keys [state ast] :as env} _ _]
+   {:value (get @state :list/curr [])}
+  )
+
+(defmethod read :lst/user-id
+  [{:keys [state ast] :as env} _ _]
+   {:value (get @state :lst/user-id nil)}
   )
 
 (defmethod read :lst/lst-ver
@@ -76,14 +81,13 @@
   )
 
 (defmethod mutate 'lst/set-list
-  [{:keys [state] :as env} _ {:keys [lst/lst]}]
+  [{:keys [state] :as env} _ data-map]
   {:action (fn []
-             (do
-               (println (str "ver:" (get @state :lst/lst-ver) "list:" (get @state :lst/lst)))
-               (swap! state update-in [:lst/lst] (constantly (js->clj lst)))
+                 (println (str "data-map:" data-map))
+               (swap! state update-in [:lst/lst] (constantly (get data-map "lst" [])))
+               (swap! state update-in [:lst/user-id] (constantly (get data-map "user_id" nil)))
                (swap! state update-in [:lst/lst-ver] inc)
-               (println (str "set list to " lst ", list becomes: " (get @state :lst/lst)))
-             ))
+     )
    }
   )
 
@@ -93,6 +97,7 @@
          :lst/lst nil
          :lst/lst-ver 0
          :lst/curr 0
+         :lst/user-id nil
          })
   )
 
@@ -188,16 +193,19 @@
           {:lst-query 1})
   static om/IQuery
   (query [_]
-         '[:lst/curr :lst/lst-ver (:lst/lst {:query ?lst-query})])
+         '[:lst/user-id :lst/curr :lst/lst-ver (:lst/lst {:query ?lst-query})])
   Object
   (render [this]
-          (let [{:keys [lst/lst lst/lst-ver lst/curr]} (om/props this)]
-            (println (str "in render list: " lst ", ver:" lst-ver ", curr:" curr))
+          (let [{:keys [lst/user-id lst/lst lst/lst-ver lst/curr]} (om/props this)]
+            (if (nil? user-id)
+              (dom/div nil (dom/h3 nil "Please login"))
             (dom/div nil
                      (dom/h2 nil "Lists")
                      (refresh-lists-button this lst-ver)
                      (if-not (empty? lst)
-                       (lst-list this lst (if (nil? curr) 0 curr)))))))
+                       (lst-list this lst (if (nil? curr) 0 curr))))
+              )
+            )))
 
 (defui AutoCompleter
   static om/IQueryParams
@@ -259,10 +267,11 @@
             )
         (= type :lst)
           (let [
-              results (<! (jsonp lst-url))
+                results (<! (jsonp lst-url))
+                results-obj (js->clj results)
                 ]
-          (println (str "lst: " "results: " results))
-            (om/transact! lst-reconciler `[(lst/set-list {:lst/lst ~results})])
+          (println (str "lst: " "results: " results-obj ))
+            (om/transact! lst-reconciler `[(lst/set-list ~results-obj)])
           )
         :else
           nil
