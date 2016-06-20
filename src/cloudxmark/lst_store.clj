@@ -64,8 +64,8 @@
 (defn find-items [owner name]
   (let [select-cols "l.lst_id AS lst_id, l.owner AS lst_owner, l.name AS lst_name, l.description AS lst_discription, l.labels AS lst_labels, i.name AS name, i.value AS value, i.labels AS labels "]
     (if (nil? name)
-        (sql/query store-uri [(str "SELECT " select-cols " FROM lst l, item i WHERE l.lst_id = i.lst_id AND l.owner = ?") owner])
-        (sql/query store-uri [(str "SELECT " select-cols " FROM lst l, item i WHERE l.lst_id = i.lst_id AND l.owner = ? AND l.name = ? ")
+        (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN item i ON l.lst_id = i.lst_id  WHERE l.owner = ?") owner])
+        (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN  item i ON l.lst_id = i.lst_id  WHERE l.owner = ? AND l.name = ? ")
                               owner name])
         )
     )
@@ -86,6 +86,15 @@
            (zero? (:cnt (first results)))
            )
       )
+
+(defn- no-lst? []
+      (let [
+            results (sql/query store-uri ["SELECT count(*) AS cnt FROM lst"])
+            ]
+           (zero? (:cnt (first results)))
+           )
+      )
+
 
 
 (defn hasLstTable? []
@@ -163,14 +172,19 @@
 
 
 (defn add-lst [lst]
-  (let [cmd-result (sql/db-do-commands store-uri
-                                   (str "INSERT INTO lst (lst_id, owner, name, description, labels) SELECT MAX(list_id + 1),'"
-                                        (:owner lst) "','" (:name lst) "','" (get lst :description "NULL") "','"
-                                        (get lst :labels "NULL") "' FROM lst"
-                                        ))
-        ]
+  (let
+      [sql-str0 "INSERT INTO lst (lst_id, owner, name, description, labels) "
+       sql-str1 (str ",'" (:owner lst) "','" (:name lst) "','" (get lst :description "NULL") "','"
+                                        (get lst :labels "NULL") "' " )
+       sql-str (if (no-lst?)
+                 (str sql-str0 " VALUES (1" sql-str1 ")")
+                 (str sql-str0 " SELECT MAX(lst_id + 1)" sql-str1 " FROM lst")
+                 )
+
+       cmd-result (sql/db-do-commands store-uri sql-str)
+       ]
     (first cmd-result)
-    )
+      )
   )
 
 (defn delete-lst [name owner]

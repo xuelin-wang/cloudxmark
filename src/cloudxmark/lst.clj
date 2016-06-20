@@ -26,9 +26,11 @@
                                         }
                                          )
 
-                                   item {"lst_id" lst-id "name" (:name cols) "value" (:value cols)
+                                   item (if (nil? (:name cols)) nil
+                                   {"lst_id" lst-id "name" (:name cols) "value" (:value cols)
                                          "labels" (:label cols)}
-                                   new-items (conj (:items lst) item)
+                                          )
+                                   new-items (if (nil? item) (:items lst) (conj (:items lst) item) )
                                    new-lst (assoc lst :items new-items)
                                    ]
                                (println (str "results: " result))
