@@ -14,175 +14,171 @@
             [cloudxmark.lst :refer [get-lsts get-items]]
             [cloudxmark.auth :refer [login add-auth]]
             [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst]]
-    )
-    (:import java.security.MessageDigest
-      java.util.Base64)
-    (:gen-class)
-    )
-
-(defn- permission-denied [session]
-         {:session session
-          :status 200
-          :headers {"Content-Type" "text/html"}
-          :body "Permission denied"
-          }
+            )
+  (:import java.security.MessageDigest
+           java.util.Base64)
+  (:gen-class)
   )
 
-(defn- handle-userid [session]
-       {
-        :status 200
-        :headers {"Content-Type" "text/html"}
-        :body (str "user id: " (:userid session "none"))
-        }
-       )
+(defn- handle-callback [result params session]
+  (let [result-str (generate-string result)]
+    (let [{:keys [callback]} params]
+      (if callback
+        {
+         :session session
+         :status 200
+         :headers {"Content-Type" "application/javascript" "charset" "utf-8"}
+         :body (str callback "(" result-str ")")
+         }
+        {
+         :session session
+         :status 200
+         :headers {"Content-Type" "application/json" "charset" "utf-8"}
+         :body result-str
+         }
+        )
+      )
+    )
+  )
 
-(defn- handle-login [id pass session]
-       (if (login id pass)
-         {:session (assoc session :userid id)
-          :status 200
-          :headers {"Content-Type" "text/html"}
-          :body (str "user id: " id)
-          }
-         {:session (assoc session :userid nil)
-          :status 200
-          :headers {"Content-Type" "text/html"}
-          :body "Failed login"
-          }
-         )
-       )
+(defn- permission-denied [params session]
+  (handle-callback {:error "Permission denied"} params session)
+  )
+
+(def ^{:private true} ok-result
+  {:result "ok"}
+  )
+
+(defn- get-user-id [session]
+  (:user-id session)
+  )
+
+(defn- handle-auth-action [result params session]
+  (if-let [user-id (get-user-id session)]
+    (handle-callback result params session)
+    (permission-denied params session)
+    )
+  )
+
+(defn- handle-login [id pass params session]
+  (if (login id pass)
+    (handle-callback {:user-id id} params session)
+    (handle-callback {:error "Failed to login"} params session)
+    )
+  )
 
 (defn- isAdmin? [session]
-       (let [user-id (:userid session)]
-            (or (= user-id "xwang") (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
-       )
+  (let [user-id (:userid session)]
+    (or (= user-id "xwang") (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
+  )
 
-(defn- handle-drop-table [table session]
-       (if (or (no-auth?) (isAdmin? session))
-         (do
-           (drop-table table)
-           {:session session
-            :status 200
-            :headers {"Content-Type" "text/html"}
-            :body "Success"
-            }
-           )
-         (permission-denied session)
-         )
-       )
+(defn- handle-admin-action result params session
+  (if (or (no-auth?) (isAdmin? session))
+    (handle-callback result params session)
+    (permission-denied params session)
+    )
+  )
 
-(defn- handle-add-auth [id pass desc session]
-       (if (or (no-auth?) (isAdmin? session))
-         (do
-           (add-auth {:id id :password pass :description desc})
-           {:session session
-            :status 200
-            :headers {"Content-Type" "text/html"}
-            :body "Success"
-            }
-           )
-         (permission-denied session)
-         )
-       )
+(defn- handle-drop-table [table params session]
+  (handle-admin-action
+    (do
+      (drop-table table)
+      (handle-callback ok-result params session)
+      )
+    params session
+    )
+  )
 
-(defn- handle-add-lst [name desc session]
-       (if-let [user-id (:userid session)]
-         (do
-           (add-lst {:owner user-id :name name :description desc})
-           {:session session
-            :status 200
-            :headers {"Content-Type" "text/html"}
-            :body "Success"
-            }
-           )
-         (permission-denied session)
-         )
-       )
+(defn- handle-add-auth [id pass desc params session]
+  (handle-admin-action
+    (do
+      (add-auth {:id id :password pass :description desc})
+      ok-result
+      )
+    params session
+   )
+  )
 
-(defn- handle-callback [result callback]
-  (if callback
-       {
-        :status 200
-        :headers {"Content-Type" "application/javascript" "charset" "utf-8"}
-        :body (str callback "(" result ")")
-        }
-       {
-        :status 200
-        :headers {"Content-Type" "application/json" "charset" "utf-8"}
-        :body (str result)
-        }
-       )
-       )
+(defn- handle-add-lst [name desc params session]
+  (handle-auth-action
+    (do
+      (add-lst {:owner (get-user-id session) :name name :description desc})
+      ok-result
+      )
+   params session
+   )
+  )
 
 (defn wrap-dir-index [handler]
-      (fn [req]
-          (handler
-            (update-in req [:uri]
-                       #(if (= "/" %) "/index.html" %)))))
+  (fn [req]
+    (handler
+     (update-in req [:uri]
+                #(if (= "/" %) "/index.html" %)))))
 
 (defroutes routes
- (route/resources "/")
- (GET "/userId"  [ :as {session :session}]
-      (handle-userid session)
-      )
-
- (GET "/login/:id/:pass"  [id pass :as {session :session}]
-      (handle-login id pass session)
+  (route/resources "/")
+  (GET "/userId"  [ :as {params :params session :session}]
+       (handle-callback {:user-id (get-user-id session)} params session)
        )
 
- (GET "/dropTable/:table" [table :as {session :session}]
-      (handle-drop-table table session)
-      )
+  (GET "/login/:id/:pass"  [id pass :as {params :params session :session}]
+       (handle-login id pass params session)
+       )
 
- (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {session :session}]
-      (handle-add-auth id pass desc session)
-      )
+  (GET "/dropTable/:table" [table :as {params :params session :session}]
+       (handle-drop-table table params session)
+       )
 
- (GET "/addLst/:name/:desc"  [name desc :as {session :session}]
-      (handle-add-lst name desc session)
-      )
+  (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {params :params session :session}]
+       (handle-add-auth id pass desc params session)
+       )
 
- (GET "/getLsts" {params :params session :session}
-      (if-let [user-id (:userid session)]
-        (let [{:keys [callback]} params]
-          (handle-callback (get-lsts user-id nil) callback)
-          )
-        (permission-denied session)
-        )
-      )
- (GET "/getItems" {params :params session :session}
-      (if-let [user-id (:userid session)]
-        (let [{:keys [callback]} params]
-          (handle-callback (get-items user-id nil) callback)
-          )
-        (permission-denied session)
-        )
-      )
+  (GET "/addLst/:name/:desc"  [name desc :as {params :params session :session}]
+       (handle-add-lst name desc params session)
+       )
 
- (GET "/getLst/:name" [name :as {params :params session :session}]
-      (if-let [user-id (:userid session)]
-        (let [{:keys [callback]} params]
-          (handle-callback (get-lsts user-id name) callback)
-          )
-        (permission-denied session)
+  (GET "/getLsts" {params :params session :session}
+       (handle-auth-action
+        (get-lsts (get-user-id session) nil)
+        params session
         )
-      )
- (GET "/getItemsByLst/:name" [name :as {params :params session :session}]
-      (if-let [user-id (:userid session)]
-        (let [{:keys [callback]} params]
-          (handle-callback (get-items user-id name) callback)
-          )
-        (permission-denied session)
+       )
+
+  (GET "/getItems" {params :params session :session}
+       (handle-auth-action
+        (get-items (get-user-id session) nil)
+        params session
         )
-      )
+       )
+
+  (GET "/logout" {params :params session :session}
+       (handle-callback
+        ok-result params (assoc session :user-id nil)
+        )
+       )
+
+  (GET "/getLst/:name" [name :as {params :params session :session}]
+       (handle-auth-action
+        (get-lsts (get-user-id session) name)
+        params session
+        )
+       )
+
+  (GET "/getItemsByLst/:name" [name :as {params :params session :session}]
+       (handle-auth-action
+        (get-items (get-user-id session) name)
+        params session
+        )
+       )
 
   (route/not-found "Page not found"))
 
 (def application (wrap-dir-index (wrap-defaults routes site-defaults)) )
 
 (defn -main [& [port]]
-      (migrate)
-      (let [port (Integer. (or port (env :port) 5000))]
-          (jetty/run-jetty application {:port port :join? false})))
+  (migrate)
+  (let [port (Integer. (or port (env :port) 5000))]
+    (jetty/run-jetty application {:port port :join? false})))
 
 ;; For interactive development:
 ;; (.stop server)

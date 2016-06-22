@@ -13,8 +13,6 @@
 (def wiki-url
   "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=")
 
-(def lst-url
-  "http://localhost:5000/getItems")
 
 (defn jsonp
   ([uri] (jsonp (chan) uri))
@@ -39,7 +37,6 @@
 (defmethod read :lst/lst
   [{:keys [state ast] :as env} _ {:keys [query]}]
   (let [curr-list (get @state :lst/lst) curr-ver (get @state :lst/lst-ver)]
-    (println (str "query:" query ", curr-list" curr-list ", curr-ver:" curr-ver))
   (if (or (> query curr-ver) (nil? curr-list))
     (do
       (println (str "query lists:"  (nil? curr-list)))
@@ -70,6 +67,15 @@
 
 (defmulti mutate om/dispatch)
 
+(defmethod mutate 'lst/logout
+  [{:keys [state] :as env} _ _ ]
+  {:action (fn []
+             (swap! state update-in [:lst/lst] (constantly []) )
+             (swap! state update-in [:lst/user-id] (constantly nil) )
+             )
+   }
+  )
+
 (defmethod mutate 'lst/set-curr
   [{:keys [state] :as env} _ {:keys [lst/curr]}]
   {:action (fn []
@@ -80,7 +86,7 @@
    }
   )
 
-(defmethod mutate 'lst/set-list
+(defmethod mutate 'lst/set-lst
   [{:keys [state] :as env} _ data-map]
   {:action (fn []
                  (println (str "data-map:" data-map))
@@ -100,6 +106,8 @@
          :lst/user-id nil
          })
   )
+
+(def send-chan (chan))
 
 (defn result-list [results]
   (dom/ul #js {:key "result-list"}
@@ -187,6 +195,24 @@
           (om/set-query! comp
                          {:params {query-key (.. e -target -value)}}))})))
 
+(defn logout-button [comp]
+  (dom/button #js {:type "button"
+                   :onClick
+                   (fn [e]
+            (om/transact! comp `[(lst/logout)])
+                     )
+                   } "Log out")
+  )
+
+(defn login-button [comp]
+  (dom/button #js {:type "button"
+                   :onClick
+                   (fn [e]
+            (om/transact! comp `[(lst/logout)])
+                     )
+                   } "Login")
+  )
+
 (defui Lsts
   static om/IQueryParams
   (params [_]
@@ -198,8 +224,12 @@
   (render [this]
           (let [{:keys [lst/user-id lst/lst lst/lst-ver lst/curr]} (om/props this)]
             (if (nil? user-id)
-              (dom/div nil (dom/h3 nil "Please login"))
-            (dom/div nil
+              (dom/div nil (dom/h3 nil "Please login")
+                       "User id: " (dom/input nil) "Password: " (dom/input nil)
+                       (login-button this)
+                       )
+              (dom/div nil
+                       (logout-button this)
                      (dom/h2 nil "Lists")
                      (refresh-lists-button this lst-ver)
                      (if-not (empty? lst)
@@ -238,7 +268,7 @@
       )
     ))
 
-(def send-chan (chan))
+
 
 (def wiki-reconciler
   (om/reconciler
@@ -262,16 +292,14 @@
           (let [
               [_ results] (<! (jsonp (str wiki-url query)))
               ]
-          (println (str "wiki: " "results: " results))
               (cb {:wiki/lst results})
             )
         (= type :lst)
           (let [
-                results (<! (jsonp lst-url))
+                results (<! (jsonp "/getItems"))
                 results-obj (js->clj results)
                 ]
-          (println (str "lst: " "results: " results-obj ))
-            (om/transact! lst-reconciler `[(lst/set-list ~results-obj)])
+            (om/transact! lst-reconciler `[(lst/set-lst ~results-obj)])
           )
         :else
           nil
