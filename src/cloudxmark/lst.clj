@@ -39,6 +39,6 @@
                                )
                              ) {} result)
         ]
-    (if-let [the-lsts (vals lsts-by-id)]
-           (generate-string {:lst the-lsts :user_id owner})
-           (generate-string {:lst []  :user_id owner}))))
+
+    {:lsts (or (vals lsts-by-id) []) :user_id owner}
+    ))

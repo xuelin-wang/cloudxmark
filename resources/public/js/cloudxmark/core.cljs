@@ -3,6 +3,7 @@
   (:require [goog.dom :as gdom]
             [cljs.core.async :as async :refer [<! >! put! chan]]
             [clojure.string :as string]
+            [om.core :refer [set-state! get-state]]
             [om.next :as om :refer-macros [defui]]
             [om.dom :as dom])
   (:import [goog Uri]
@@ -20,58 +21,61 @@
    (let [gjsonp (Jsonp. (Uri. uri))]
      (println (str "before send " uri))
      (.send gjsonp nil #(put! c %) #(println (str "error!" %)))
-          c)))
+     c)))
+
+(def event-chan (chan))
 
 (defmulti read om/dispatch)
 
 (defmethod read :wiki/lst
-  [{:keys [state ast] :as env} k {:keys [query]}]
+  [{:keys [state ast] :as env} _ {:keys [query]}]
   (merge
-   {:value (get @state k [])}
+   {:value (get-in @state [:wiki :lst] [])}
    (when-not (or (string/blank? query)
                  (< (count query) 3))
      {:wiki-search ast})
    )
   )
 
-(defmethod read :lst/lst
-  [{:keys [state ast] :as env} _ {:keys [query]}]
-  (let [curr-list (get @state :lst/lst) curr-ver (get @state :lst/lst-ver)]
-  (if (or (> query curr-ver) (nil? curr-list))
-    (do
-      (println (str "query lists:"  (nil? curr-list)))
+(defmethod read :lst
+  [{:keys [state ast] :as env} _ {:keys [query-ver query-user query-password]}]
+  (let [lst (:lst @state)
+        {:keys [lsts curr ver user-id status]} lst]
+    (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user ",query-pw:" query-password))
+    (cond
+      (= query-user :logout)
+      {:lst-search ast}
+
+      (and (some? user-id) (or (> query-ver ver) (nil? lsts)))
+      (do
+        (println (str "remote query lists:"  (nil? lsts)))
       {:lst-search ast}
       )
-    (do
-      (println (str "no query, lst: " curr-list ", ver:" curr-ver))
-      {:value curr-list}
+
+      (and (nil? user-id) (some? query-user))
+      (do
+        (println (str "remote query lists ast:" ast ))
+        {:lst-search ast}
+        )
+
+      :else
+      (do
+        (println (str "no query, lst: " lst))
+              {:value lst}
+              )
+
       )
+          )
     )
-      )
-  )
-
-(defmethod read :lst/curr
-  [{:keys [state ast] :as env} _ _]
-   {:value (get @state :list/curr [])}
-  )
-
-(defmethod read :lst/user-id
-  [{:keys [state ast] :as env} _ _]
-   {:value (get @state :lst/user-id nil)}
-  )
-
-(defmethod read :lst/lst-ver
-  [{:keys [state ast] :as env} k _]
-   {:value (get @state k [])}
-  )
 
 (defmulti mutate om/dispatch)
 
-(defmethod mutate 'lst/logout
-  [{:keys [state] :as env} _ _ ]
+(defmethod mutate 'lst/set-field-state
+  [{:keys [state] :as env} _ {:keys [field-id value]}]
   {:action (fn []
-             (swap! state update-in [:lst/lst] (constantly []) )
-             (swap! state update-in [:lst/user-id] (constantly nil) )
+             (println (str "state before setfield: " @state))
+             (swap! state assoc-in [:lst field-id] value)
+             (println (str "state after setfield: " @state))
              )
    }
   )
@@ -89,34 +93,66 @@
 (defmethod mutate 'lst/set-lst
   [{:keys [state] :as env} _ data-map]
   {:action (fn []
-                 (println (str "data-map:" data-map))
-               (swap! state update-in [:lst/lst] (constantly (get data-map "lst" [])))
-               (swap! state update-in [:lst/user-id] (constantly (get data-map "user_id" nil)))
-               (swap! state update-in [:lst/lst-ver] inc)
+             (println (str "data-map:" data-map))
+             (let [{:strs [status lsts user_id]} data-map]
+               (if (get status "error")
+                 nil
+                 (swap! state assoc :lst (merge (:lst @state) {:lsts (data-map "lsts") :ver (data-map "ver") :user-id (data-map "user_id")}))
+                 )
+               )
+             (println (str "state after setlist:" @state))
+     )
+   }
+  )
+
+(defmethod mutate 'wiki/set-lst
+  [{:keys [state] :as env} _ lst]
+  {:action (fn []
+             (println (str "before wiki update list:" lst))
+             (swap! state assoc-in [:wiki :lst] (:lst lst))
+             (println (str "state after wiki update:" @state))
      )
    }
   )
 
 (def app-state
   (atom {
-         :wiki/lst []
-         :lst/lst nil
-         :lst/lst-ver 0
-         :lst/curr 0
-         :lst/user-id nil
+         :wiki {:lst []}
+         :lst {
+               :lsts nil
+               :ver 0
+               :curr 0
+               :user-id nil
+               }
          })
   )
 
-(def send-chan (chan))
+
 
 (defn result-list [results]
   (dom/ul #js {:key "result-list"}
           (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))
 
-(defn refresh-lists-button [comp lst-ver]
+(defn status-line [{:keys [info warn error]}]
+  (let [[color msg]
+        (cond
+          error ["red" error]
+          warn ["orange" warn]
+          info ["black" info]
+          )
+        ]
+  (dom/span #js {:style {:color color}}
+            msg)))
+
+(defn refresh-lists-button [comp user-id lst-ver]
   (dom/button #js {:type "button" :key "refreshPwButton"
-                   :onClick (fn [e] (om/set-query! comp {:params {:lst-query (inc lst-ver)}}))
-                   }
+                   :onClick
+                   (fn [e]
+                     (if (nil? user-id)
+                       (swap! app-state assoc-in [:lst :status :refresh-lists] {:error "Permission denied"})
+                       (om/set-query! comp {:params {:query-ver (inc lst-ver)}})
+                     )
+                   )}
               (dom/span nil "Refresh List") )
   )
 
@@ -171,22 +207,21 @@
     )
   )
 
-(defn lst-list [comp results curr-idx]
+(defn lst-list [comp lsts curr-idx]
   (dom/div #js {:key "lst-list"}
            (map-indexed (fn [idx itm] (dom/div #js {:key (str lst-list idx)}
                                                (list-select-field comp idx curr-idx)
                                                (dom/span #js {:key (str lst-list idx "span")} (itm "name" "?"))
-                                               (if (= idx curr-idx) (list-edit-area comp idx curr-idx results) )
-                                               )) results)
+                                               (if (= idx curr-idx) (list-edit-area comp idx curr-idx lsts) )
+                                               )) lsts)
            (dom/h3 nil "Add new list:")
            (list-add-area comp)
            ))
 
 (defn search-field [comp query type]
   (let [[elem-key query-key]
-        (case type :wiki ["wiki-search-field" :wiki-query] :lst ["lst-search-field" :lst-query])
+        (case type :wiki ["wiki-search-field" :wiki-query] :lst ["lst-search-field" :ver])
         ]
-    (println (str "elem-key" elem-key " query-key:" query-key))
   (dom/input
    #js {:key elem-key
         :value query
@@ -199,41 +234,68 @@
   (dom/button #js {:type "button"
                    :onClick
                    (fn [e]
-            (om/transact! comp `[(lst/logout)])
+                     (om/set-query! comp {:params {:query-user :logout}})
                      )
                    } "Log out")
   )
+
+(defn lst-field [comp field-id]
+  (let [dontcare (println (str "comp props" (om/props comp)))
+        field-state (get-in (om/props comp) [:lst field-id])
+        dontcare2 (println (str "fieldstate for " field-id " is: " (get (om/props comp) field-id)))
+        ]
+  (dom/input #js {:key (str "lst-field-" field-id)
+        :value (or field-state "")
+        :onChange
+                  (fn [e]
+                    (let [value (.. e -target -value)]
+                      (println (str "the field:" field-id ":" value))
+                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
+                         ))})))
+
 
 (defn login-button [comp]
   (dom/button #js {:type "button"
                    :onClick
                    (fn [e]
-            (om/transact! comp `[(lst/logout)])
-                     )
+                     (let [lst-map (:lst (om/props comp))
+                           ver (:ver lst-map)
+                           user-id (:user-id-field lst-map)
+                           password (:password-field lst-map)
+                           ]
+                       (om/set-query! comp {:params {:query-user user-id :query-password password :query-ver (inc ver)}})
+                       ))
                    } "Login")
   )
 
 (defui Lsts
   static om/IQueryParams
   (params [_]
-          {:lst-query 1})
+          {:query-user nil :query-password nil  :query-ver 0})
   static om/IQuery
   (query [_]
-         '[:lst/user-id :lst/curr :lst/lst-ver (:lst/lst {:query ?lst-query})])
+         '[(:lst {:query-user ?query-user :query-password ?query-password :query-ver ?query-ver})])
   Object
   (render [this]
-          (let [{:keys [lst/user-id lst/lst lst/lst-ver lst/curr]} (om/props this)]
+          (let [lst (:lst (om/props this))
+                dontcare (println "lists props:" lst)
+                {:keys [lsts curr ver user-id status]} lst
+                ]
             (if (nil? user-id)
               (dom/div nil (dom/h3 nil "Please login")
-                       "User id: " (dom/input nil) "Password: " (dom/input nil)
+                       "User id: " (lst-field this :user-id-field)
+                       "Password: " (lst-field this :password-field)
+                       (dom/br nil)
                        (login-button this)
+                       (status-line (:login status))
                        )
               (dom/div nil
                        (logout-button this)
                      (dom/h2 nil "Lists")
-                     (refresh-lists-button this lst-ver)
-                     (if-not (empty? lst)
-                       (lst-list this lst (if (nil? curr) 0 curr))))
+                     (refresh-lists-button this user-id ver)
+                     (status-line (:refresh_lists status))
+                     (if-not (empty? lsts)
+                       (lst-list this lsts (if (nil? curr) 0 curr))))
               )
             )))
 
@@ -259,12 +321,14 @@
     (cond
       wiki-search
       (let [{[wiki-search] :children} (om/query->ast wiki-search)
-            query (get-in wiki-search [:params :query])]
-        (put! c [query :wiki cb]))
+            dontcare (println (str wiki-search))
+            query-params (get-in wiki-search [:params :query])]
+        (put! c [:wiki-search query-params cb]))
       lst-search
       (let [{[lst-search] :children} (om/query->ast lst-search)
-           query (get-in lst-search [:params :query])]
-        (put! c [query :lst cb]))
+           dontcare (println (str lst-search))
+           query-params (:params lst-search)]
+        (put! c [:lst-search query-params cb]))
       )
     ))
 
@@ -274,33 +338,47 @@
   (om/reconciler
    {:state   app-state
     :parser  (om/parser {:read read :mutate mutate})
-    :send    (send-to-chan send-chan)
+    :send    (send-to-chan event-chan)
     :remotes [:remote :wiki-search]}))
 
 (def lst-reconciler
   (om/reconciler
    {:state   app-state
     :parser  (om/parser {:read read :mutate mutate})
-    :send    (send-to-chan send-chan)
+    :send    (send-to-chan event-chan)
     :remotes [:lst-search]}))
 
 (defn search-loop [c]
   (go
-    (loop [[query type cb] (<! c)]
+    (loop [[type data cb] (<! c)]
       (cond
-        (= type :wiki)
-          (let [
-              [_ results] (<! (jsonp (str wiki-url query)))
-              ]
-              (cb {:wiki/lst results})
-            )
-        (= type :lst)
-          (let [
-                results (<! (jsonp "/getItems"))
+        (= type :wiki-search)
+          (let [query-params data
+                [_ results] (<! (jsonp (str wiki-url query-params)))
                 results-obj (js->clj results)
+              ]
+            (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])
+            )
+          (= type :lst-search)
+          (let [
+                dontcare (println (str "lst query data:" data))
+                {:keys [query-user query-password query-ver]} data
+                url (cond
+                      (nil? query-user)
+                      "/getItems"
+                      (= :logout query-user)
+                      (str "/logout")
+                      :else
+                      (str "/loginGetItems/" query-user "/" query-password)
+                      )
+                results (<! (jsonp url))
+
+                results-obj (assoc (js->clj results) "ver" query-ver)
+
+                dontcare2 (println (str "results is:" results-obj "user_id:" (results-obj "user_id")))
                 ]
             (om/transact! lst-reconciler `[(lst/set-lst ~results-obj)])
-          )
+            )
         :else
           nil
         )
@@ -308,7 +386,7 @@
     ))
 
 
-(search-loop send-chan)
+(search-loop event-chan)
 
 (om/add-root! wiki-reconciler AutoCompleter
               (gdom/getElement "wiki"))

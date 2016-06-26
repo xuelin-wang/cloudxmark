@@ -23,6 +23,7 @@
 (defn- handle-callback [result params session]
   (let [result-str (generate-string result)]
     (let [{:keys [callback]} params]
+      (println (str "hasbacllback:"  (boolean callback) "body:" callback "(" result-str ")" ))
       (if callback
         {
          :session session
@@ -42,7 +43,7 @@
   )
 
 (defn- permission-denied [params session]
-  (handle-callback {:error "Permission denied"} params session)
+  (handle-callback {:status {:error "Permission denied"}} params session)
   )
 
 (def ^{:private true} ok-result
@@ -54,16 +55,23 @@
   )
 
 (defn- handle-auth-action [result params session]
-  (if-let [user-id (get-user-id session)]
-    (handle-callback result params session)
+  (if (nil? (get-user-id session))
     (permission-denied params session)
-    )
+    (handle-callback result params session)
+  )
   )
 
 (defn- handle-login [id pass params session]
   (if (login id pass)
-    (handle-callback {:user-id id} params session)
-    (handle-callback {:error "Failed to login"} params session)
+    (handle-callback {:user-id id} params (assoc session :user-id id))
+    (handle-callback {:status {:error "Failed to login"}} params session)
+    )
+  )
+
+(defn- handle-login-get-items [user-id pass params session]
+  (if (login user-id pass)
+    (handle-callback (get-items user-id nil) params (assoc session :user-id user-id))
+    (handle-callback {:status {:error "Failed to login"}} params session)
     )
   )
 
@@ -72,7 +80,7 @@
     (or (= user-id "xwang") (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
   )
 
-(defn- handle-admin-action result params session
+(defn- handle-admin-action [result params session]
   (if (or (no-auth?) (isAdmin? session))
     (handle-callback result params session)
     (permission-denied params session)
@@ -144,6 +152,10 @@
         )
        )
 
+  (GET "/loginGetItems/:id/:pass"  [id pass :as {params :params session :session}]
+       (handle-login-get-items id pass params session)
+       )
+
   (GET "/getItems" {params :params session :session}
        (handle-auth-action
         (get-items (get-user-id session) nil)
@@ -153,7 +165,7 @@
 
   (GET "/logout" {params :params session :session}
        (handle-callback
-        ok-result params (assoc session :user-id nil)
+        {"user_id" nil "lsts" nil} params (assoc session :user-id nil)
         )
        )
 
