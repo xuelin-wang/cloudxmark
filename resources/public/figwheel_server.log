@@ -2478,3 +2478,164 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 notifying browser that file changed:  out/cloudxmark/core.js
 [32mSuccessfully compiled "js/main.js" in 0.724 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.869 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 1.06 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 377 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 377 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 377 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 375 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 375 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/results-obj at line 377 src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 1.082 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter ] on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 377, column 67
+[32mSuccessfully compiled "js/main.js" in 0.673 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter ] on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 377, column 67
+[32mSuccessfully compiled "js/main.js" in 0.476 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Unmatched delimiter ] on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 376, column 67
+[32mSuccessfully compiled "js/main.js" in 0.481 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.742 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.729 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.878 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.763 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/printn at line 272 src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.785 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.798 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.739 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.815 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.962 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.729 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.806 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/field-id at line 277 src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.847 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 1.048 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.997 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.752 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.777 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+[31mCompiling "js/main.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs, line 267, column 93
+[32mSuccessfully compiled "js/main.js" in 0.312 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.908 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.785 seconds.[0m

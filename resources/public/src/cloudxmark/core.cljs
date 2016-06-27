@@ -44,7 +44,7 @@
     (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user ",query-pw:" query-password))
     (cond
       (= query-user :logout)
-      {:lst-search ast}
+        (if (some? user-id) {:lst-search ast} {:value lst})
 
       (and (some? user-id) (or (> query-ver ver) (nil? lsts)))
       (do
@@ -59,10 +59,7 @@
         )
 
       :else
-      (do
-        (println (str "no query, lst: " lst))
               {:value lst}
-              )
 
       )
           )
@@ -75,6 +72,16 @@
   {:action (fn []
              (println (str "state before setfield: " @state))
              (swap! state assoc-in [:lst field-id] value)
+             (println (str "state after setfield: " @state))
+             )
+   }
+  )
+
+(defmethod mutate 'lst/set-status
+  [{:keys [state] :as env} _ {:keys [field-id status]}]
+  {:action (fn []
+             (println (str "state before setfield: " @state))
+             (swap! state assoc-in [:lst :status field-id] status)
              (println (str "state after setfield: " @state))
              )
    }
@@ -94,10 +101,16 @@
   [{:keys [state] :as env} _ data-map]
   {:action (fn []
              (println (str "data-map:" data-map))
-             (let [{:strs [status lsts user_id]} data-map]
-               (if (get status "error")
-                 nil
-                 (swap! state assoc :lst (merge (:lst @state) {:lsts (data-map "lsts") :ver (data-map "ver") :user-id (data-map "user_id")}))
+             (let [{:strs [status lsts user_id]} data-map
+                   status-id (:id status)
+                   status1 {:info (status "info") :warn (status "warn") :error (status "error")}
+                   ]
+
+               (if (:error status1)
+                 (swap! state assoc-in [:status status-id] status1)
+                 (swap! state assoc :lst (merge (:lst @state) {:lsts (data-map "lsts") :ver (data-map "ver") :user-id (data-map "user_id")
+                                                               :status (merge (:status @state) {status-id status1})
+                                                               }))
                  )
                )
              (println (str "state after setlist:" @state))
@@ -134,6 +147,7 @@
           (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))
 
 (defn status-line [{:keys [info warn error]}]
+  (println (str "info:" info ",warn:" warn ",error:" error))
   (let [[color msg]
         (cond
           error ["red" error]
@@ -250,7 +264,7 @@
                   (fn [e]
                     (let [value (.. e -target -value)]
                       (println (str "the field:" field-id ":" value))
-                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
+                      (om/transact! comp `[(lst/set-field-state {~field-id ~value})])
                          ))})))
 
 
@@ -262,9 +276,19 @@
                            ver (:ver lst-map)
                            user-id (:user-id-field lst-map)
                            password (:password-field lst-map)
+                           error (cond
+                                   (clojure.string/blank? user-id) "User name required"
+                                   (clojure.string/blank? password) "Password required"
+                                   :else nil)
+                           dontcare (println "error is:" error)
                            ]
-                       (om/set-query! comp {:params {:query-user user-id :query-password password :query-ver (inc ver)}})
-                       ))
+                       (if (clojure.string/blank? error)
+                         (om/set-query! comp {:params {:query-user user-id :query-password password :query-ver (inc ver)}})
+                         (om/transact! comp `[(lst/set-status {:field-id :login :status {:error ~error}})])
+                         )
+                       (println (str "stateafterclick:" @app-state))
+                       )
+                     )
                    } "Login")
   )
 
@@ -363,21 +387,20 @@
           (let [
                 dontcare (println (str "lst query data:" data))
                 {:keys [query-user query-password query-ver]} data
-                url (cond
+                [op url] (cond
                       (nil? query-user)
-                      "/getItems"
+                      [:refresh-lists "/getItems"]
                       (= :logout query-user)
-                      (str "/logout")
+                      [:logout (str "/logout")]
                       :else
-                      (str "/loginGetItems/" query-user "/" query-password)
+                      [:login (str "/loginGetItems/" query-user "/" query-password)]
                       )
-                results (<! (jsonp url))
+                results-js (<! (jsonp url))
 
-                results-obj (assoc (js->clj results) "ver" query-ver)
-
-                dontcare2 (println (str "results is:" results-obj "user_id:" (results-obj "user_id")))
+                results1 (assoc (js->clj results-js) "ver" query-ver)
+                results2 (assoc results1 :status (merge (:status results1) (:id op)))
                 ]
-            (om/transact! lst-reconciler `[(lst/set-lst ~results-obj)])
+            (om/transact! lst-reconciler `[(lst/set-lst ~results2)])
             )
         :else
           nil
