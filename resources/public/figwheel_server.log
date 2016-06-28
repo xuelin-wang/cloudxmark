@@ -2639,3 +2639,30 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 notifying browser that file changed:  out/cloudxmark/core.js
 [32mSuccessfully compiled "js/main.js" in 0.785 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+WARNING: Use of undeclared Var cloudxmark.core/cljs->js at line 158 src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 1.195 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.907 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.707 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+notifying browser that file changed:  out/cloudxmark/core.js
+[32mSuccessfully compiled "js/main.js" in 0.745 seconds.[0m

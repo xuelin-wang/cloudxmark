@@ -155,7 +155,7 @@
           info ["black" info]
           )
         ]
-  (dom/span #js {:style {:color color}}
+  (dom/span (clj->js {:style {:color color}})
             msg)))
 
 (defn refresh-lists-button [comp user-id lst-ver]
@@ -264,7 +264,7 @@
                   (fn [e]
                     (let [value (.. e -target -value)]
                       (println (str "the field:" field-id ":" value))
-                      (om/transact! comp `[(lst/set-field-state {~field-id ~value})])
+                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
                          ))})))
 
 
