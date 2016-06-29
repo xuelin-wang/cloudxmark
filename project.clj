@@ -3,14 +3,16 @@
   :url "http://cloudxmark.com"
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha3"]
+  :dependencies [[org.clojure/clojure "1.9.0-alpha7"]
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.postgresql/postgresql "9.4.1208.jre7"]
-                 [compojure "1.5.0"]
-                 [ring/ring-jetty-adapter "1.5.0-RC1"]
-                 [ring/ring-defaults "0.2.0"]
-                 [cheshire "5.5.0"]
-                 [environ "1.0.2"]]
+                 [compojure "1.5.1"]
+                 [ring/ring-core "1.6.0-beta1"]
+                 [ring/ring-jetty-adapter "1.6.0-beta1"]
+                 [ring/ring-defaults "0.2.1"]
+                 [com.rpl/specter "0.11.2"]
+                 [cheshire "5.6.2"]
+                 [environ "1.0.3"]]
   :main ^:skip-aot cloudxmark.web
   :resource-paths ["resources"]
   :min-lein-version "2.0.0"

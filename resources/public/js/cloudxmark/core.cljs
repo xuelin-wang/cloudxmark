@@ -77,6 +77,15 @@
    }
   )
 
+(defmethod mutate 'lst/login
+  [{:keys [state] :as env} _ {:keys [user-id password ver]}]
+  {:action (fn []
+             (println (str "state in login: " @state))
+             )
+   :value {:lst-search {:query-user user-id :query-password password :ver ver}}
+   }
+  )
+
 (defmethod mutate 'lst/set-status
   [{:keys [state] :as env} _ {:keys [field-id status]}]
   {:action (fn []
@@ -273,6 +282,9 @@
                    :onClick
                    (fn [e]
                      (let [lst-map (:lst (om/props comp))
+                           dontcare0 (println "lst-map" (om/props comp))
+
+
                            ver (:ver lst-map)
                            user-id (:user-id-field lst-map)
                            password (:password-field lst-map)
@@ -283,7 +295,8 @@
                            dontcare (println "error is:" error)
                            ]
                        (if (clojure.string/blank? error)
-                         (om/set-query! comp {:params {:query-user user-id :query-password password :query-ver (inc ver)}})
+                         (om/transact! comp `[(lst/login {:user-id ~user-id :password ~password :ver (inc var)})])
+;                         (om/set-query! comp {:params {:query-user user-id :query-password password :query-ver (inc ver)}})
                          (om/transact! comp `[(lst/set-status {:field-id :login :status {:error ~error}})])
                          )
                        (println (str "stateafterclick:" @app-state))
