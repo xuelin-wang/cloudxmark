@@ -2714,3 +2714,820 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 notifying browser that file changed:  out/cloudxmark/core.js
 [32mSuccessfully compiled "js/main.js" in 0.797 seconds.[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Copying jar:file:/home/xuelin/.m2/repository/com/rpl/specter/0.11.2/specter-0.11.2.jar!/com/rpl/specter/protocols.cljs to js/com/rpl/specter/protocols.cljs
+Compiling js/com/rpl/specter/protocols.cljs
+Copying jar:file:/home/xuelin/.m2/repository/com/rpl/specter/0.11.2/specter-0.11.2.jar!/com/rpl/specter/impl.cljs to js/com/rpl/specter/impl.cljs
+Compiling js/com/rpl/specter/impl.cljs
+Copying jar:file:/home/xuelin/.m2/repository/com/rpl/specter/0.11.2/specter-0.11.2.jar!/com/rpl/specter.cljs to js/com/rpl/specter.cljs
+Compiling js/com/rpl/specter.cljs
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 4.177 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 9.017 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.689 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.788 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:387  column:29  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-user[0m
+
+  [36m383[0m  [36m(let [[0m
+  [36m384[0m  [36m      dontcare (println (str "lst login data:" data))[0m
+  [36m385[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m386[0m  [36m      [op url] (cond[0m
+  [33m387[0m  [1m            (nil? query-user)[0m
+  [0m   [0m  [33m                  ^--- Use of undeclared Var cloudxmark.core/query-user[0m
+  [36m388[0m  [36m            [:refresh-lists "/getItems"][0m
+  [36m389[0m  [36m            (= :logout query-user)[0m
+  [36m390[0m  [36m            [:logout (str "/logout")][0m
+  [36m391[0m  [36m            :else[0m
+  [36m392[0m  [36m            [:login (str "/loginGetItems/" query-user "/" query-password)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:392  column:54  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-user[0m
+
+  [36m388[0m  [36m                      [:refresh-lists "/getItems"][0m
+  [36m389[0m  [36m                      (= :logout query-user)[0m
+  [36m390[0m  [36m                      [:logout (str "/logout")][0m
+  [36m391[0m  [36m                      :else[0m
+  [33m392[0m  [1m                      [:login (str "/loginGetItems/" query-user "/" query-password)][0m
+  [0m   [0m  [33m                                                     ^--- Use of undeclared Var cloudxmark.core/query-user[0m
+  [36m393[0m  [36m                      )[0m
+  [36m394[0m  [36m                results-js (<! (jsonp url))[0m
+  [36m395[0m  [36m[0m
+  [36m396[0m  [36m                results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [36m397[0m  [36m                results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:392  column:69  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-password[0m
+
+  [36m388[0m  [36m                      [:refresh-lists "/getItems"][0m
+  [36m389[0m  [36m                      (= :logout query-user)[0m
+  [36m390[0m  [36m                      [:logout (str "/logout")][0m
+  [36m391[0m  [36m                      :else[0m
+  [33m392[0m  [1m                      [:login (str "/loginGetItems/" query-user "/" query-password)][0m
+  [0m   [0m  [33m                                                                    ^--- Use of undeclared Var cloudxmark.core/query-password[0m
+  [36m393[0m  [36m                      )[0m
+  [36m394[0m  [36m                results-js (<! (jsonp url))[0m
+  [36m395[0m  [36m[0m
+  [36m396[0m  [36m                results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [36m397[0m  [36m                results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:389  column:34  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-user[0m
+
+  [36m385[0m  [36m{:keys [user-id password ver]} data[0m
+  [36m386[0m  [36m[op url] (cond[0m
+  [36m387[0m  [36m      (nil? query-user)[0m
+  [36m388[0m  [36m      [:refresh-lists "/getItems"][0m
+  [33m389[0m  [1m      (= :logout query-user)[0m
+  [0m   [0m  [33m                 ^--- Use of undeclared Var cloudxmark.core/query-user[0m
+  [36m390[0m  [36m      [:logout (str "/logout")][0m
+  [36m391[0m  [36m      :else[0m
+  [36m392[0m  [36m      [:login (str "/loginGetItems/" query-user "/" query-password)][0m
+  [36m393[0m  [36m      )[0m
+  [36m394[0m  [36mresults-js (<! (jsonp url))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:396  column:60  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-ver[0m
+
+  [36m392[0m  [36m                      [:login (str "/loginGetItems/" query-user "/" query-password)][0m
+  [36m393[0m  [36m                      )[0m
+  [36m394[0m  [36m                results-js (<! (jsonp url))[0m
+  [36m395[0m  [36m[0m
+  [33m396[0m  [1m                results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [0m   [0m  [33m                                                           ^--- Use of undeclared Var cloudxmark.core/query-ver[0m
+  [36m397[0m  [36m                results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+  [36m398[0m  [36m                ][0m
+  [36m399[0m  [36m            (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m400[0m  [36m            )[0m
+  [36m401[0m  [36m          (= type :lst-search)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.11 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:388  column:60  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/query-ver[0m
+
+  [36m384[0m  [36m      dontcare (println (str "lst login data:" data))[0m
+  [36m385[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m386[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m387[0m  [36m      results-js (<! (jsonp url))[0m
+  [33m388[0m  [1m      results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.core/query-ver[0m
+  [36m389[0m  [36m      results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+  [36m390[0m  [36m      ][0m
+  [36m391[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m392[0m  [36m  )[0m
+  [36m393[0m  [36m(= type :lst-search)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:389  column:81  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/op[0m
+
+  [36m385[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m386[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m387[0m  [36m      results-js (<! (jsonp url))[0m
+  [36m388[0m  [36m      results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [33m389[0m  [1m      results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+  [0m   [0m  [33m                                                                      ^--- Use of undeclared Var cloudxmark.core/op[0m
+  [36m390[0m  [36m      ][0m
+  [36m391[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m392[0m  [36m  )[0m
+  [36m393[0m  [36m(= type :lst-search)[0m
+  [36m394[0m  [36m(let [[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.821 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:389  column:81  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/op[0m
+
+  [36m385[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m386[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m387[0m  [36m      results-js (<! (jsonp url))[0m
+  [36m388[0m  [36m      results1 (assoc (js->clj results-js) "ver" ver)[0m
+  [33m389[0m  [1m      results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+  [0m   [0m  [33m                                                                      ^--- Use of undeclared Var cloudxmark.core/op[0m
+  [36m390[0m  [36m      ][0m
+  [36m391[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m392[0m  [36m  )[0m
+  [36m393[0m  [36m(= type :lst-search)[0m
+  [36m394[0m  [36m(let [[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.859 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.783 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.387 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:95  column:14  ----[0m
+
+  [1mDon't know how to create ISeq from: clojure.lang.Symbol[0m
+
+  [36m93[0m  [36m[{:keys [state] :as env} _ data-map][0m
+  [36m94[0m  [36m{:action (fn [][0m
+  [33m95[0m  [1m           (let [{:keys user-id password ver} data-map][0m
+  [0m  [0m  [33m           ^--- Don't know how to create ISeq from: clojure.lang.Symbol[0m
+  [36m96[0m  [36m           (println (str "data-map:" data-map))[0m
+  [36m97[0m  [36m           (println (str "state in login:" @state))[0m
+  [36m98[0m  [36m      (put! c [:lst-login data-map #(nil)]))[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.24 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:95  column:14  ----[0m
+
+  [1mDon't know how to create ISeq from: clojure.lang.Symbol[0m
+
+  [36m93[0m  [36m[{:keys [state] :as env} _ data-map][0m
+  [36m94[0m  [36m{:action (fn [][0m
+  [33m95[0m  [1m           (let [{:keys user-id password ver} data-map][0m
+  [0m  [0m  [33m           ^--- Don't know how to create ISeq from: clojure.lang.Symbol[0m
+  [36m96[0m  [36m           (println (str "data-map:" data-map))[0m
+  [36m97[0m  [36m           (println (str "state in login:" @state))[0m
+  [36m98[0m  [36m      (put! c [:lst-login data-map #(nil)]))[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.287 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:95  column:14  ----[0m
+
+  [1mDon't know how to create ISeq from: clojure.lang.Symbol[0m
+
+  [36m93[0m  [36m[{:keys [state] :as env} _ data-map][0m
+  [36m94[0m  [36m{:action (fn [][0m
+  [33m95[0m  [1m           (let [{:keys user-id password ver} data-map][0m
+  [0m  [0m  [33m           ^--- Don't know how to create ISeq from: clojure.lang.Symbol[0m
+  [36m96[0m  [36m           (println (str "data-map:" data-map))[0m
+  [36m97[0m  [36m           (println (str "state in login:" @state))[0m
+  [36m98[0m  [36m      (put! c [:lst-login data-map nil]))[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.225 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:96  column:14  ----[0m
+
+  [1mDon't know how to create ISeq from: clojure.lang.Symbol[0m
+
+  [36m94[0m  [36m{:action (fn [][0m
+  [36m95[0m  [36m           (println (str "data-map:" data-map))[0m
+  [33m96[0m  [1m           (let [{:keys user-id password ver} data-map][0m
+  [0m  [0m  [33m           ^--- Don't know how to create ISeq from: clojure.lang.Symbol[0m
+  [36m97[0m  [36m           (println (str "state in login:" @state))[0m
+  [36m98[0m  [36m      (put! c [:lst-login data-map nil]))[0m
+  [36m99[0m  [36m   )[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.141 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:108  column:15  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/c[0m
+
+  [36m104[0m  [36m  {:action (fn [][0m
+  [36m105[0m  [36m             (println (str "data-map:" data-map))[0m
+  [36m106[0m  [36m             (let [{:keys [user-id password ver]} data-map][0m
+  [36m107[0m  [36m             (println (str "state in login:" @state))[0m
+  [33m108[0m  [1m        (put! c [:lst-login data-map nil]))[0m
+  [0m   [0m  [33m              ^--- Use of undeclared Var cloudxmark.core/c[0m
+  [36m109[0m  [36m     )[0m
+  [36m110[0m  [36m   }[0m
+  [36m111[0m  [36m  )[0m
+  [36m112[0m  [36m[0m
+  [36m113[0m  [36m(defmethod mutate 'lst/set-lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.987 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:108  column:15  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/c[0m
+
+  [36m104[0m  [36m  {:action (fn [][0m
+  [36m105[0m  [36m             (println (str "data-map:" data-map))[0m
+  [36m106[0m  [36m             (let [{:keys [user-id password ver]} data-map][0m
+  [36m107[0m  [36m             (println (str "state in login:" @state))[0m
+  [33m108[0m  [1m        (put! c [:lst-login data-map nil]))[0m
+  [0m   [0m  [33m              ^--- Use of undeclared Var cloudxmark.core/c[0m
+  [36m109[0m  [36m     )[0m
+  [36m110[0m  [36m   }[0m
+  [36m111[0m  [36m  )[0m
+  [36m112[0m  [36m[0m
+  [36m113[0m  [36m(defmethod mutate 'lst/set-lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.998 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.913 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.847 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.841 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.822 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.192 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:118  column:7  ----[0m
+
+  [1mUnmatched delimiter )[0m
+
+  [36m116[0m  [36m           (swap! state assoc :lst {:user-id nil :lsts nil :ver 0})[0m
+  [36m117[0m  [36m      (put! event-chan [:lst-logout {} nil]))[0m
+  [33m118[0m  [1m   )[0m
+  [0m   [0m  [33m    ^--- Unmatched delimiter )[0m
+  [36m119[0m  [36m }[0m
+  [36m120[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.191 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:118  column:7  ----[0m
+
+  [1mUnmatched delimiter )[0m
+
+  [36m116[0m  [36m           (swap! state assoc :lst {:user-id nil :lsts nil :ver 0})[0m
+  [36m117[0m  [36m      (put! event-chan [:lst-logout {} nil]))[0m
+  [33m118[0m  [1m   )[0m
+  [0m   [0m  [33m    ^--- Unmatched delimiter )[0m
+  [36m119[0m  [36m }[0m
+  [36m120[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.507 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:428  column:79  ----[0m
+
+  [1mUnmatched delimiter )[0m
+
+  [36m426[0m  [36m    results-js (<! (jsonp url))[0m
+  [36m427[0m  [36m    results1 (js->clj results-js)[0m
+  [33m428[0m  [1m    status {:status (merge (get results1 "status") (:id :logout)))[0m
+  [0m   [0m  [33m                                                                  ^--- Unmatched delimiter )[0m
+  [36m429[0m  [36m    ][0m
+  [36m430[0m  [36m(om/transact! lst-reconciler `[(lst/set-status ~status]))[0m
+  [36m431[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.482 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:430  column:68  ----[0m
+
+  [1mUnmatched delimiter ][0m
+
+  [36m428[0m  [36m      status {:status (merge (get results1 "status") {:id :logout})}[0m
+  [36m429[0m  [36m      ][0m
+  [33m430[0m  [1m  (om/transact! lst-reconciler `[(lst/set-status ~status]))[0m
+  [0m   [0m  [33m                                                         ^--- Unmatched delimiter ][0m
+  [36m431[0m  [36m  )[0m
+  [36m432[0m  [36m(= type :lst-search)[0m
+  [36m433[0m  [36m(let [[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.868 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.876 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.348 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:324  column:37  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m322[0m  [36mstatic om/IQueryParams[0m
+  [36m323[0m  [36m(params [_][0m
+  [33m324[0m  [1m        {:query-user :query-ver 0})[0m
+  [0m   [0m  [33m                                  ^--- Map literal must contain an even number of forms[0m
+  [36m325[0m  [36mstatic om/IQuery[0m
+  [36m326[0m  [36m(query [_][0m
+  [36m327[0m  [36m       '[(:lst {:query-user ?query-user :query-ver ?query-ver})])[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.35 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:324  column:37  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m322[0m  [36mstatic om/IQueryParams[0m
+  [36m323[0m  [36m(params [_][0m
+  [33m324[0m  [1m        {:query-user :query-ver 0})[0m
+  [0m   [0m  [33m                                  ^--- Map literal must contain an even number of forms[0m
+  [36m325[0m  [36mstatic om/IQuery[0m
+  [36m326[0m  [36m(query [_][0m
+  [36m327[0m  [36m       '[(:lst {:query-user ?query-user :query-ver ?query-ver})])[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.34 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:324  column:37  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m322[0m  [36mstatic om/IQueryParams[0m
+  [36m323[0m  [36m(params [_][0m
+  [33m324[0m  [1m        {:query-user :query-ver 0})[0m
+  [0m   [0m  [33m                                  ^--- Map literal must contain an even number of forms[0m
+  [36m325[0m  [36mstatic om/IQuery[0m
+  [36m326[0m  [36m(query [_][0m
+  [36m327[0m  [36m       '[(:lst {:query-user ?query-user :query-ver ?query-ver})])[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.355 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:324  column:37  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m322[0m  [36mstatic om/IQueryParams[0m
+  [36m323[0m  [36m(params [_][0m
+  [33m324[0m  [1m        {:query-user :query-ver 0})[0m
+  [0m   [0m  [33m                                  ^--- Map literal must contain an even number of forms[0m
+  [36m325[0m  [36mstatic om/IQuery[0m
+  [36m326[0m  [36m(query [_][0m
+  [36m327[0m  [36m       '[(:lst {:query-user ?query-user :query-ver ?query-ver})])[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.389 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:324  column:37  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m322[0m  [36mstatic om/IQueryParams[0m
+  [36m323[0m  [36m(params [_][0m
+  [33m324[0m  [1m        {:query-user :query-ver 0})[0m
+  [0m   [0m  [33m                                  ^--- Map literal must contain an even number of forms[0m
+  [36m325[0m  [36mstatic om/IQuery[0m
+  [36m326[0m  [36m(query [_][0m
+  [36m327[0m  [36m       '[(:lst {:query-user ?query-user :query-ver ?query-ver})])[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:437  column:81  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/op[0m
+
+  [36m433[0m  [36m        {:keys [query-user query-ver]} data[0m
+  [36m434[0m  [36m        url "/getItems"[0m
+  [36m435[0m  [36m        results-js (<! (jsonp url))[0m
+  [36m436[0m  [36m        results1 (assoc (js->clj results-js) "ver" query-ver)[0m
+  [33m437[0m  [1m        results2 (assoc results1 :status (merge (:status results1) (:id op)))[0m
+  [0m   [0m  [33m                                                                        ^--- Use of undeclared Var cloudxmark.core/op[0m
+  [36m438[0m  [36m        ][0m
+  [36m439[0m  [36m    (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m440[0m  [36m    )[0m
+  [36m441[0m  [36m:else[0m
+  [36m442[0m  [36m  nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.926 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.843 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.904 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.882 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.94 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:428  column:78  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m424[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m425[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m426[0m  [36m      results-js (<! (jsonp url))[0m
+  [36m427[0m  [36m      results1 (assoc (js->clj results-js) "ver" ver)[0m
+  [33m428[0m  [1m      results2 (assoc results1 :status (merge (convert-json-status result1) {:id :login}))[0m
+  [0m   [0m  [33m                                                                   ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m429[0m  [36m      ][0m
+  [36m430[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m431[0m  [36m  )[0m
+  [36m432[0m  [36m(= type :lst-logout)[0m
+  [36m433[0m  [36m(let [[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.938 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.935 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 0.978 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.52 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:402  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m401[0m  [36m(defn convert-json-lsts-result [result][0m
+  [33m402[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m403[0m  [36m        json-status (get result "status")[0m
+  [36m404[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m405[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.529 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:402  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m401[0m  [36m(defn convert-json-lsts-result [result][0m
+  [33m402[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m403[0m  [36m        json-status (get result "status")[0m
+  [36m404[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m405[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.512 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:402  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m401[0m  [36m(defn convert-json-lsts-result [result ver status-id][0m
+  [33m402[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m403[0m  [36m        json-status (get result "status")[0m
+  [36m404[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m405[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.52 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:402  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m401[0m  [36m(defn convert-json-lsts-result [result ver status-id][0m
+  [33m402[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m403[0m  [36m        json-status (get result "status")[0m
+  [36m404[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m405[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.506 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:402  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m401[0m  [36m(defn convert-json-lsts-result [result ver status-id][0m
+  [33m402[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m403[0m  [36m        json-status (get result "status")[0m
+  [36m404[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m405[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.218 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:136  column:5  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m134[0m  [36m           (println (str "state after setlist:" @state))[0m
+  [36m135[0m  [36m   )[0m
+  [33m136[0m  [1m }[0m
+  [0m   [0m  [33m  ^--- Unmatched delimiter }[0m
+  [36m137[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.198 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:136  column:5  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m134[0m  [36m           (println (str "state after setlist:" @state))[0m
+  [36m135[0m  [36m   )[0m
+  [33m136[0m  [1m }[0m
+  [0m   [0m  [33m  ^--- Unmatched delimiter }[0m
+  [36m137[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 1.958 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:398  column:29  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m397[0m  [36m(defn convert-json-lsts-result [result ver status-id][0m
+  [33m398[0m  [1m  (let [{:strs lsts user_id} result`[0m
+  [0m   [0m  [33m                            ^--- Map literal must contain an even number of forms[0m
+  [36m399[0m  [36m        json-status (get result "status")[0m
+  [36m400[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m401[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.847 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:398  column:3  ----[0m
+
+  [1mUnsupported binding form: (quote cloudxmark.core/json-status)[0m
+
+  [36m397[0m  [36m(defn convert-json-lsts-result [result ver status-id][0m
+  [33m398[0m  [1m  (let [{:strs [lsts user_id]} result`[0m
+  [0m   [0m  [33m  ^--- Unsupported binding form: (quote cloudxmark.core/json-status)[0m
+  [36m399[0m  [36m        json-status (get result "status")[0m
+  [36m400[0m  [36m        {:strs [info warn error]} json-status[0m
+  [36m401[0m  [36m        status {:info info :warn warn :error error}[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:425  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m421[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m422[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m423[0m  [36m      results-js (<! (jsonp url))[0m
+  [36m424[0m  [36m      results1 (js->clj results-js)[0m
+  [33m425[0m  [1m      results2 (convert-json-lsts-result result1 ver :login)[0m
+  [0m   [0m  [33m                                         ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m426[0m  [36m      ][0m
+  [36m427[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m428[0m  [36m  )[0m
+  [36m429[0m  [36m(= type :lst-logout)[0m
+  [36m430[0m  [36m(let [[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:446  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m442[0m  [36m        {:keys [query-user query-ver]} data[0m
+  [36m443[0m  [36m        url "/getItems"[0m
+  [36m444[0m  [36m        results-js (<! (jsonp url))[0m
+  [36m445[0m  [36m        results1 (js->clj results-js)[0m
+  [33m446[0m  [1m        results2 (convert-json-lsts-result result1 query-ver :refresh-lists)[0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m447[0m  [36m        ][0m
+  [36m448[0m  [36m    (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m449[0m  [36m    )[0m
+  [36m450[0m  [36m:else[0m
+  [36m451[0m  [36m  nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/utils.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/file_reloading.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/org/clojure/clojurescript/1.9.89/clojurescript-1.9.89.jar!/cljs/reader.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/socket.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/heads_up.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/target/figwheel_temp/dev/figwheel/connect.cljs to js/figwheel/connect.cljs
+[32mSuccessfully compiled "js/main.js" in 1.712 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:426  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m422[0m  [36m      {:keys [user-id password ver]} data[0m
+  [36m423[0m  [36m      url (str "/loginGetItems/" user-id "/" password)[0m
+  [36m424[0m  [36m      results-js (<! (jsonp url))[0m
+  [36m425[0m  [36m      results1 (js->clj results-js)[0m
+  [33m426[0m  [1m      results2 (convert-json-lsts-result result1 ver :login)[0m
+  [0m   [0m  [33m                                         ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m427[0m  [36m      ][0m
+  [36m428[0m  [36m  (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m429[0m  [36m  )[0m
+  [36m430[0m  [36m(= type :lst-logout)[0m
+  [36m431[0m  [36m(let [[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:447  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m443[0m  [36m        {:keys [query-user query-ver]} data[0m
+  [36m444[0m  [36m        url "/getItems"[0m
+  [36m445[0m  [36m        results-js (<! (jsonp url))[0m
+  [36m446[0m  [36m        results1 (js->clj results-js)[0m
+  [33m447[0m  [1m        results2 (convert-json-lsts-result result1 query-ver :refresh-lists)[0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m448[0m  [36m        ][0m
+  [36m449[0m  [36m    (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m450[0m  [36m    )[0m
+  [36m451[0m  [36m:else[0m
+  [36m452[0m  [36m  nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 4.255 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:447  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/result1[0m
+
+  [36m443[0m  [36m        {:keys [query-user query-ver]} data[0m
+  [36m444[0m  [36m        url "/getItems"[0m
+  [36m445[0m  [36m        results-js (<! (jsonp url))[0m
+  [36m446[0m  [36m        results1 (js->clj results-js)[0m
+  [33m447[0m  [1m        results2 (convert-json-lsts-result result1 query-ver :refresh-lists)[0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.core/result1[0m
+  [36m448[0m  [36m        ][0m
+  [36m449[0m  [36m    (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m450[0m  [36m    )[0m
+  [36m451[0m  [36m:else[0m
+  [36m452[0m  [36m  nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.871 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
