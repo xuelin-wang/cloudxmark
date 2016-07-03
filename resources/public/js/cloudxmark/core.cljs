@@ -39,10 +39,10 @@
   )
 
 (defmethod read :lst
-  [{:keys [state ast] :as env} _ {:keys [query-ver query-user query-password]}]
+  [{:keys [state ast] :as env} _ {:keys [query-ver query-user]}]
   (let [lst (:lst @state)
         {:keys [lsts curr ver user-id status]} lst]
-    (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user ",query-pw:" query-password))
+    (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user))
     (cond
       (= query-user :logout)
         (if (some? user-id) {:lst-search ast} {:value lst})
@@ -109,6 +109,18 @@
      )
    }
   )
+
+(defmethod mutate 'lst/add-lst
+  [{:keys [state] :as env} _ data-map]
+  {:action (fn []
+             (let [{:keys [name description]} data-map]
+             (println (str "data-map:" data-map))
+             (println (str "state in add-lst:" @state))
+             (put! event-chan [:lst-add-lst {:name name :description :description} nil]))
+             )
+   }
+  )
+
 (defmethod mutate 'lst/logout
   [{:keys [state] :as env} _ _]
   {:action (fn []
@@ -125,12 +137,13 @@
              (println (str "data-map in set-lst:" data-map))
              (let [{:keys [status lsts user-id ver]} data-map
                    status-id (:id status)
+                   new-ver (if (nil? ver) (inc (get-in @state [:lst :ver])) ver)
                    ]
 
                (if (and status status-id)
                  (swap! state assoc-in [:lst :status status-id] status)
                  )
-             (swap! state assoc :lst (merge (:lst @state) {:lsts lsts :ver ver :user-id user-id}))
+             (swap! state assoc :lst (merge (:lst @state) {:lsts lsts :ver new-ver :user-id user-id}))
              (println (str "state after setlist:" @state)))
      )
    }
@@ -159,7 +172,23 @@
          })
   )
 
-
+(defn lst-field
+  ([comp field-id]
+   (lst-field comp field-id "text"))
+  ([comp field-id type]
+  (let [dontcare (println (str "comp props" (om/props comp)))
+        field-state (get-in (om/props comp) [:lst field-id])
+        dontcare2 (println (str "fieldstate for " field-id " is: " (get (om/props comp) field-id)))
+        ]
+    (dom/input #js {:key (str "lst-field-" field-id)
+                    :type type
+        :value (or field-state "")
+        :onChange
+                  (fn [e]
+                    (let [value (.. e -target -value)]
+                      (println (str "the field:" field-id ":" value))
+                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
+                         ))}))))
 
 (defn result-list [results]
   (dom/ul #js {:key "result-list"}
@@ -178,7 +207,7 @@
             msg)))
 
 (defn refresh-lists-button [comp user-id lst-ver]
-  (dom/button #js {:type "button" :key "refreshPwButton"
+  (dom/button #js {:type "button" :key "refreshButton"
                    :onClick
                    (fn [e]
                      (if (nil? user-id)
@@ -189,9 +218,21 @@
               (dom/span nil "Refresh List") )
   )
 
-(defn add-list-button [comp]
+(defn add-lst-button [comp]
   (dom/button #js {:type "button" :key "addListButton"
-                   :onClick (fn [e] nil)
+                   :onClick (fn [e]
+                              (let [lst-map (:lst (om/props comp))
+                                    new-lst-name (:new-lst-name-field lst-map)
+                                    new-lst-description (:new-lst-description-field lst-map)
+                                    error (cond
+                                            (clojure.string/blank? new-lst-name) "New List Name Required"
+                                            (clojure.string/blank? new-lst-description) "New List Description Required"
+                                            :else nil)
+                                    ]
+                              (if (clojure.string/blank? error)
+                                (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])
+                         (om/transact! comp `[(lst/set-status {:id :add-lst :error ~error})])
+                              )))
                    }
               (dom/span nil "Add List")
               )
@@ -201,7 +242,7 @@
   (let [
         ]
   (dom/input
-   #js {:key (str "lst-list-check-" idx)
+   #js {:key (str "lst-lst-check-" idx)
         :type "radio"
         :checked (= idx curr-idx)
         :onChange
@@ -230,25 +271,32 @@
     )
   )
 
-(defn list-add-area [comp]
-  (let []
+(defn lst-add-area [comp]
+  (let [lst (:lst (om/props comp))
+                dontcare (println "lists props:" lst)
+                {:keys [status]} lst
+                ]
     (dom/div #js {:key (str "list-edit-area-" -1)}
-             "List name: "
-             (dom/input nil)
-             (add-list-button comp)
+             "New List: "
+             (lst-field comp :new-lst-name-field)
+             "Description: "
+             (lst-field comp :new-lst-description-field)
+             (add-lst-button comp)
+             (status-line (:add-lst status))
              )
     )
   )
 
-(defn lst-list [comp lsts curr-idx]
-  (dom/div #js {:key "lst-list"}
-           (map-indexed (fn [idx itm] (dom/div #js {:key (str lst-list idx)}
+(defn lst-lst [comp lsts curr-idx]
+  (dom/div #js {:key "lst-lst"}
+           (if (seq lsts)
+           (map-indexed (fn [idx itm] (dom/div #js {:key (str lst-lst idx)}
                                                (list-select-field comp idx curr-idx)
-                                               (dom/span #js {:key (str lst-list idx "span")} (itm "name" "?"))
+                                               (dom/span #js {:key (str lst-lst idx "span")} (itm "name" "?"))
                                                (if (= idx curr-idx) (list-edit-area comp idx curr-idx lsts) )
-                                               )) lsts)
+                                               )) lsts))
            (dom/h3 nil "Add new list:")
-           (list-add-area comp)
+           (lst-add-area comp)
            ))
 
 (defn search-field [comp query type]
@@ -271,20 +319,6 @@
                      )
                    } "Log out")
   )
-
-(defn lst-field [comp field-id]
-  (let [dontcare (println (str "comp props" (om/props comp)))
-        field-state (get-in (om/props comp) [:lst field-id])
-        dontcare2 (println (str "fieldstate for " field-id " is: " (get (om/props comp) field-id)))
-        ]
-  (dom/input #js {:key (str "lst-field-" field-id)
-        :value (or field-state "")
-        :onChange
-                  (fn [e]
-                    (let [value (.. e -target -value)]
-                      (println (str "the field:" field-id ":" value))
-                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
-                         ))})))
 
 
 (defn login-button [comp]
@@ -332,7 +366,7 @@
             (if (nil? user-id)
               (dom/div nil (dom/h3 nil "Please login")
                        "User id: " (lst-field this :user-id-field)
-                       "Password: " (lst-field this :password-field)
+                       "Password: " (lst-field this :password-field "password")
                        (dom/br nil)
                        (login-button this)
                        (status-line (:login status))
@@ -342,8 +376,7 @@
                      (dom/h2 nil "Lists")
                      (refresh-lists-button this user-id ver)
                      (status-line (:refresh_lists status))
-                     (if-not (empty? lsts)
-                       (lst-list this lsts (if (nil? curr) 0 curr))))
+                     (lst-lst this lsts (if (nil? curr) 0 curr)))
               )
             )))
 
@@ -437,6 +470,15 @@
                 status {:id :logout :info info :warn warn :error error}
                 ]
             (om/transact! lst-reconciler `[(lst/set-status ~status)]))
+          (= type :lst-add-lst)
+          (let [{:keys [name description]} data
+                url (str "/addLst/" name "/" description)
+                results-js (<! (jsonp url))
+                results1 (js->clj results-js)
+                results2 (convert-json-lsts-result results1 nil :add-lst)
+                ]
+            (om/transact! lst-reconciler `[(lst/set-lst ~results2)]))
+
           (= type :lst-search)
           (let [
                 dontcare (println (str "lst query data:" data))
@@ -444,7 +486,7 @@
                 url "/getItems"
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
-                results2 (convert-json-lsts-result result1 query-ver :refresh-lists)
+                results2 (convert-json-lsts-result results1 query-ver :refresh-lists)
                 ]
             (om/transact! lst-reconciler `[(lst/set-lst ~results2)])
             )

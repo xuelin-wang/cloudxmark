@@ -108,14 +108,15 @@
   )
 
 (defn- handle-add-lst [name desc params session]
-  (handle-auth-action
-    (do
-      (add-lst {:owner (get-user-id session) :name name :description desc})
-      ok-result
-      )
-   params session
+  (let [
+        user-id (get-user-id session)
+        update-count (add-lst {:owner user-id :name name :description desc})
+        ]
+    (if (= update-count 1)
+      (handle-callback (get-items user-id nil) params session)
+      (handle-callback {:status {:error (str "Failed to add list: " name)}} params session)
+    ))
    )
-  )
 
 (defn wrap-dir-index [handler]
   (fn [req]
