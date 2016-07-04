@@ -4420,3 +4420,842 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 [32mSuccessfully compiled "js/main.js" in 0.932 seconds.[0m
 notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 22.104 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.272 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.239 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.15 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.16 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.132 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.102 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.094 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.108 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:301  column:70  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/list-edit-area[0m
+
+  [36m297[0m  [36m(if (seq lsts)[0m
+  [36m298[0m  [36m(map-indexed (fn [idx itm] (dom/div #js {:key (str lst-lst idx)}[0m
+  [36m299[0m  [36m                                    (lst-select-field comp idx curr-idx)[0m
+  [36m300[0m  [36m                                    (dom/span #js {:key (str lst-lst idx "span")} (itm "name" "?"))[0m
+  [33m301[0m  [1m                                    (if (= idx curr-idx) (list-edit-area comp idx curr-idx lsts) )[0m
+  [0m   [0m  [33m                                                          ^--- Use of undeclared Var cloudxmark.core/list-edit-area[0m
+  [36m302[0m  [36m                                    )) lsts))[0m
+  [36m303[0m  [36m(dom/h3 nil "Add new list:")[0m
+  [36m304[0m  [36m(lst-add-area comp)[0m
+  [36m305[0m  [36m))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.404 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:301  column:70  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/list-edit-area[0m
+
+  [36m297[0m  [36m(if (seq lsts)[0m
+  [36m298[0m  [36m(map-indexed (fn [idx itm] (dom/div #js {:key (str lst-lst idx)}[0m
+  [36m299[0m  [36m                                    (lst-select-field comp idx curr-idx)[0m
+  [36m300[0m  [36m                                    (dom/span #js {:key (str lst-lst idx "span")} (itm "name" "?"))[0m
+  [33m301[0m  [1m                                    (if (= idx curr-idx) (list-edit-area comp idx curr-idx lsts) )[0m
+  [0m   [0m  [33m                                                          ^--- Use of undeclared Var cloudxmark.core/list-edit-area[0m
+  [36m302[0m  [36m                                    )) lsts))[0m
+  [36m303[0m  [36m(dom/h3 nil "Add new list:")[0m
+  [36m304[0m  [36m(lst-add-area comp)[0m
+  [36m305[0m  [36m))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.173 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:301  column:70  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/list-edit-area[0m
+
+  [36m297[0m  [36m(if (seq lsts)[0m
+  [36m298[0m  [36m(map-indexed (fn [idx itm] (dom/div #js {:key (str lst-lst idx)}[0m
+  [36m299[0m  [36m                                    (lst-select-field comp idx curr-idx)[0m
+  [36m300[0m  [36m                                    (dom/span #js {:key (str lst-lst idx "span")} (itm "name" "?"))[0m
+  [33m301[0m  [1m                                    (if (= idx curr-idx) (list-edit-area comp idx curr-idx lsts) )[0m
+  [0m   [0m  [33m                                                          ^--- Use of undeclared Var cloudxmark.core/list-edit-area[0m
+  [36m302[0m  [36m                                    )) lsts))[0m
+  [36m303[0m  [36m(dom/h3 nil "Add new list:")[0m
+  [36m304[0m  [36m(lst-add-area comp)[0m
+  [36m305[0m  [36m))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.244 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.151 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.071 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:277  column:32  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m273[0m  [36m               items)[0m
+  [36m274[0m  [36m           )[0m
+  [36m275[0m  [36m  )[0m
+  [36m276[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [33m277[0m  [1m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [0m   [0m  [33m                             ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m278[0m  [36m           " Value: " (lst-field :new-item-value-field)[0m
+  [36m279[0m  [36m        (add-item-button comp)[0m
+  [36m280[0m  [36m   )[0m
+  [36m281[0m  [36m  )[0m
+  [36m282[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:278  column:25  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m274[0m  [36m           )[0m
+  [36m275[0m  [36m  )[0m
+  [36m276[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m277[0m  [36m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [33m278[0m  [1m           " Value: " (lst-field :new-item-value-field)[0m
+  [0m   [0m  [33m                      ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m279[0m  [36m        (add-item-button comp)[0m
+  [36m280[0m  [36m   )[0m
+  [36m281[0m  [36m  )[0m
+  [36m282[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:279  column:12  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/add-item-button[0m
+
+  [36m275[0m  [36m    )[0m
+  [36m276[0m  [36m    (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m277[0m  [36m             "New Item Name: " (lst-field :new-item-name-field)[0m
+  [36m278[0m  [36m             " Value: " (lst-field :new-item-value-field)[0m
+  [33m279[0m  [1m          (add-item-button comp)[0m
+  [0m   [0m  [33m           ^--- Use of undeclared Var cloudxmark.core/add-item-button[0m
+  [36m280[0m  [36m     )[0m
+  [36m281[0m  [36m    )[0m
+  [36m282[0m  [36m  )[0m
+  [36m283[0m  [36m[0m
+  [36m284[0m  [36m(defn lst-add-area [comp][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.239 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:297  column:32  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m293[0m  [36m               items)[0m
+  [36m294[0m  [36m           )[0m
+  [36m295[0m  [36m  )[0m
+  [36m296[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [33m297[0m  [1m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [0m   [0m  [33m                             ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m298[0m  [36m           " Value: " (lst-field :new-item-value-field)[0m
+  [36m299[0m  [36m        (add-item-button comp)[0m
+  [36m300[0m  [36m   )[0m
+  [36m301[0m  [36m  )[0m
+  [36m302[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:298  column:25  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m294[0m  [36m           )[0m
+  [36m295[0m  [36m  )[0m
+  [36m296[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m297[0m  [36m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [33m298[0m  [1m           " Value: " (lst-field :new-item-value-field)[0m
+  [0m   [0m  [33m                      ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m299[0m  [36m        (add-item-button comp)[0m
+  [36m300[0m  [36m   )[0m
+  [36m301[0m  [36m  )[0m
+  [36m302[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.295 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:297  column:32  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m293[0m  [36m               items)[0m
+  [36m294[0m  [36m           )[0m
+  [36m295[0m  [36m  )[0m
+  [36m296[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [33m297[0m  [1m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [0m   [0m  [33m                             ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m298[0m  [36m           " Value: " (lst-field :new-item-value-field)[0m
+  [36m299[0m  [36m        (add-item-button comp)[0m
+  [36m300[0m  [36m   )[0m
+  [36m301[0m  [36m  )[0m
+  [36m302[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:298  column:25  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m294[0m  [36m           )[0m
+  [36m295[0m  [36m  )[0m
+  [36m296[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m297[0m  [36m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [33m298[0m  [1m           " Value: " (lst-field :new-item-value-field)[0m
+  [0m   [0m  [33m                      ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m299[0m  [36m        (add-item-button comp)[0m
+  [36m300[0m  [36m   )[0m
+  [36m301[0m  [36m  )[0m
+  [36m302[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.26 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.42 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:227  column:43  ----[0m
+
+  [1mToo many arguments to if at line 227 /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs[0m
+
+  [36m225[0m  [36mnew-item-name (:new-item-name-field lst-map)[0m
+  [36m226[0m  [36mnew-item-value (:new-item-value-field lst-map)[0m
+  [33m227[0m  [1merror (if[0m
+  [0m   [0m  [33m      ^--- Too many arguments to if at line 227 /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs[0m
+  [36m228[0m  [36m        (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m        :else nil)[0m
+  [36m230[0m  [36m][0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:75  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-name[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                            ^--- Use of undeclared Var cloudxmark.core/new-lst-name[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:232  column:102  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/new-lst-description[0m
+
+  [36m228[0m  [36m                              (clojure.string/blank? new-item-name) "New Item Name Required"[0m
+  [36m229[0m  [36m                               nil)[0m
+  [36m230[0m  [36m                      ][0m
+  [36m231[0m  [36m                (if (clojure.string/blank? error)[0m
+  [33m232[0m  [1m                  (om/transact! comp `[(lst/add-lst {:name ~new-lst-name :description ~new-lst-description})])[0m
+  [0m   [0m  [33m                                                                                       ^--- Use of undeclared Var cloudxmark.core/new-lst-description[0m
+  [36m233[0m  [36m           (om/transact! comp `[(lst/set-status {:id :add-item :error ~error})])[0m
+  [36m234[0m  [36m                )))[0m
+  [36m235[0m  [36m     }[0m
+  [36m236[0m  [36m(dom/span nil "Add")[0m
+  [36m237[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:296  column:32  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m292[0m  [36m               items)[0m
+  [36m293[0m  [36m           )[0m
+  [36m294[0m  [36m  )[0m
+  [36m295[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [33m296[0m  [1m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [0m   [0m  [33m                             ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m297[0m  [36m           " Value: " (lst-field :new-item-value-field)[0m
+  [36m298[0m  [36m        (add-item-button comp)[0m
+  [36m299[0m  [36m   )[0m
+  [36m300[0m  [36m  )[0m
+  [36m301[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:297  column:25  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m293[0m  [36m           )[0m
+  [36m294[0m  [36m  )[0m
+  [36m295[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m296[0m  [36m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [33m297[0m  [1m           " Value: " (lst-field :new-item-value-field)[0m
+  [0m   [0m  [33m                      ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m298[0m  [36m        (add-item-button comp)[0m
+  [36m299[0m  [36m   )[0m
+  [36m300[0m  [36m  )[0m
+  [36m301[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.434 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:296  column:32  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m292[0m  [36m               items)[0m
+  [36m293[0m  [36m           )[0m
+  [36m294[0m  [36m  )[0m
+  [36m295[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [33m296[0m  [1m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [0m   [0m  [33m                             ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m297[0m  [36m           " Value: " (lst-field :new-item-value-field)[0m
+  [36m298[0m  [36m        (add-item-button comp)[0m
+  [36m299[0m  [36m   )[0m
+  [36m300[0m  [36m  )[0m
+  [36m301[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:297  column:25  ----[0m
+
+  [1mWrong number of args (1) passed to cloudxmark.core/lst-field[0m
+
+  [36m293[0m  [36m           )[0m
+  [36m294[0m  [36m  )[0m
+  [36m295[0m  [36m  (dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [36m296[0m  [36m           "New Item Name: " (lst-field :new-item-name-field)[0m
+  [33m297[0m  [1m           " Value: " (lst-field :new-item-value-field)[0m
+  [0m   [0m  [33m                      ^--- Wrong number of args (1) passed to cloudxmark.core/lst-field[0m
+  [36m298[0m  [36m        (add-item-button comp)[0m
+  [36m299[0m  [36m   )[0m
+  [36m300[0m  [36m  )[0m
+  [36m301[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.267 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.219 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:284  column:30  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/curr-idx[0m
+
+  [36m281[0m  [36m(defn lst-edit-area [comp][0m
+  [36m282[0m  [36m  (let [lst (:lst (om/props comp))[0m
+  [36m283[0m  [36m        {:keys [lsts status curr]} lst[0m
+  [33m284[0m  [1m        items (get (nth lsts curr-idx) "items")[0m
+  [0m   [0m  [33m                             ^--- Use of undeclared Var cloudxmark.core/curr-idx[0m
+  [36m285[0m  [36m        ][0m
+  [36m286[0m  [36m    (if (seq items)[0m
+  [36m287[0m  [36m    (dom/div #js {:key (str "lst-edit-area-" idx)}[0m
+  [36m288[0m  [36m             (map-indexed (fn [idx itm][0m
+  [36m289[0m  [36m                            (dom/div #js {:key (str "itm-" idx)}[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:287  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/idx[0m
+
+  [36m283[0m  [36m    {:keys [lsts status curr]} lst[0m
+  [36m284[0m  [36m    items (get (nth lsts curr-idx) "items")[0m
+  [36m285[0m  [36m    ][0m
+  [36m286[0m  [36m(if (seq items)[0m
+  [33m287[0m  [1m(dom/div #js {:key (str "lst-edit-area-" idx)}[0m
+  [0m   [0m  [33m                                         ^--- Use of undeclared Var cloudxmark.core/idx[0m
+  [36m288[0m  [36m         (map-indexed (fn [idx itm][0m
+  [36m289[0m  [36m                        (dom/div #js {:key (str "itm-" idx)}[0m
+  [36m290[0m  [36m                                 (str (get itm "name") ": " )[0m
+  [36m291[0m  [36m                                 (dom/input #js {:value (get itm "value")})[0m
+  [36m292[0m  [36m                                 )[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:297  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/curr-idx[0m
+
+  [36m293[0m  [36m                                  )[0m
+  [36m294[0m  [36m             items)[0m
+  [36m295[0m  [36m         )[0m
+  [36m296[0m  [36m)[0m
+  [33m297[0m  [1m(dom/div #js {:key (str "lst-add-item-" curr-idx)}[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/curr-idx[0m
+  [36m298[0m  [36m         "New Item Name: " (lst-field comp :new-item-name-field)[0m
+  [36m299[0m  [36m         " Value: " (lst-field comp :new-item-value-field)[0m
+  [36m300[0m  [36m         (add-item-button comp)[0m
+  [36m301[0m  [36m         (status-line (:add-item status))[0m
+  [36m302[0m  [36m )[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:328  column:69  ----[0m
+
+  [1mWrong number of args (4) passed to cloudxmark.core/lst-edit-area[0m
+
+  [36m324[0m  [36m(if (seq lsts)[0m
+  [36m325[0m  [36m(map-indexed (fn [idx itm] (dom/div #js {:key (str lst-lst idx)}[0m
+  [36m326[0m  [36m                                    (lst-select-field comp idx curr-idx)[0m
+  [36m327[0m  [36m                                    (dom/span #js {:key (str lst-lst idx "span")} (itm "name" "?"))[0m
+  [33m328[0m  [1m                                    (if (= idx curr-idx) (lst-edit-area comp idx curr-idx lsts) )[0m
+  [0m   [0m  [33m                                                         ^--- Wrong number of args (4) passed to cloudxmark.core/lst-edit-area[0m
+  [36m329[0m  [36m                                    )) lsts))[0m
+  [36m330[0m  [36m(dom/h3 nil "Add new list:")[0m
+  [36m331[0m  [36m(lst-add-area comp)[0m
+  [36m332[0m  [36m))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.223 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.134 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.197 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.246 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.286 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.318 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:130  column:79  ----[0m
+
+  [1mMap literal must contain an even number of forms[0m
+
+  [36m128[0m  [36m           (println (str "data-map:" data-map))[0m
+  [36m129[0m  [36m           (println (str "state in add-item:" @state))[0m
+  [33m130[0m  [1m           (put! event-chan [:lst-add-item {:lst-id :name name :value value} nil]))[0m
+  [0m   [0m  [33m                                                                            ^--- Map literal must contain an even number of forms[0m
+  [36m131[0m  [36m           )[0m
+  [36m132[0m  [36m }[0m
+  [36m133[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.281 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:130  column:36  ----[0m
+
+  [1mWrong number of args (1) passed to cljs.core/nth[0m
+
+  [36m126[0m  [36m{:action (fn [][0m
+  [36m127[0m  [36m           (let [{:keys [name value]} data-map[0m
+  [36m128[0m  [36m                 lsts (get-in @state [:lst :lsts])[0m
+  [36m129[0m  [36m                 curr (get-in @state [:lst :curr])[0m
+  [33m130[0m  [1m                 lst-id (:lst-id (nth (nth lsts curr)))[0m
+  [0m   [0m  [33m                                 ^--- Wrong number of args (1) passed to cljs.core/nth[0m
+  [36m131[0m  [36m                 ][0m
+  [36m132[0m  [36m           (println (str "data-map:" data-map))[0m
+  [36m133[0m  [36m           (println (str "state in add-item:" @state))[0m
+  [36m134[0m  [36m           (put! event-chan [:lst-add-item {:lst-id lst-id :name name :value value} nil]))[0m
+  [36m135[0m  [36m           )[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.283 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.38 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.254 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.306 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.202 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.159 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.204 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.269 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.177 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.18 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.169 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js

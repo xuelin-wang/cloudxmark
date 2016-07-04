@@ -13,7 +13,7 @@
             [environ.core :refer [env]]
             [cloudxmark.lst :refer [get-lsts get-items]]
             [cloudxmark.auth :refer [login add-auth]]
-            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst]]
+            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst add-item]]
             )
   (:import java.security.MessageDigest
            java.util.Base64)
@@ -118,6 +118,17 @@
     ))
    )
 
+(defn- handle-add-item [lst-id name value params session]
+  (let [
+        user-id (get-user-id session)
+        update-count (add-item {:owner user-id :lst-id lst-id :name name :value value})
+        ]
+    (if (= update-count 1)
+      (handle-callback (get-items user-id nil) params session)
+      (handle-callback {:status {:error (str "Failed to add item: " name)}} params session)
+    ))
+   )
+
 (defn wrap-dir-index [handler]
   (fn [req]
     (handler
@@ -144,6 +155,10 @@
 
   (GET "/addLst/:name/:desc"  [name desc :as {params :params session :session}]
        (handle-add-lst name desc params session)
+       )
+
+  (GET "/addItem/:lst-id/:name/:value"  [lst-id name value :as {params :params session :session}]
+       (handle-add-item lst-id name value params session)
        )
 
   (GET "/getLsts" {params :params session :session}

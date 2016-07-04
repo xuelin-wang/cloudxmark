@@ -173,13 +173,26 @@
 
 (defn add-lst [lst]
   (let
-      [sql-str0 "INSERT INTO lst (lst_id, owner, name, description, labels) "
-       sql-str1 (str ",'" (:owner lst) "','" (:name lst) "','" (get lst :description "NULL") "','"
-                                        (get lst :labels "NULL") "' " )
+      [{:keys [owner name description labels]} lst
+       sql-str0 "INSERT INTO lst (lst_id, owner, name, description, labels) "
+       sql-str1 (str ",'" owner "','" name "','" (or description "") "','"
+                                        (or labels "") "' " )
        sql-str (if (no-lst?)
                  (str sql-str0 " VALUES (1" sql-str1 ")")
                  (str sql-str0 " SELECT MAX(lst_id + 1)" sql-str1 " FROM lst")
                  )
+
+       cmd-result (sql/db-do-commands store-uri sql-str)
+       ]
+    (first cmd-result)
+      )
+  )
+
+(defn add-item [item]
+  (let
+      [{:keys [lst-id name value labels]} item
+       sql-str (str "INSERT INTO item (lst_id, name, value, labels) VALUES "
+            "(" lst-id ",'" name  "','" (or value "") "','" (or labels "") "')")
 
        cmd-result (sql/db-do-commands store-uri sql-str)
        ]
