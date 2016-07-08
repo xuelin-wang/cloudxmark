@@ -5259,3 +5259,530 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 [32mSuccessfully compiled "js/main.js" in 1.169 seconds.[0m
 notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 17.536 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.094 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.202 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.368 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.381 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.208 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.376 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:69  column:1  ----[0m
+
+  [1mWrong number of args (6) passed to: analyzer/eval1567/fn--1568/pfn--1569[0m
+
+  [36m67[0m  [36m    )[0m
+  [36m68[0m  [36m[0m
+  [33m69[0m  [1m(def update-state-by-path [state path merge? value][0m
+  [0m  [0m  [33m^--- Wrong number of args (6) passed to: analyzer/eval1567/fn--1568/pfn--1569[0m
+  [36m70[0m  [36m  (println (str "state before update-state: " @state))[0m
+  [36m71[0m  [36m  (let [new-value (if merge? (merge (get-in state path) value) value)][0m
+  [36m72[0m  [36m       (swap! state assoc-in path new-value)[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.213 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:69  column:1  ----[0m
+
+  [1mWrong number of args (6) passed to: analyzer/eval1567/fn--1568/pfn--1569[0m
+
+  [36m67[0m  [36m    )[0m
+  [36m68[0m  [36m[0m
+  [33m69[0m  [1m(def update-state-by-path [state path merge? value][0m
+  [0m  [0m  [33m^--- Wrong number of args (6) passed to: analyzer/eval1567/fn--1568/pfn--1569[0m
+  [36m70[0m  [36m  (println (str "state before update-state: " @state))[0m
+  [36m71[0m  [36m  (let [new-value (if merge? (merge (get-in @state path) value) value)][0m
+  [36m72[0m  [36m       (swap! state assoc-in path new-value)[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.382 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.304 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:83  column:59  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/value[0m
+
+  [36m80[0m  [36m(defmethod mutate 'lst/set-status[0m
+  [36m81[0m  [36m  [{:keys [state] :as env} _ {:keys [id] :as status}][0m
+  [36m82[0m  [36m  {:action (fn [][0m
+  [33m83[0m  [1m      (update-state-by-path state [:lst :status id] false value)[0m
+  [0m  [0m  [33m                                                          ^--- Use of undeclared Var cloudxmark.core/value[0m
+  [36m84[0m  [36m             )[0m
+  [36m85[0m  [36m   }[0m
+  [36m86[0m  [36m  )[0m
+  [36m87[0m  [36m[0m
+  [36m88[0m  [36m(defmethod mutate 'lst/update-state[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.351 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.254 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.221 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.334 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.192 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.286 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.226 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.332 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:198  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m194[0m  [36m[comp lst-idx item-idx item col-name][0m
+  [36m195[0m  [36m(let [[0m
+  [36m196[0m  [36m      field-val (or (get item col-name) "")[0m
+  [36m197[0m  [36m      ][0m
+  [33m198[0m  [1m  (dom/input #js {:key (str "lst-field-" field-id)[0m
+  [0m   [0m  [33m                                         ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m199[0m  [36m                  :type type[0m
+  [36m200[0m  [36m      :value (or field-state "")[0m
+  [36m201[0m  [36m      :onChange[0m
+  [36m202[0m  [36m                (fn [e][0m
+  [36m203[0m  [36m                  (let [value (.. e -target -value)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:200  column:20  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-state[0m
+
+  [36m196[0m  [36m    field-val (or (get item col-name) "")[0m
+  [36m197[0m  [36m    ][0m
+  [36m198[0m  [36m(dom/input #js {:key (str "lst-field-" field-id)[0m
+  [36m199[0m  [36m                :type type[0m
+  [33m200[0m  [1m    :value (or field-state "")[0m
+  [0m   [0m  [33m               ^--- Use of undeclared Var cloudxmark.core/field-state[0m
+  [36m201[0m  [36m    :onChange[0m
+  [36m202[0m  [36m              (fn [e][0m
+  [36m203[0m  [36m                (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                  (println (str "the field:" field-id ":" value))[0m
+  [36m205[0m  [36m                  (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:200  column:20  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-state[0m
+
+  [36m196[0m  [36m    field-val (or (get item col-name) "")[0m
+  [36m197[0m  [36m    ][0m
+  [36m198[0m  [36m(dom/input #js {:key (str "lst-field-" field-id)[0m
+  [36m199[0m  [36m                :type type[0m
+  [33m200[0m  [1m    :value (or field-state "")[0m
+  [0m   [0m  [33m               ^--- Use of undeclared Var cloudxmark.core/field-state[0m
+  [36m201[0m  [36m    :onChange[0m
+  [36m202[0m  [36m              (fn [e][0m
+  [36m203[0m  [36m                (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                  (println (str "the field:" field-id ":" value))[0m
+  [36m205[0m  [36m                  (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:204  column:50  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m200[0m  [36m        :value (or field-state "")[0m
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [33m204[0m  [1m                      (println (str "the field:" field-id ":" value))[0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m205[0m  [36m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:205  column:77  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/field-id[0m
+
+  [36m201[0m  [36m        :onChange[0m
+  [36m202[0m  [36m                  (fn [e][0m
+  [36m203[0m  [36m                    (let [value (.. e -target -value)][0m
+  [36m204[0m  [36m                      (println (str "the field:" field-id ":" value))[0m
+  [33m205[0m  [1m                      (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])[0m
+  [0m   [0m  [33m                                                                            ^--- Use of undeclared Var cloudxmark.core/field-id[0m
+  [36m206[0m  [36m                         ))})))[0m
+  [36m207[0m  [36m[0m
+  [36m208[0m  [36m(defn result-list [results][0m
+  [36m209[0m  [36m  (dom/ul #js {:key "result-list"}[0m
+  [36m210[0m  [36m          (map-indexed (fn [idx itm] (dom/li #js {:key idx} itm)) results)))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:307  column:38  ----[0m
+
+  [1mWrong number of args (4) passed to cloudxmark.core/item-field[0m
+
+  [36m303[0m  [36m(if (seq items)[0m
+  [36m304[0m  [36m(dom/div #js {:key (str "lst-edit-area-" curr-idx)}[0m
+  [36m305[0m  [36m         (map-indexed (fn [idx item][0m
+  [36m306[0m  [36m                        (dom/div #js {:key (str "item-" idx)}[0m
+  [33m307[0m  [1m                                 (item-field comp curr-idx idx item)[0m
+  [0m   [0m  [33m                                 ^--- Wrong number of args (4) passed to cloudxmark.core/item-field[0m
+  [36m308[0m  [36m                                 (lst-value-field comp curr-idx idx item)[0m
+  [36m309[0m  [36m                                 (dom/input #js {:value (get item "value")})[0m
+  [36m310[0m  [36m                                 )[0m
+  [36m311[0m  [36m                                  )[0m
+  [36m312[0m  [36m             items)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:308  column:39  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/lst-value-field[0m
+
+  [36m304[0m  [36m(dom/div #js {:key (str "lst-edit-area-" curr-idx)}[0m
+  [36m305[0m  [36m         (map-indexed (fn [idx item][0m
+  [36m306[0m  [36m                        (dom/div #js {:key (str "item-" idx)}[0m
+  [36m307[0m  [36m                                 (item-field comp curr-idx idx item)[0m
+  [33m308[0m  [1m                                 (lst-value-field comp curr-idx idx item)[0m
+  [0m   [0m  [33m                                  ^--- Use of undeclared Var cloudxmark.core/lst-value-field[0m
+  [36m309[0m  [36m                                 (dom/input #js {:value (get item "value")})[0m
+  [36m310[0m  [36m                                 )[0m
+  [36m311[0m  [36m                                  )[0m
+  [36m312[0m  [36m             items)[0m
+  [36m313[0m  [36m         )[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.53 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.24 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.314 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.399 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.212 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.263 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:92  column:17  ----[0m
+
+  [1mUnmatched delimiter )[0m
+
+  [36m90[0m  [36m             (swap! state assoc-in [:lst :lsts lst-idx "items" item-idx col-name] value)[0m
+  [36m91[0m  [36m             (put! event-chan [:set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value value} nil])[0m
+  [33m92[0m  [1m             ))[0m
+  [0m  [0m  [33m              ^--- Unmatched delimiter )[0m
+  [36m93[0m  [36m }[0m
+  [36m94[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.223 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:92  column:17  ----[0m
+
+  [1mUnmatched delimiter )[0m
+
+  [36m90[0m  [36m             (swap! state assoc-in [:lst :lsts lst-idx "items" item-idx col-name] value)[0m
+  [36m91[0m  [36m             (put! event-chan [:set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value value} nil])[0m
+  [33m92[0m  [1m             )))[0m
+  [0m  [0m  [33m              ^--- Unmatched delimiter )[0m
+  [36m93[0m  [36m }[0m
+  [36m94[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:89  column:51  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/item-id[0m
+
+  [36m85[0m  [36m[{:keys [state] :as env} _ {:keys [lst-idx item-idx col-name value]}][0m
+  [36m86[0m  [36m{:action (fn[][0m
+  [36m87[0m  [36m           (let [lst (get-in @state [:lst :lsts :lst-idx])[0m
+  [36m88[0m  [36m                 lst-id (get lst "lst_id")[0m
+  [33m89[0m  [1m                 orig-name (get-in lst ["items" item-id "name"])][0m
+  [0m  [0m  [33m                                                ^--- Use of undeclared Var cloudxmark.core/item-id[0m
+  [36m90[0m  [36m             (swap! state assoc-in [:lst :lsts lst-idx "items" item-idx col-name] value)[0m
+  [36m91[0m  [36m             (put! event-chan [:set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value value} nil])[0m
+  [36m92[0m  [36m             ))[0m
+  [36m93[0m  [36m }[0m
+  [36m94[0m  [36m)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.39 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.368 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.424 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.455 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.282 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.251 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.702 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.52 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.027 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.609 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.207 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js

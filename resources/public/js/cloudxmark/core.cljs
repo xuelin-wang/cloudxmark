@@ -43,28 +43,24 @@
   (let [lst (:lst @state)
         {:keys [lsts curr ver user-id status]} lst]
     (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user))
-    (cond
-      (= query-user :logout)
-        (if (some? user-id) {:lst-search ast} {:value lst})
-
+    (if
       (and (some? user-id) (or (> query-ver ver) (nil? lsts)))
       (do
         (println (str "remote query lists:"  (nil? lsts)))
       {:lst-search ast}
       )
-
-      (and (nil? user-id) (some? query-user))
-      (do
-        (println (str "remote query lists ast:" ast ))
-        {:lst-search ast}
-        )
-
-      :else
               {:value lst}
-
       )
           )
     )
+
+(defn update-state-by-path [state path merge? value]
+  (println (str "state before update-state: " @state))
+  (let [new-value (if merge? (merge (get-in @state path) value) value)]
+       (swap! state assoc-in path new-value)
+  )
+  (println (str "state after update-state: " @state))
+  )
 
 (defmulti mutate om/dispatch)
 
@@ -72,65 +68,67 @@
 (defmethod mutate 'lst/set-status
   [{:keys [state] :as env} _ {:keys [id] :as status}]
   {:action (fn []
-             (println (str "state before setfield: " @state))
-             (swap! state assoc-in [:lst :status id] status)
-             (println (str "state after setfield: " @state))
+      (update-state-by-path state [:lst :status id] false status)
              )
    }
   )
 
-(defmethod mutate 'lst/set-state
+(defmethod mutate 'lst/update-state
   [{:keys [state] :as env} _ {:keys [path merge? value]}]
   {:action (fn []
-             (let [new-value (if merge? (merge (get-in state path) value) value)]
-               (swap! state assoc-in path new-value)
-               )
+             (update-state-by-path state path merge? value)
              )
+   }
+  )
+
+(defmethod mutate 'lst/set-item-col
+  [{:keys [state] :as env} _ {:keys [lst-idx item-idx col-name value] :as data-map}]
+  {:action (fn[]
+             (let [lst (get-in @state [:lst :lsts lst-idx])
+                   lst-id (get lst "lst_id")
+                   orig-name (get-in lst ["items" item-idx "name"])]
+               (println (str "data-map in set-item-col:" data-map "lst-id:" lst-id))
+               (swap! state assoc-in [:lst :lsts lst-idx "items" item-idx col-name] value)
+               (put! event-chan [:lst-set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value value} nil])
+               ))
    }
   )
 
 (defmethod mutate 'lst/set-field-state
-  [{:keys [state] :as env} _ data-map]
+  [{:keys [state] :as env} _ {:keys [field-id value]}]
   {:action (fn []
-             (let [{:keys [field-id value]} data-map]
-               (swap! state assoc-in [:lst field-id] value)
-                                      )
+             (update-state-by-path state [:lst field-id] false value)
              )
    }
   )
 
 (defmethod mutate 'lst/login
-  [{:keys [state] :as env} _ data-map]
+  [{:keys [state] :as env} _ {:keys [user-id password ver] :as data-map}]
   {:action (fn []
-             (println (str "data-map:" data-map))
-             (let [{:keys [user-id password ver]} data-map]
              (println (str "state before put chan:" @state " datamap:" data-map))
-        (put! event-chan [:lst-login data-map nil]))
+        (put! event-chan [:lst-login data-map nil])
      )
    }
   )
 
 (defmethod mutate 'lst/add-lst
-  [{:keys [state] :as env} _ data-map]
+  [{:keys [state] :as env} _ {:keys [name description] :as data-map}]
   {:action (fn []
-             (let [{:keys [name description]} data-map]
-             (println (str "data-map:" data-map))
-             (println (str "state in add-lst:" @state))
-             (put! event-chan [:lst-add-lst {:name name :description description} nil]))
+             (println (str "state before put chan:" @state " datamap:" data-map))
+             (put! event-chan [:lst-add-lst {:name name :description description} nil])
              )
    }
   )
 
 (defmethod mutate 'lst/add-item
-  [{:keys [state] :as env} _ data-map]
+  [{:keys [state] :as env} _ {:keys [name value] :as data-map} ]
   {:action (fn []
-             (let [{:keys [name value]} data-map
+             (let [
                    lsts (get-in @state [:lst :lsts])
                    curr (or (get-in @state [:lst :curr]) 0)
                    lst-id (get (nth lsts curr) "lst_id")
                    ]
-             (println (str "data-map:" data-map))
-             (println (str "state in add-item:" @state))
+             (println (str "state before add-item put chan:" @state " datamap:" data-map))
              (put! event-chan [:lst-add-item {:lst-id lst-id :name name :value value} nil]))
              )
    }
@@ -148,10 +146,10 @@
 
 
 (defmethod mutate 'lst/set-lst
-  [{:keys [state] :as env} _ data-map]
+  [{:keys [state] :as env} _ {:keys [status lsts user-id ver] :as data-map}]
   {:action (fn []
-             (println (str "data-map in set-lst:" data-map))
-             (let [{:keys [status lsts user-id ver]} data-map
+             (println (str "state before set-lst put chan:" @state " datamap:" data-map))
+             (let [
                    status-id (:id status)
                    new-ver (if (nil? ver) (inc (get-in @state [:lst :ver])) ver)
                    ]
@@ -205,6 +203,19 @@
                       (println (str "the field:" field-id ":" value))
                       (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
                          ))}))))
+(defn item-field
+  [comp lst-idx item-idx item col-name]
+  (let [
+        field-val (or (get item col-name) "")
+        ]
+    (dom/input #js {:key (str "item-field-" lst-idx "-" item-idx "-" col-name)
+        :value field-val
+        :onChange
+                  (fn [e]
+                    (let [value (.. e -target -value)]
+                      (om/transact! comp `[(lst/set-item-col {:lst-idx ~lst-idx :item-idx  ~item-idx
+                                                              :col-name ~col-name :value ~value})])
+                         ))})))
 
 (defn result-list [results]
   (dom/ul #js {:key "result-list"}
@@ -267,7 +278,7 @@
                   merge? false
                   value idx
                   ]
-              (om/transact! comp `[(lst/set-state {:path ~path :merge? ~merge? :value ~value})])
+              (om/transact! comp `[(lst/update-state {:path ~path :merge? ~merge? :value ~value})])
               )
             (println (str "unchecked: " idx))
           )
@@ -305,8 +316,8 @@
     (dom/div #js {:key (str "lst-edit-area-" curr-idx)}
              (map-indexed (fn [idx item]
                             (dom/div #js {:key (str "item-" idx)}
-                                     (str (get item "name") ": " )
-                                     (dom/input #js {:value (get item "value")})
+                                     (item-field comp curr-idx idx item "name")
+                                     (item-field comp curr-idx idx item "value")
                                      )
                                       )
                  items)
@@ -391,7 +402,9 @@
                            dontcare (println "error is:" error)
                            ]
                        (if (clojure.string/blank? error)
-                         (om/transact! comp `[(lst/login {:user-id ~user-id :password ~password :ver ~new-ver})])
+                         (do
+                           (om/transact! comp `[(lst/login {:user-id ~user-id :password ~password :ver ~new-ver})])
+                         (om/transact! comp `[(lst/set-status {:id :login :error nil})]))
                          (om/transact! comp `[(lst/set-status {:id :login :error ~error})])
                          )
                        (println (str "stateafterclick:" @app-state))
@@ -533,6 +546,15 @@
           (= type :lst-add-item)
           (let [{:keys [lst-id name value]} data
                 url (str "/addItem/" lst-id "/" name "/" value)
+                results-js (<! (jsonp url))
+                results1 (js->clj results-js)
+                results2 (convert-json-lsts-result results1 nil :add-item)
+                ]
+            (om/transact! lst-reconciler `[(lst/set-lst ~results2)]))
+
+          (= type :lst-set-item-col)
+          (let [{:keys [lst-id orig-name col-name value]} data
+                url (str "/updateItem/" lst-id "/" orig-name "/" col-name "/" value)
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)

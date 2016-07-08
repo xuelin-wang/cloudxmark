@@ -200,6 +200,28 @@
       )
   )
 
+(defn update-item [item]
+  (let
+      [{:keys [lst-id orig-name col-name value ]} item
+       dontcare (println (str "check: "  "SELECT count(*) FROM item "
+                           "WHERE lst_id = ? and name = ?"))
+      hasNameConflict? (and (= col-name "name") (not= orig-name value) (-> (sql/query store-uri
+                     [(str "SELECT count(*) FROM item "
+                           "WHERE lst_id = " lst-id " and name = '" value "'")])
+                                                                           first :count pos?))
+      ]
+    (if hasNameConflict?
+      0
+      (let [
+            sql-str (str "UPDATE item SET " col-name " = '" value "' WHERE lst_id = " lst-id " AND name = '" orig-name "'")
+       cmd-result (sql/db-do-commands store-uri [sql-str])
+            ]
+    (first cmd-result)
+        )
+      )
+      )
+  )
+
 (defn delete-lst [name owner]
       (if name
         (sql/delete! store-uri :lst ["name = ? AND owner = ?" name owner])

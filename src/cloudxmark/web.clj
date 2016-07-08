@@ -13,7 +13,7 @@
             [environ.core :refer [env]]
             [cloudxmark.lst :refer [get-lsts get-items]]
             [cloudxmark.auth :refer [login add-auth]]
-            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst add-item]]
+            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst add-item update-item]]
             )
   (:import java.security.MessageDigest
            java.util.Base64)
@@ -129,6 +129,17 @@
     ))
    )
 
+(defn- handle-update-item [lst-id orig-name col-name value params session]
+  (let [
+        user-id (get-user-id session)
+        update-count (update-item {:lst-id lst-id :orig-name orig-name :col-name col-name :value value})
+        ]
+    (if (= update-count 1)
+      (handle-callback (get-items user-id nil) params session)
+      (handle-callback {:status {:error (str "Failed to update item: " orig-name)}} params session)
+    ))
+   )
+
 (defn wrap-dir-index [handler]
   (fn [req]
     (handler
@@ -159,6 +170,11 @@
 
   (GET "/addItem/:lst-id/:name/:value"  [lst-id name value :as {params :params session :session}]
        (handle-add-item lst-id name value params session)
+       )
+
+  (GET "/updateItem/:lst-id/:orig-name/:col-name/:value"  [lst-id orig-name col-name  value
+                                                           :as {params :params session :session}]
+       (handle-update-item lst-id orig-name col-name value params session)
        )
 
   (GET "/getLsts" {params :params session :session}
