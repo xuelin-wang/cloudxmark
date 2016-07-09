@@ -118,8 +118,9 @@
     ))
    )
 
-(defn- handle-add-item [lst-id name value params session]
+(defn- handle-add-item [lst-id-str name value params session]
   (let [
+        lst-id (Integer/parseInt lst-id-str)
         user-id (get-user-id session)
         update-count (add-item {:owner user-id :lst-id lst-id :name name :value value})
         ]
@@ -129,8 +130,9 @@
     ))
    )
 
-(defn- handle-update-item [lst-id orig-name col-name value params session]
+(defn- handle-update-item [lst-id-str orig-name col-name value params session]
   (let [
+        lst-id (Integer/parseInt lst-id-str)
         user-id (get-user-id session)
         update-count (update-item {:lst-id lst-id :orig-name orig-name :col-name col-name :value value})
         ]

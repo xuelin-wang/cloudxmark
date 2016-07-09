@@ -191,11 +191,7 @@
 (defn add-item [item]
   (let
       [{:keys [lst-id name value labels]} item
-       sql-str (str "INSERT INTO item (lst_id, name, value, labels) VALUES "
-            "(" lst-id ",'" name  "','" (or value "") "','" (or labels "") "')")
-
-       cmd-result (sql/db-do-commands store-uri sql-str)
-       ]
+       cmd-result (sql/insert! store-uri :item ["lst_id" "name" "value" "labels"] [lst-id name (or value "") (or labels "")]) ]
     (first cmd-result)
       )
   )
@@ -203,18 +199,15 @@
 (defn update-item [item]
   (let
       [{:keys [lst-id orig-name col-name value ]} item
-       dontcare (println (str "check: "  "SELECT count(*) FROM item "
-                           "WHERE lst_id = ? and name = ?"))
-      hasNameConflict? (and (= col-name "name") (not= orig-name value) (-> (sql/query store-uri
-                     [(str "SELECT count(*) FROM item "
-                           "WHERE lst_id = " lst-id " and name = '" value "'")])
+      hasNameConflict? (and (= col-name "name") (not= orig-name (str value)) (-> (sql/query store-uri
+                     ["SELECT count(*) FROM item WHERE lst_id = ? and name = ? " lst-id (str value)])
                                                                            first :count pos?))
       ]
     (if hasNameConflict?
       0
       (let [
-            sql-str (str "UPDATE item SET " col-name " = '" value "' WHERE lst_id = " lst-id " AND name = '" orig-name "'")
-       cmd-result (sql/db-do-commands store-uri [sql-str])
+            sql-str (str "UPDATE item SET " col-name " = ? WHERE lst_id = ? AND name = ?")
+       cmd-result (sql/execute! store-uri [sql-str value lst-id orig-name])
             ]
     (first cmd-result)
         )
