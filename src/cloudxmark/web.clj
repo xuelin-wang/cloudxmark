@@ -12,7 +12,7 @@
             [cheshire.core :refer :all]
             [environ.core :refer [env]]
             [cloudxmark.lst :refer [get-lsts get-items]]
-            [cloudxmark.auth :refer [login add-auth]]
+            [cloudxmark.auth :refer [login is-admin-user? add-auth]]
             [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst add-item update-item]]
             )
   (:import java.security.MessageDigest
@@ -75,13 +75,13 @@
     )
   )
 
-(defn- isAdmin? [session]
+(defn- is-admin? [session]
   (let [user-id (:userid session)]
-    (or (= user-id "xwang") (= user-id "xuelin") (= user-id "xuelin.wang@gmail.com")))
+    (is-admin-user? user-id))
   )
 
 (defn- handle-admin-action [result params session]
-  (if (or (no-auth?) (isAdmin? session))
+  (if (or (no-auth?) (is-admin? session))
     (handle-callback result params session)
     (permission-denied params session)
     )
@@ -154,27 +154,28 @@
        (handle-callback {:user-id (get-user-id session)} params session)
        )
 
-  (GET "/login/:id/:pass"  [id pass :as {params :params session :session}]
+  (GET "/login"  [id pass :as {params :params session :session}]
+
        (handle-login id pass params session)
        )
 
-  (GET "/dropTable/:table" [table :as {params :params session :session}]
+  (GET "/dropTable" [table :as {params :params session :session}]
        (handle-drop-table table params session)
        )
 
-  (GET "/addAuth/:id/:pass/:desc"  [id pass desc :as {params :params session :session}]
+  (GET "/addAuth"  [id pass desc :as {params :params session :session}]
        (handle-add-auth id pass desc params session)
        )
 
-  (GET "/addLst/:name/:desc"  [name desc :as {params :params session :session}]
+  (GET "/addLst"  [name desc :as {params :params session :session}]
        (handle-add-lst name desc params session)
        )
 
-  (GET "/addItem/:lst-id/:name/:value"  [lst-id name value :as {params :params session :session}]
+  (GET "/addItem"  [lst-id name value :as {params :params session :session}]
        (handle-add-item lst-id name value params session)
        )
 
-  (GET "/updateItem/:lst-id/:orig-name/:col-name/:value"  [lst-id orig-name col-name  value
+  (GET "/updateItem"  [lst-id orig-name col-name  value
                                                            :as {params :params session :session}]
        (handle-update-item lst-id orig-name col-name value params session)
        )
@@ -186,8 +187,8 @@
         )
        )
 
-  (GET "/loginGetItems/:id/:pass"  [id pass :as {params :params session :session}]
-       (handle-login-get-items id pass params session)
+  (GET "/loginGetItems"  [user-id pass :as {params :params session :session}]
+       (handle-login-get-items user-id pass params session)
        )
 
   (GET "/getItems" {params :params session :session}
@@ -203,14 +204,14 @@
         )
        )
 
-  (GET "/getLst/:name" [name :as {params :params session :session}]
+  (GET "/getLst" [name :as {params :params session :session}]
        (handle-auth-action
         (get-lsts (get-user-id session) name)
         params session
         )
        )
 
-  (GET "/getItemsByLst/:name" [name :as {params :params session :session}]
+  (GET "/getItemsByLst" [name :as {params :params session :session}]
        (handle-auth-action
         (get-items (get-user-id session) name)
         params session

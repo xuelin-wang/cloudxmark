@@ -1,6 +1,10 @@
 (ns cloudxmark.core
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require [goog.dom :as gdom]
+            [goog.crypt]
+            [goog.crypt.Aes]
+            [goog.crypt.Cbc]
+            [goog.crypt.base64]
             [cljs.core.async :as async :refer [<! >! put! chan]]
             [clojure.string :as string]
             [com.rpl.specter :as specter]
@@ -12,9 +16,29 @@
 
 (enable-console-print!)
 
-(def wiki-url
-  "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=")
+(def init-vector (goog.crypt.hexToByteArray "3ea1bae20d97b4a0b422da8b259f0c8c"))
+(def key-bytes (goog.crypt.hexToByteArray "5zal214336bja15b716e0335341e1ba7"))
 
+(def aes (goog.crypt.Aes. key-bytes))
+(def cbc (goog.crypt.Cbc. aes))
+
+(defn enc-str [encoded]
+  (let [
+        bytes (goog.crypt.stringToByteArray encoded)
+        tmp-len (-> (count bytes) (-) (rem 16))
+        pad-len (if (neg? tmp-len) (+ 16 tmp-len) tmp-len)
+        pad-str (clojure.string/join (repeat pad-len " "))
+        pad-bytes (goog.crypt.stringToByteArray pad-str)
+        used-bytes (.concat  bytes pad-bytes)
+        enc-bytes (.encrypt cbc used-bytes init-vector)
+        ]
+    (goog.crypt.base64.encodeByteArray enc-bytes)))
+
+(defn dec-str [decoded]
+  (let [
+        bytes (goog.crypt.base64.decodeStringToByteArray decoded)
+        dec-bytes (.decrypt cbc bytes init-vector)]
+    (goog.crypt.byteArrayToString dec-bytes)))
 
 (defn jsonp
   ([uri] (jsonp (chan) uri))
@@ -27,16 +51,6 @@
 (def event-chan (chan))
 
 (defmulti read om/dispatch)
-
-(defmethod read :wiki/lst
-  [{:keys [state ast] :as env} _ {:keys [query]}]
-  (merge
-   {:value (get-in @state [:wiki :lst] [])}
-   (when-not (or (string/blank? query)
-                 (< (count query) 3))
-     {:wiki-search ast})
-   )
-  )
 
 (defmethod read :lst
   [{:keys [state ast] :as env} _ {:keys [query-ver query-user]}]
@@ -163,20 +177,8 @@
    }
   )
 
-
-(defmethod mutate 'wiki/set-lst
-  [{:keys [state] :as env} _ lst]
-  {:action (fn []
-             (println (str "before wiki update list:" lst))
-             (swap! state assoc-in [:wiki :lst] (:lst lst))
-             (println (str "state after wiki update:" @state))
-     )
-   }
-  )
-
 (def app-state
   (atom {
-         :wiki {:lst []}
          :lst {
                :lsts nil
                :ver 0
@@ -363,7 +365,7 @@
 
 (defn search-field [comp query type]
   (let [[elem-key query-key]
-        (case type :wiki ["wiki-search-field" :wiki-query] :lst ["lst-search-field" :ver])
+        (case type :lst ["lst-search-field" :ver])
         ]
   (dom/input
    #js {:key elem-key
@@ -444,31 +446,9 @@
               )
             )))
 
-(defui AutoCompleter
-  static om/IQueryParams
-  (params [_]
-          {:wiki-query ""})
-  static om/IQuery
-  (query [_]
-         '[(:wiki/lst {:query ?wiki-query})])
-  Object
-  (render [this]
-          (let [{:keys [wiki/lst]} (om/props this)]
-            (dom/div nil
-                     (dom/h2 nil "AutoCompleter")
-
-                     (cond->
-                         [(search-field this (:wiki-query (om/get-params this)) :wiki)]
-                                 (not (empty? lst)) (conj (result-list lst)))))))
-
 (defn send-to-chan [c]
-  (fn [{:keys [wiki-search lst-search]} cb]
+  (fn [{:keys [lst-search]} cb]
     (cond
-      wiki-search
-      (let [{[wiki-search] :children} (om/query->ast wiki-search)
-            dontcare (println (str wiki-search))
-            query-params (get-in wiki-search [:params :query])]
-        (put! c [:wiki-search query-params cb]))
       lst-search
       (let [{[lst-search] :children} (om/query->ast lst-search)
            dontcare (println (str lst-search))
@@ -476,13 +456,6 @@
         (put! c [:lst-search query-params cb]))
       )
     ))
-
-(def wiki-reconciler
-  (om/reconciler
-   {:state   app-state
-    :parser  (om/parser {:read read :mutate mutate})
-    :send    (send-to-chan event-chan)
-    :remotes [:remote :wiki-search]}))
 
 (def lst-reconciler
   (om/reconciler
@@ -497,8 +470,19 @@
         json-status (get result "status")
         {:strs [info warn error]} json-status
         status {:info info :warn warn :error error}
+        decoded-lsts (map
+                      (fn [lst]
+                        (assoc lst "items"
+                                 (map
+                                  (fn [item]
+                                    (assoc item "value" (dec-str (get item "value")))
+                                    )
+                                  (get lst "items")
+                                  )
+                        ))
+                      lsts)
         ]
-      {:lsts lsts :user-id user_id :ver ver :status (assoc status :id status-id)}
+      {:lsts decoded-lsts :user-id user_id :ver ver :status (assoc status :id status-id)}
       )
   )
 
@@ -506,18 +490,12 @@
   (go
     (loop [[type data cb] (<! c)]
       (cond
-        (= type :wiki-search)
-          (let [query-params data
-                [_ results] (<! (jsonp (str wiki-url query-params)))
-                results-obj (js->clj results)
-              ]
-            (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])
-            )
           (= type :lst-login)
           (let [
                 dontcare (println (str "lst login data:" data))
                 {:keys [user-id password ver]} data
-                url (str "/loginGetItems/" user-id "/" password)
+                encoded-password (enc-str password)
+                url (str "/loginGetItems?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 ver :login)
@@ -536,7 +514,7 @@
             (om/transact! lst-reconciler `[(lst/set-status ~status)]))
           (= type :lst-add-lst)
           (let [{:keys [name description]} data
-                url (str "/addLst/" name "/" description)
+                url (str "/addLst?name=" (js/encodeURIComponent name) "&desc=" (js/encodeURIComponent description))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-lst)
@@ -545,7 +523,8 @@
 
           (= type :lst-add-item)
           (let [{:keys [lst-id name value]} data
-                url (str "/addItem/" lst-id "/" name "/" value)
+                encoded-value (enc-str value)
+                url (str "/addItem?lst-id=" (js/encodeURIComponent lst-id) "&name=" (js/encodeURIComponent name) "&value=" (js/encodeURIComponent encoded-value))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)
@@ -554,7 +533,8 @@
 
           (= type :lst-set-item-col)
           (let [{:keys [lst-id orig-name col-name value]} data
-                url (str "/updateItem/" lst-id "/" orig-name "/" col-name "/" value)
+                encoded-value (if (= col-name "value") (enc-str value) value)
+                url (str "/updateItem?lst-id=" (js/encodeURIComponent lst-id) "&orig-name=" (js/encodeURIComponent orig-name) "&col-name=" (js/encodeURIComponent col-name) "&value=" (js/encodeURIComponent encoded-value))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)
@@ -580,9 +560,6 @@
 
 
 (search-loop event-chan)
-
-(om/add-root! wiki-reconciler AutoCompleter
-              (gdom/getElement "wiki"))
 
 (om/add-root! lst-reconciler Lsts
               (gdom/getElement "lsts"))

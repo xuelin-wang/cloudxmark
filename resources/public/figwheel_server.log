@@ -5786,3 +5786,612 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 [32mSuccessfully compiled "js/main.js" in 1.207 seconds.[0m
 notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 15.678 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.979 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.774 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.324 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.276 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.203 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.746 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying jar:file:/home/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/crypt.js to js/goog/crypt/crypt.js
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.338 seconds.[0m
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying jar:file:/home/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/cbc.js to js/goog/crypt/cbc.js
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.662 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:491  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m487[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m488[0m  [36m  (cond[0m
+  [36m489[0m  [36m    (= type :wiki-search)[0m
+  [36m490[0m  [36m      (let [query-params data[0m
+  [33m491[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m492[0m  [36m            results-obj (js->clj results)[0m
+  [36m493[0m  [36m          ][0m
+  [36m494[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m495[0m  [36m        )[0m
+  [36m496[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 2.569 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:490  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m486[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m487[0m  [36m  (cond[0m
+  [36m488[0m  [36m    (= type :wiki-search)[0m
+  [36m489[0m  [36m      (let [query-params data[0m
+  [33m490[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m491[0m  [36m            results-obj (js->clj results)[0m
+  [36m492[0m  [36m          ][0m
+  [36m493[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m494[0m  [36m        )[0m
+  [36m495[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.295 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:490  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m486[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m487[0m  [36m  (cond[0m
+  [36m488[0m  [36m    (= type :wiki-search)[0m
+  [36m489[0m  [36m      (let [query-params data[0m
+  [33m490[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m491[0m  [36m            results-obj (js->clj results)[0m
+  [36m492[0m  [36m          ][0m
+  [36m493[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m494[0m  [36m        )[0m
+  [36m495[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.24 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:473  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m469[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m470[0m  [36m  (cond[0m
+  [36m471[0m  [36m    (= type :wiki-search)[0m
+  [36m472[0m  [36m      (let [query-params data[0m
+  [33m473[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m474[0m  [36m            results-obj (js->clj results)[0m
+  [36m475[0m  [36m          ][0m
+  [36m476[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m477[0m  [36m        )[0m
+  [36m478[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:546  column:31  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/AutoCompleter[0m
+
+  [36m544[0m  [36m(search-loop event-chan)[0m
+  [36m545[0m  [36m[0m
+  [33m546[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.core/AutoCompleter[0m
+  [36m547[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m548[0m  [36m[0m
+  [36m549[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m550[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.202 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:429  column:7  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-search[0m
+
+  [36m426[0m  [36m(defn send-to-chan [c][0m
+  [36m427[0m  [36m  (fn [{:keys [lst-search]} cb][0m
+  [36m428[0m  [36m    (cond[0m
+  [33m429[0m  [1m      wiki-search[0m
+  [0m   [0m  [33m      ^--- Use of undeclared Var cloudxmark.core/wiki-search[0m
+  [36m430[0m  [36m      (let [{[wiki-search] :children} (om/query->ast wiki-search)[0m
+  [36m431[0m  [36m            dontcare (println (str wiki-search))[0m
+  [36m432[0m  [36m            query-params (get-in wiki-search [:params :query])][0m
+  [36m433[0m  [36m        (put! c [:wiki-search query-params cb]))[0m
+  [36m434[0m  [36m      lst-search[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:430  column:54  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-search[0m
+
+  [36m426[0m  [36m(defn send-to-chan [c][0m
+  [36m427[0m  [36m  (fn [{:keys [lst-search]} cb][0m
+  [36m428[0m  [36m    (cond[0m
+  [36m429[0m  [36m      wiki-search[0m
+  [33m430[0m  [1m      (let [{[wiki-search] :children} (om/query->ast wiki-search)[0m
+  [0m   [0m  [33m                                                     ^--- Use of undeclared Var cloudxmark.core/wiki-search[0m
+  [36m431[0m  [36m            dontcare (println (str wiki-search))[0m
+  [36m432[0m  [36m            query-params (get-in wiki-search [:params :query])][0m
+  [36m433[0m  [36m        (put! c [:wiki-search query-params cb]))[0m
+  [36m434[0m  [36m      lst-search[0m
+  [36m435[0m  [36m      (let [{[lst-search] :children} (om/query->ast lst-search)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:473  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m469[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m470[0m  [36m  (cond[0m
+  [36m471[0m  [36m    (= type :wiki-search)[0m
+  [36m472[0m  [36m      (let [query-params data[0m
+  [33m473[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m474[0m  [36m            results-obj (js->clj results)[0m
+  [36m475[0m  [36m          ][0m
+  [36m476[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m477[0m  [36m        )[0m
+  [36m478[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:546  column:31  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/AutoCompleter[0m
+
+  [36m544[0m  [36m(search-loop event-chan)[0m
+  [36m545[0m  [36m[0m
+  [33m546[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.core/AutoCompleter[0m
+  [36m547[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m548[0m  [36m[0m
+  [36m549[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m550[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.156 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:468  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m464[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m465[0m  [36m  (cond[0m
+  [36m466[0m  [36m    (= type :wiki-search)[0m
+  [36m467[0m  [36m      (let [query-params data[0m
+  [33m468[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m469[0m  [36m            results-obj (js->clj results)[0m
+  [36m470[0m  [36m          ][0m
+  [36m471[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m472[0m  [36m        )[0m
+  [36m473[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:541  column:31  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/AutoCompleter[0m
+
+  [36m539[0m  [36m(search-loop event-chan)[0m
+  [36m540[0m  [36m[0m
+  [33m541[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.core/AutoCompleter[0m
+  [36m542[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m543[0m  [36m[0m
+  [36m544[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m545[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.205 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:461  column:45  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-url[0m
+
+  [36m457[0m  [36m(loop [[type data cb] (<! c)][0m
+  [36m458[0m  [36m  (cond[0m
+  [36m459[0m  [36m    (= type :wiki-search)[0m
+  [36m460[0m  [36m      (let [query-params data[0m
+  [33m461[0m  [1m            [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [0m   [0m  [33m                                        ^--- Use of undeclared Var cloudxmark.core/wiki-url[0m
+  [36m462[0m  [36m            results-obj (js->clj results)[0m
+  [36m463[0m  [36m          ][0m
+  [36m464[0m  [36m        (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [36m465[0m  [36m        )[0m
+  [36m466[0m  [36m      (= type :lst-login)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:464  column:27  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-reconciler[0m
+
+  [36m460[0m  [36m(let [query-params data[0m
+  [36m461[0m  [36m      [_ results] (<! (jsonp (str wiki-url query-params)))[0m
+  [36m462[0m  [36m      results-obj (js->clj results)[0m
+  [36m463[0m  [36m    ][0m
+  [33m464[0m  [1m  (om/transact! wiki-reconciler `[(wiki/set-lst {:lst ~results-obj})])[0m
+  [0m   [0m  [33m                ^--- Use of undeclared Var cloudxmark.core/wiki-reconciler[0m
+  [36m465[0m  [36m  )[0m
+  [36m466[0m  [36m(= type :lst-login)[0m
+  [36m467[0m  [36m(let [[0m
+  [36m468[0m  [36m      dontcare (println (str "lst login data:" data))[0m
+  [36m469[0m  [36m      {:keys [user-id password ver]} data[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:534  column:15  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-reconciler[0m
+
+  [36m532[0m  [36m(search-loop event-chan)[0m
+  [36m533[0m  [36m[0m
+  [33m534[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m              ^--- Use of undeclared Var cloudxmark.core/wiki-reconciler[0m
+  [36m535[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m536[0m  [36m[0m
+  [36m537[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m538[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:534  column:31  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/AutoCompleter[0m
+
+  [36m532[0m  [36m(search-loop event-chan)[0m
+  [36m533[0m  [36m[0m
+  [33m534[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.core/AutoCompleter[0m
+  [36m535[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m536[0m  [36m[0m
+  [36m537[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m538[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.163 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:527  column:15  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/wiki-reconciler[0m
+
+  [36m525[0m  [36m(search-loop event-chan)[0m
+  [36m526[0m  [36m[0m
+  [33m527[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m              ^--- Use of undeclared Var cloudxmark.core/wiki-reconciler[0m
+  [36m528[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m529[0m  [36m[0m
+  [36m530[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m531[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:527  column:31  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/AutoCompleter[0m
+
+  [36m525[0m  [36m(search-loop event-chan)[0m
+  [36m526[0m  [36m[0m
+  [33m527[0m  [1m(om/add-root! wiki-reconciler AutoCompleter[0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.core/AutoCompleter[0m
+  [36m528[0m  [36m              (gdom/getElement "wiki"))[0m
+  [36m529[0m  [36m[0m
+  [36m530[0m  [36m(om/add-root! lst-reconciler Lsts[0m
+  [36m531[0m  [36m              (gdom/getElement "lsts"))[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.091 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.059 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.559 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.269 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.19 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:22  column:8  ----[0m
+
+  [1mEOF while reading, starting at line 22 and column 8[0m
+
+  [36m21[0m  [36m(def enc-str [str][0m
+  [33m22[0m  [1m  (let [[0m
+  [0m  [0m  [33m       ^--- EOF while reading, starting at line 22 and column 8[0m
+  [36m23[0m  [36m[0m
+  [36m24[0m  [36m(defn jsonp[0m
+  [36m25[0m  [36m  ([uri] (jsonp (chan) uri))[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.187 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:25  column:8  ----[0m
+
+  [1mEOF while reading, starting at line 25 and column 8[0m
+
+  [36m24[0m  [36m(def enc-str [str][0m
+  [33m25[0m  [1m  (let [aes (goog.crypt.Aes. key-bytes)[0m
+  [0m  [0m  [33m       ^--- EOF while reading, starting at line 25 and column 8[0m
+  [36m26[0m  [36m[0m
+  [36m27[0m  [36m(defn jsonp[0m
+  [36m28[0m  [36m  ([uri] (jsonp (chan) uri))[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.185 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:24  column:1  ----[0m
+
+  [1mToo many arguments to def at line 24 /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs[0m
+
+  [36m22[0m  [36m(def cbc (goog.crypt.Cbc. aes))[0m
+  [36m23[0m  [36m[0m
+  [33m24[0m  [1m(def enc-str [str][0m
+  [0m  [0m  [33m^--- Too many arguments to def at line 24 /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs[0m
+  [36m25[0m  [36m  (let [bytes (goog.crypt.stringToByteArray str)[0m
+  [36m26[0m  [36m        enc-bytes (.encrypt cbc bytes init-vector)[0m
+  [36m27[0m  [36m        ][0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/utils.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/file_reloading.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/org/clojure/clojurescript/1.9.89/clojurescript-1.9.89.jar!/cljs/reader.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/socket.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/heads_up.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/target/figwheel_temp/dev/figwheel/connect.cljs to js/figwheel/connect.cljs
+[32mSuccessfully compiled "js/main.js" in 1.479 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.57 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.513 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.324 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.661 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.472 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.607 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.494 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.272 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.486 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.554 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.553 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.163 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying jar:file:/home/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/base64.js to js/goog/crypt/base64.js
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.254 seconds.[0m
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.172 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.161 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.166 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.156 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.538 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.247 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.175 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.125 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js

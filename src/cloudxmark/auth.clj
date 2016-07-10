@@ -16,9 +16,11 @@
             )
        )
 
-(defn login [id pass]
-      (= (encrypt-pass pass) (store/get-pass id))
-      )
+(defn is-admin-user? [user-id]
+  (or
+    (= user-id "xuelin")
+    (= user-id "xuelin.wang@gmail.com"))
+  )
 
 (defn add-auth [auth]
       (let [
@@ -28,4 +30,10 @@
             ]
            (store/add-auth {:id id :password pass :description desc})
            )
+      )
+
+(defn login [id pass]
+  (if (store/no-auth?)
+    (add-auth {:id id :password pass :description ""}))
+      (= (encrypt-pass pass) (store/get-pass id))
       )
