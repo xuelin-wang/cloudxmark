@@ -125,6 +125,14 @@
    }
   )
 
+(defmethod mutate 'lst/add-user
+  [{:keys [state] :as env} _ {:keys [user-id password] :as data-map}]
+  {:action (fn []
+        (put! event-chan [:lst-add-user data-map nil])
+     )
+   }
+  )
+
 (defmethod mutate 'lst/add-lst
   [{:keys [state] :as env} _ {:keys [name description] :as data-map}]
   {:action (fn []
@@ -160,7 +168,7 @@
 
 
 (defmethod mutate 'lst/set-lst
-  [{:keys [state] :as env} _ {:keys [status lsts user-id ver] :as data-map}]
+  [{:keys [state] :as env} _ {:keys [status lsts user-id is-admin? ver] :as data-map}]
   {:action (fn []
              (println (str "state before set-lst put chan:" @state " datamap:" data-map))
              (let [
@@ -171,7 +179,7 @@
                (if (and status status-id)
                  (swap! state assoc-in [:lst :status status-id] status)
                  )
-             (swap! state assoc :lst (merge (:lst @state) {:lsts lsts :ver new-ver :user-id user-id}))
+             (swap! state assoc :lst (merge (:lst @state) {:lsts lsts :ver new-ver :user-id user-id :is-admin? is-admin?}))
              (println (str "state after setlist:" @state)))
      )
    }
@@ -385,7 +393,7 @@
   )
 
 
-(defn login-button [comp]
+ (defn login-button [comp]
   (dom/button #js {:type "button"
                    :onClick
                    (fn [e]
@@ -415,6 +423,30 @@
                    } "Login")
   )
 
+(defn add-user-button [comp]
+  (dom/button #js {:type "button"
+                   :onClick
+                   (fn [e]
+                     (let [lst-map (:lst (om/props comp))
+                           new-user-id (:new-user-id-field lst-map)
+                           new-password (:new-password-field lst-map)
+                           error (cond
+                                   (clojure.string/blank? new-user-id) "New user name required"
+                                   (clojure.string/blank? new-password) "New password required"
+                                   :else nil)
+                           ]
+                       (if (clojure.string/blank? error)
+                         (do
+                           (om/transact! comp `[(lst/add-user {:user-id ~new-user-id :password ~new-password})])
+                         (om/transact! comp `[(lst/set-status {:id :add-user :error nil})]))
+                         (om/transact! comp `[(lst/set-status {:id :add-user :error ~error})])
+                         )
+                       (println (str "stateafterclick:" @app-state))
+                       )
+                     )
+                   } "Add User")
+  )
+
 (defui Lsts
   static om/IQueryParams
   (params [_]
@@ -427,8 +459,9 @@
           (println (str "om/props in render:" (om/props this)))
           (let [lst (:lst (om/props this))
                 dontcare (println "lists props:" lst)
-                {:keys [lsts curr ver user-id status]} lst
+                {:keys [lsts curr ver user-id is-admin? status]} lst
                 ]
+            (dom/div nil
             (if (nil? user-id)
               (dom/div nil (dom/h3 nil "Please login")
                        "User id: " (lst-field this :user-id-field)
@@ -436,14 +469,22 @@
                        (dom/br nil)
                        (login-button this)
                        (status-line (:login status))
-                       )
+                       ))
+             (if (not (nil? user-id))
               (dom/div nil
                        (logout-button this)
                      (dom/h2 nil "Lists")
                      (refresh-lists-button this user-id ver)
                      (status-line (:refresh_lists status))
-                     (lst-lst this lsts (if (nil? curr) 0 curr)))
-              )
+                     (lst-lst this lsts (if (nil? curr) 0 curr))))
+             (if is-admin?
+              (dom/div nil (dom/h3 nil "Add new user")
+                       "New User id: " (lst-field this :new-user-id-field)
+                       "New Password: " (lst-field this :new-password-field "password")
+                       (dom/br nil)
+                       (add-user-button this)
+                       (status-line (:add-user status))
+                       )))
             )))
 
 (defn send-to-chan [c]
@@ -462,10 +503,10 @@
    {:state   app-state
     :parser  (om/parser {:read read :mutate mutate})
     :send    (send-to-chan event-chan)
-    :remotes [:lst-search :lst-login :lst-logout]}))
+    :remotes [:lst-search :lst-login :lst-add-user :lst-logout]}))
 
 (defn convert-json-lsts-result [result ver status-id]
-  (let [{:strs [lsts user_id]} result
+  (let [{:strs [lsts user_id is_admin]} result
         dontcare (println (str "result: " result))
         json-status (get result "status")
         {:strs [info warn error]} json-status
@@ -482,7 +523,16 @@
                         ))
                       lsts)
         ]
-      {:lsts decoded-lsts :user-id user_id :ver ver :status (assoc status :id status-id)}
+      {:lsts decoded-lsts :user-id user_id :is-admin? (= "true" is_admin) :ver ver :status (assoc status :id status-id)}
+      )
+  )
+
+(defn convert-json-status [result status-id]
+  (let [json-status (get result "status")
+        {:strs [info warn error]} json-status
+        status {:info info :warn warn :error error}
+        ]
+      (assoc status :id status-id)
       )
   )
 
@@ -502,14 +552,24 @@
                 ]
             (om/transact! lst-reconciler `[(lst/set-lst ~results2)])
             )
+
+          (= type :lst-add-user)
+          (let [
+                {:keys [user-id password ver]} data
+                encoded-password (enc-str password)
+                url (str "/addAuth?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))
+                results-js (<! (jsonp url))
+                results1 (js->clj results-js)
+                status (convert-json-status results1 :add-user)
+                ]
+            (om/transact! lst-reconciler `[(lst/set-status ~status)]))
+
           (= type :lst-logout)
           (let [
                 url "/logout"
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
-                in-status (get results1 "status")
-                {:strs [info warn error]} in-status
-                status {:id :logout :info info :warn warn :error error}
+                status (convert-json-status results1 :logout)
                 ]
             (om/transact! lst-reconciler `[(lst/set-status ~status)]))
           (= type :lst-add-lst)

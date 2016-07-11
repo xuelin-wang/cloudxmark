@@ -6395,3 +6395,305 @@ Compiling target/figwheel_temp/dev/figwheel/connect.cljs
 Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
 [32mSuccessfully compiled "js/main.js" in 1.125 seconds.[0m
 notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.777 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.77 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.118 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.17 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.154 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.145 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.132 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.214 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:553  column:27  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/convert-json-add-user-result[0m
+
+  [36m549[0m  [36m                encoded-password (enc-str password)[0m
+  [36m550[0m  [36m                url (str "/loginAddAuth?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))[0m
+  [36m551[0m  [36m                results-js (<! (jsonp url))[0m
+  [36m552[0m  [36m                results1 (js->clj results-js)[0m
+  [33m553[0m  [1m                results2 (convert-json-add-user-result results1 :add-user)[0m
+  [0m   [0m  [33m                          ^--- Use of undeclared Var cloudxmark.core/convert-json-add-user-result[0m
+  [36m554[0m  [36m                ][0m
+  [36m555[0m  [36m            (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m556[0m  [36m            )[0m
+  [36m557[0m  [36m[0m
+  [36m558[0m  [36m          (= type :lst-logout)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.202 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[36m----  Compiler Warning on   src/cloudxmark/core.cljs   line:553  column:27  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.core/convert-json-add-user-result[0m
+
+  [36m549[0m  [36m                encoded-password (enc-str password)[0m
+  [36m550[0m  [36m                url (str "/loginAddAuth?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))[0m
+  [36m551[0m  [36m                results-js (<! (jsonp url))[0m
+  [36m552[0m  [36m                results1 (js->clj results-js)[0m
+  [33m553[0m  [1m                results2 (convert-json-add-user-result results1)[0m
+  [0m   [0m  [33m                          ^--- Use of undeclared Var cloudxmark.core/convert-json-add-user-result[0m
+  [36m554[0m  [36m                ][0m
+  [36m555[0m  [36m            (om/transact! lst-reconciler `[(lst/set-lst ~results2)])[0m
+  [36m556[0m  [36m            )[0m
+  [36m557[0m  [36m[0m
+  [36m558[0m  [36m          (= type :lst-logout)[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/core.cljs  ----[0m
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.21 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.197 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.185 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.224 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.651 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:44  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    {:status (assoc status :id status-id}}[0m
+  [0m   [0m  [33m                                         ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.68 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:44  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    {:status (assoc status :id status-id}}[0m
+  [0m   [0m  [33m                                         ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.665 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:44  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    {:status (assoc status :id status-id}}[0m
+  [0m   [0m  [33m                                         ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.647 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:44  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    {:status (assoc status :id status-id}}[0m
+  [0m   [0m  [33m                                         ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.658 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:35  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    (assoc status :id status-id}[0m
+  [0m   [0m  [33m                                ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.686 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:35  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    (assoc status :id status-id}[0m
+  [0m   [0m  [33m                                ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.771 seconds.[0m
+[36m----  Could not Read  src/cloudxmark/core.cljs   line:534  column:35  ----[0m
+
+  [1mUnmatched delimiter }[0m
+
+  [36m532[0m  [36m      status {:info info :warn warn :error error}[0m
+  [36m533[0m  [36m      ][0m
+  [33m534[0m  [1m    (assoc status :id status-id}[0m
+  [0m   [0m  [33m                                ^--- Unmatched delimiter }[0m
+  [36m535[0m  [36m    )[0m
+  [36m536[0m  [36m)[0m
+
+[36m----  Reader Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.748 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:540  column:3  ----[0m
+
+  [1mAssert failed: Wrong number of arguments to recur
+(= (count val-ids) (count recurs))[0m
+
+  [36m539[0m  [36m(defn search-loop [c][0m
+  [33m540[0m  [1m  (go[0m
+  [0m   [0m  [33m  ^--- Assert failed: Wrong number of arguments to recur
+(= (count val-ids) (count recurs))[0m
+  [36m541[0m  [36m    (loop [[type data cb] (<! c)][0m
+  [36m542[0m  [36m      (cond[0m
+  [36m543[0m  [36m          (= type :lst-login)[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+[31mFailed to compile "js/main.js" in 0.746 seconds.[0m
+[36m----  Could not Analyze  src/cloudxmark/core.cljs   line:539  column:3  ----[0m
+
+  [1mAssert failed: Wrong number of arguments to recur
+(= (count val-ids) (count recurs))[0m
+
+  [36m538[0m  [36m(defn search-loop [c][0m
+  [33m539[0m  [1m  (go[0m
+  [0m   [0m  [33m  ^--- Assert failed: Wrong number of arguments to recur
+(= (count val-ids) (count recurs))[0m
+  [36m540[0m  [36m    (loop [[type data cb] (<! c)][0m
+  [36m541[0m  [36m      (cond[0m
+  [36m542[0m  [36m          (= type :lst-login)[0m
+
+[36m----  Analysis Error : Please see src/cloudxmark/core.cljs  ----[0m
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/utils.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/file_reloading.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/org/clojure/clojurescript/1.9.89/clojurescript-1.9.89.jar!/cljs/reader.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/socket.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client/heads_up.cljs
+Reading analysis cache for jar:file:/home/xuelin/.m2/repository/figwheel/figwheel/0.5.4-5/figwheel-0.5.4-5.jar!/figwheel/client.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/target/figwheel_temp/dev/figwheel/connect.cljs to js/figwheel/connect.cljs
+[32mSuccessfully compiled "js/main.js" in 1.44 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.284 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.317 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.284 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.563 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Copying file:/home/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+[32mSuccessfully compiled "js/main.js" in 1.615 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/core.js

@@ -1,5 +1,6 @@
 (ns cloudxmark.lst
-    (:require
+  (:require
+      [cloudxmark.auth :as auth]
       [cloudxmark.lst-store :as store]
       [cheshire.core :refer :all]))
 
@@ -40,5 +41,5 @@
                              ) {} result)
         ]
 
-    {:lsts (or (vals lsts-by-id) []) :user_id owner}
+    {:lsts (or (vals lsts-by-id) []) :user_id owner :is_admin (if (auth/is-admin-user? owner) "true" "false") }
     ))

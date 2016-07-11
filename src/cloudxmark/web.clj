@@ -76,7 +76,7 @@
   )
 
 (defn- is-admin? [session]
-  (let [user-id (:userid session)]
+  (let [user-id (:user-id session)]
     (is-admin-user? user-id))
   )
 
@@ -163,8 +163,8 @@
        (handle-drop-table table params session)
        )
 
-  (GET "/addAuth"  [id pass desc :as {params :params session :session}]
-       (handle-add-auth id pass desc params session)
+  (GET "/addAuth"  [user-id pass desc :as {params :params session :session}]
+       (handle-add-auth user-id pass (or desc "") params session)
        )
 
   (GET "/addLst"  [name desc :as {params :params session :session}]
@@ -189,6 +189,10 @@
 
   (GET "/loginGetItems"  [user-id pass :as {params :params session :session}]
        (handle-login-get-items user-id pass params session)
+       )
+
+    (GET "/addAuth"  [user-id pass desc :as {params :params session :session}]
+       (handle-add-auth user-id pass desc params session)
        )
 
   (GET "/getItems" {params :params session :session}
