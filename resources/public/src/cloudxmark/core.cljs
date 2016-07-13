@@ -16,29 +16,87 @@
 
 (enable-console-print!)
 
-(def init-vector (goog.crypt.hexToByteArray "3ea1bae20d97b4a0b422da8b259f0c8c"))
-(def key-bytes (goog.crypt.hexToByteArray "5zal214336bja15b716e0335341e1ba7"))
+(def block-size 16)
+(def seed-init-vector (goog.crypt.hexToByteArray "3ea1bae20d97b4a0b422da8b259f0c8c"))
+(def seed-key-bytes (goog.crypt.hexToByteArray "5zal214336bja15b716e0335341e1ba7"))
 
-(def aes (goog.crypt.Aes. key-bytes))
-(def cbc (goog.crypt.Cbc. aes))
+(defn create-aes [key-bytes]
+  (goog.crypt.Aes. key-bytes))
 
-(defn enc-str [encoded]
+(defn create-aes-cbc [key-bytes]
+  (goog.crypt.Cbc. (goog.crypt.Aes. key-bytes)))
+
+(defn pad-bytes [bytes target-len ch]
   (let [
-        bytes (goog.crypt.stringToByteArray encoded)
-        tmp-len (-> (count bytes) (-) (rem 16))
-        pad-len (if (neg? tmp-len) (+ 16 tmp-len) tmp-len)
-        pad-str (clojure.string/join (repeat pad-len " "))
-        pad-bytes (goog.crypt.stringToByteArray pad-str)
-        used-bytes (.concat  bytes pad-bytes)
-        enc-bytes (.encrypt cbc used-bytes init-vector)
+        tmp-len (-> (.-length bytes) (-) (rem target-len))
+        pad-len (if (neg? tmp-len) (+ target-len tmp-len) tmp-len)
+        pad-str (clojure.string/join (repeat pad-len ch))
+        padded-bytes (goog.crypt.stringToByteArray pad-str)
         ]
-    (goog.crypt.base64.encodeByteArray enc-bytes)))
+        (.concat  bytes padded-bytes)
+    )
+  )
 
-(defn dec-str [decoded]
+(defn cbc-enc-str [plain-text cbc init-vector]
   (let [
-        bytes (goog.crypt.base64.decodeStringToByteArray decoded)
-        dec-bytes (.decrypt cbc bytes init-vector)]
-    (goog.crypt.byteArrayToString dec-bytes)))
+        plain-bytes (goog.crypt.stringToByteArray plain-text)
+        padded-bytes (pad-bytes plain-bytes block-size " ")
+        enc-bytes (.encrypt cbc padded-bytes init-vector)
+        ]
+    (goog.crypt.byteArrayToString enc-bytes)))
+
+(defn aes-enc-str [plain-text aes]
+  (let [plain-bytes (goog.crypt.stringToByteArray plain-text)
+        padded-bytes (pad-bytes plain-bytes block-size " ")]
+  (goog.crypt.byteArrayToString
+    (.encrypt aes padded-bytes))
+  ))
+
+(defn aes-dec-str [cypher-text aes]
+  (goog.crypt.byteArrayToString (.decrypt aes (goog.crypt.stringToByteArray cypher-text)))
+  )
+
+(defn xor-bytes [b1 b2 max-len]
+  (loop [idx 0]
+    (let [len1 (.-length b1)]
+      (if (or (= idx len1) (= idx max-len)) nil
+          (do
+            (aset b1 idx (bit-xor (aget b1 idx) (aget b2 idx)))
+            (recur (inc idx))))))
+  b1
+  )
+
+(defn gen-bytes [from-str seed-bytes]
+  (let [
+        bytes (goog.crypt.stringToByteArray from-str)
+        padded-bytes (pad-bytes bytes block-size " ")
+        xored-bytes (xor-bytes padded-bytes seed-bytes block-size)
+        ]
+    (if (= (.-length xored-bytes) block-size) xored-bytes (.slice xored-bytes 0 block-size))
+    )
+  )
+
+(defn gen-key-bytes [from-str]
+  (gen-bytes from-str seed-key-bytes))
+
+(defn gen-init-vector [from-str]
+  (gen-bytes from-str seed-init-vector))
+
+(defn enc-password [password]
+  (let [
+        key-bytes (gen-key-bytes password)
+        cbc (create-aes-cbc key-bytes)
+        ]
+    (cbc-enc-str password cbc seed-init-vector)
+    )
+  )
+
+(defn cbc-dec-str [cypher-text cbc init-vector]
+  (let [
+        cypher-bytes (goog.crypt.stringToByteArray cypher-text)
+        plain-bytes (.decrypt cbc cypher-bytes init-vector)
+        ]
+    (.trim (goog.crypt.byteArrayToString plain-bytes))))
 
 (defn jsonp
   ([uri] (jsonp (chan) uri))
@@ -99,8 +157,11 @@
   [{:keys [state] :as env} _ {:keys [lst-idx item-idx col-name value] :as data-map}]
   {:action (fn[]
              (let [lst (get-in @state [:lst :lsts lst-idx])
+                   cbc (get-in @state [:lst :cbc])
                    lst-id (get lst "lst_id")
-                   orig-name (get-in lst ["items" item-idx "name"])]
+                   orig-name (get-in lst ["items" item-idx "name"])
+                   encoded-value (if (= col-name "value") (cbc-enc-str value cbc (gen-init-vector orig-name)) value)
+                   ]
                (println (str "data-map in set-item-col:" data-map "lst-id:" lst-id))
                (swap! state assoc-in [:lst :lsts lst-idx "items" item-idx col-name] value)
                (put! event-chan [:lst-set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value value} nil])
@@ -120,7 +181,7 @@
   [{:keys [state] :as env} _ {:keys [user-id password ver] :as data-map}]
   {:action (fn []
              (println (str "state before put chan:" @state " datamap:" data-map))
-        (put! event-chan [:lst-login data-map nil])
+             (put! event-chan [:lst-login (assoc data-map :password (enc-password password)) nil])
      )
    }
   )
@@ -147,11 +208,16 @@
   {:action (fn []
              (let [
                    lsts (get-in @state [:lst :lsts])
+                   dontcare0 (println (str "additem before cbc: name: " name ", value:" value ",state:" @state))
+                   cbc (get-in @state [:lst :cbc])
+                   dont (println "cbc:" (str cbc))
+                   encoded-value (cbc-enc-str value cbc (gen-init-vector name))
+                   dontcare (println (str "additem: name: " name ", value:" value ",encoded:" encoded-value))
                    curr (or (get-in @state [:lst :curr]) 0)
                    lst-id (get (nth lsts curr) "lst_id")
                    ]
              (println (str "state before add-item put chan:" @state " datamap:" data-map))
-             (put! event-chan [:lst-add-item {:lst-id lst-id :name name :value value} nil]))
+             (put! event-chan [:lst-add-item {:lst-id lst-id :name name :value encoded-value} nil]))
              )
    }
   )
@@ -166,20 +232,33 @@
    }
   )
 
+(defn dec-items-vals [lsts cbc]
+  (map (fn [lst]
+         (assoc lst "items"
+                (map (fn [item]
+                       (assoc item "value"
+                              (cbc-dec-str (get item "value") cbc (gen-init-vector (get item "name"))))
+                       )
+                     (get lst "items"))
+         ))
+       lsts)
+  )
 
 (defmethod mutate 'lst/set-lst
-  [{:keys [state] :as env} _ {:keys [status lsts user-id is-admin? ver] :as data-map}]
+  [{:keys [state] :as env} _ {:keys [status lsts user-id is-admin? ver cbc] :as data-map}]
   {:action (fn []
              (println (str "state before set-lst put chan:" @state " datamap:" data-map))
              (let [
                    status-id (:id status)
                    new-ver (if (nil? ver) (inc (get-in @state [:lst :ver])) ver)
+                   new-cbc (if (nil? cbc) (get-in @state [:lst :cbc]) cbc)
+                   new-lsts (dec-items-vals lsts new-cbc)
                    ]
 
                (if (and status status-id)
                  (swap! state assoc-in [:lst :status status-id] status)
                  )
-             (swap! state assoc :lst (merge (:lst @state) {:lsts lsts :ver new-ver :user-id user-id :is-admin? is-admin?}))
+             (swap! state assoc :lst (merge (:lst @state) {:lsts new-lsts :ver new-ver :user-id user-id :is-admin? is-admin? :cbc new-cbc}))
              (println (str "state after setlist:" @state)))
      )
    }
@@ -421,8 +500,8 @@
                        )
                      )
                    } "Login")
-  )
 
+)
 (defn add-user-button [comp]
   (dom/button #js {:type "button"
                    :onClick
@@ -511,19 +590,8 @@
         json-status (get result "status")
         {:strs [info warn error]} json-status
         status {:info info :warn warn :error error}
-        decoded-lsts (map
-                      (fn [lst]
-                        (assoc lst "items"
-                                 (map
-                                  (fn [item]
-                                    (assoc item "value" (dec-str (get item "value")))
-                                    )
-                                  (get lst "items")
-                                  )
-                        ))
-                      lsts)
         ]
-      {:lsts decoded-lsts :user-id user_id :is-admin? (= "true" is_admin) :ver ver :status (assoc status :id status-id)}
+      {:lsts lsts :user-id user_id :is-admin? (= "true" is_admin) :ver ver :status (assoc status :id status-id)}
       )
   )
 
@@ -544,11 +612,11 @@
           (let [
                 dontcare (println (str "lst login data:" data))
                 {:keys [user-id password ver]} data
-                encoded-password (enc-str password)
-                url (str "/loginGetItems?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))
+                url (str "/loginGetItems?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent password))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
-                results2 (convert-json-lsts-result results1 ver :login)
+                cbc (create-aes-cbc (gen-key-bytes password))
+                results2 (assoc (convert-json-lsts-result results1 ver :login) :cbc cbc)
                 ]
             (om/transact! lst-reconciler `[(lst/set-lst ~results2)])
             )
@@ -556,7 +624,7 @@
           (= type :lst-add-user)
           (let [
                 {:keys [user-id password ver]} data
-                encoded-password (enc-str password)
+                encoded-password (enc-password password)
                 url (str "/addAuth?user-id=" (js/encodeURIComponent user-id) "&pass=" (js/encodeURIComponent encoded-password))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
@@ -583,8 +651,7 @@
 
           (= type :lst-add-item)
           (let [{:keys [lst-id name value]} data
-                encoded-value (enc-str value)
-                url (str "/addItem?lst-id=" (js/encodeURIComponent lst-id) "&name=" (js/encodeURIComponent name) "&value=" (js/encodeURIComponent encoded-value))
+                url (str "/addItem?lst-id=" (js/encodeURIComponent lst-id) "&name=" (js/encodeURIComponent name) "&value=" (js/encodeURIComponent value))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)
@@ -593,8 +660,7 @@
 
           (= type :lst-set-item-col)
           (let [{:keys [lst-id orig-name col-name value]} data
-                encoded-value (if (= col-name "value") (enc-str value) value)
-                url (str "/updateItem?lst-id=" (js/encodeURIComponent lst-id) "&orig-name=" (js/encodeURIComponent orig-name) "&col-name=" (js/encodeURIComponent col-name) "&value=" (js/encodeURIComponent encoded-value))
+                url (str "/updateItem?lst-id=" (js/encodeURIComponent lst-id) "&orig-name=" (js/encodeURIComponent orig-name) "&col-name=" (js/encodeURIComponent col-name) "&value=" (js/encodeURIComponent value))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)

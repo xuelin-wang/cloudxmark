@@ -22,13 +22,12 @@
     (= user-id "xuelin.wang@gmail.com"))
   )
 
-(defn add-auth [auth]
+(defn add-auth [{:keys [id password description]}]
       (let [
-            id (auth :id)
-            pass (encrypt-pass (auth :password))
-            desc (auth :description)
+            pass (encrypt-pass password)
             ]
-           (store/add-auth {:id id :password pass :description desc})
+        (println (str "add orig:" password  " encrypted pass:" pass))
+           (store/add-auth {:id id :password pass :description description})
            )
       )
 
