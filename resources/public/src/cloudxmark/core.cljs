@@ -156,18 +156,15 @@
 (defmethod mutate 'lst/set-item-col
   [{:keys [state] :as env} _ {:keys [lst-idx item-idx col-name value] :as data-map}]
   {:action (fn[]
-             (let [aaa (println (str "lst-idx" lst-idx "statebefore set item col:" @state))
+             (let [
                    lsts (get-in @state [:lst :lsts])
                    lst (nth lsts lst-idx)
-                   xxx (println (str "lst:" lst))
                    cbc (get-in @state [:lst :cbc])
                    lst-id (get lst "lst_id")
-                   yyy (println (str "lstid:" lst-id))
                    item (nth (get lst "items") item-idx)
                    orig-name (get item "name")
                    encoded-value (if (= col-name "value") (cbc-enc-str value cbc (gen-init-vector orig-name)) value)
                    ]
-               (println (str "data-map in set-item-col:" data-map "lst-id:" lst-id))
                (put! event-chan [:lst-set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value encoded-value} nil])
                ))
    }
