@@ -199,14 +199,17 @@
 (defn update-item [item]
   (let
       [{:keys [lst-id orig-name col-name value ]} item
+       yy (println (str "lstid:" lst-id "origname:" orig-name ",vaue:" value))
       hasNameConflict? (and (= col-name "name") (not= orig-name (str value)) (-> (sql/query store-uri
                      ["SELECT count(*) FROM item WHERE lst_id = ? and name = ? " lst-id (str value)])
-                                                                           first :count pos?))
+                                                                                 first :count pos?))
+      xx (println (str "hasconflict: " hasNameConflict?))
       ]
     (if hasNameConflict?
       0
       (let [
             sql-str (str "UPDATE item SET " col-name " = ? WHERE lst_id = ? AND name = ?")
+            dontcare (println sql-str)
        cmd-result (sql/execute! store-uri [sql-str value lst-id orig-name])
             ]
     (first cmd-result)
