@@ -61,12 +61,12 @@
     )
   )
 
-(defn find-items [owner name]
+(defn find-items [owner lst-name]
   (let [select-cols "l.lst_id AS lst_id, l.owner AS lst_owner, l.name AS lst_name, l.description AS lst_discription, l.labels AS lst_labels, i.name AS name, i.value AS value, i.labels AS labels "]
-    (if (nil? name)
+    (if (nil? lst-name)
         (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN item i ON l.lst_id = i.lst_id  WHERE l.owner = ?") owner])
         (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN  item i ON l.lst_id = i.lst_id  WHERE l.owner = ? AND l.name = ? ")
-                              owner name])
+                              owner lst-name])
         )
     )
   )
@@ -171,9 +171,9 @@
       )
 
 
-(defn add-lst [lst]
+(defn add-lst [{:keys [owner name description labels] :as lst}]
   (let
-      [{:keys [owner name description labels]} lst
+      [
        sql-str0 "INSERT INTO lst (lst_id, owner, name, description, labels) "
        sql-str1 (str ",'" owner "','" name "','" (or description "") "','"
                                         (or labels "") "' " )
@@ -186,7 +186,19 @@
        ]
     (first cmd-result)
       )
-  )
+)
+
+(defn update-lst [{:keys [lst-id name description labels] :as lst}]
+  (assert lst-id "List id is required")
+  (assert (not (clojure.string/blank? name)) "List name is required")
+  (let [owner (-> (sql/query store-uri ["SELECT owner FROM lst WHERE list_id = ?" lst-id]) first)
+        found-lsts (find-lsts owner name)]
+    (    if (seq found-lsts)
+      (assert (= lst-id (get (first found-lsts) "lst_id")) (str "Existing list with name " name " doesn't match " lst-id ))
+      )
+  (sql/update! store-uri :lst lst ["lst_id = ?" lst-id])
+    )
+        )
 
 (defn add-item [item]
   (let
@@ -196,20 +208,20 @@
       )
   )
 
-(defn update-item [item]
+
+(defn update-item [lst-id orig-name col-name value]
   (let
-      [{:keys [lst-id orig-name col-name value ]} item
-       yy (println (str "lstid:" lst-id "origname:" orig-name ",vaue:" value))
-      hasNameConflict? (and (= col-name "name") (not= orig-name (str value)) (-> (sql/query store-uri
-                     ["SELECT count(*) FROM item WHERE lst_id = ? and name = ? " lst-id (str value)])
-                                                                                 first :count pos?))
-      xx (println (str "hasconflict: " hasNameConflict?))
+      [
+        name-conflict? (and (= col-name "name") (not= orig-name (str value))
+                         (-> (sql/query store-uri [(str "SELECT count(*) FROM item WHERE lst_id = ? AND name = ?") lst-id value])
+                             first :count pos?)
+                         )
       ]
-    (if hasNameConflict?
+
+    (if name-conflict?
       0
       (let [
             sql-str (str "UPDATE item SET " col-name " = ? WHERE lst_id = ? AND name = ?")
-            dontcare (println sql-str)
        cmd-result (sql/execute! store-uri [sql-str value lst-id orig-name])
             ]
     (first cmd-result)
@@ -222,22 +234,4 @@
       (if name
         (sql/delete! store-uri :lst ["name = ? AND owner = ?" name owner])
         )
-      )
-
-(defn update-lst [from to]
-      (cond
-        (nil? from) (add-lst to)
-        (nil? to) (delete-lst (:name from) (:owner from))
-        :else
-        (do
-          (if (not= (:name from) (:name to))
-            (delete-lst (:name from) (:owner from))
-            )
-          (let [lsts (find-lsts (:owner to) (:name to))]
-               (if (first lsts)
-                 (sql/update! store-uri :lst to ["name = ? AND owner = ?" (:name to) (:owner to)])
-                 (add-lst to)
-                 )
-               )
-          ))
       )

@@ -23,7 +23,6 @@
 (defn- handle-callback [result params session]
   (let [result-str (generate-string result)]
     (let [{:keys [callback]} params]
-      (println (str "hasbacllback:"  (boolean callback) "body:" callback "(" result-str ")" ))
       (if callback
         {
          :session session
@@ -134,7 +133,7 @@
   (let [
         lst-id (Integer/parseInt lst-id-str)
         user-id (get-user-id session)
-        update-count (update-item {:lst-id lst-id :orig-name orig-name :col-name col-name :value value})
+        update-count (update-item lst-id orig-name col-name value)
         ]
     (if (= update-count 1)
       (handle-callback (get-items user-id nil) params session)
