@@ -528,6 +528,10 @@
                    } "Add User")
   )
 
+(defn get-settings [lsts]
+(-> (filter (fn [lst] (= (get lst "name") "_-settings")) lsts) first)
+)
+
 (defui Lsts
   static om/IQueryParams
   (params [_]
@@ -541,6 +545,11 @@
           (let [lst (:lst (om/props this))
                 dontcare (println "lists props:" lst)
                 {:keys [lsts curr ver user-id is-admin? status]} lst
+                settings (get-settings lsts)
+                display-lsts (if (get settings "show_all_lsts")
+                               lsts
+                               (filter (fn [lst] (not (.startsWith (get lst "name") "_-"))) lsts)
+                               )
                 ]
             (dom/div nil
             (if (nil? user-id)
