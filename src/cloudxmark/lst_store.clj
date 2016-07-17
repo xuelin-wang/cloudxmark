@@ -2,6 +2,7 @@
     (:require
       [clojure.java.jdbc :as sql]
       [clojure.string :as str]
+      [cloudxmark.common.lst-common :as lst-common]
       ))
 
 (def store-uri (or (System/getenv "DATABASE_URL") "postgresql://localhost:5432/lst"))
@@ -186,7 +187,18 @@
        ]
     (first cmd-result)
       )
-)
+  )
+
+(defn check-add-settings-lst [owner]
+  (if (-> (find-lsts owner lst-common/settings-lst-name) empty?)
+    (add-lst {:owner owner :name lst-common/settings-lst-name :description "" :labels ""} )
+    )
+  (let [settings-lst (-> (find-lsts owner lst-common/settings-lst-name) first)
+        settings-lst-id (get settings-lst "lst_id")
+        ]
+    ()
+    )
+  )
 
 (defn update-lst [{:keys [lst-id name description labels] :as lst}]
   (assert lst-id "List id is required")

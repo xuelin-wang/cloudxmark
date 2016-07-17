@@ -4,4 +4,6 @@
                  [org.clojure/clojurescript "1.9.89"]
                  [com.rpl/specter "0.11.2"]
                  [org.omcljs/om "1.0.0-alpha37"]
-                 [figwheel-sidecar "0.5.4-5" :scope "test"]])
+                 [figwheel-sidecar "0.5.4-5" :scope "test"]]
+  :source-paths  ["src" "commonsrc"]
+  )

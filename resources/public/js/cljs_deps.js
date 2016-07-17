@@ -6,6 +6,7 @@ goog.addDependency("../clojure/walk.js", ['clojure.walk'], ['cljs.core']);
 goog.addDependency("../com/rpl/specter/protocols.js", ['com.rpl.specter.protocols'], ['cljs.core']);
 goog.addDependency("../com/rpl/specter/impl.js", ['com.rpl.specter.impl'], ['cljs.core', 'clojure.string', 'clojure.walk', 'com.rpl.specter.protocols']);
 goog.addDependency("../com/rpl/specter.js", ['com.rpl.specter'], ['cljs.core', 'clojure.set', 'com.rpl.specter.impl', 'com.rpl.specter.protocols']);
+goog.addDependency("../cloudxmark/common/lst_common.js", ['cloudxmark.common.lst_common'], ['cljs.core']);
 goog.addDependency("../react.inc.js", ['cljsjs.react'], []);
 goog.addDependency("../react-dom.inc.js", ['cljsjs.react.dom'], ['cljsjs.react']);
 goog.addDependency("../om/util.js", ['om.util'], ['cljs.core']);
@@ -36,7 +37,7 @@ goog.addDependency("../com/cognitect/transit.js", ['com.cognitect.transit'], ['c
 goog.addDependency("../cognitect/transit.js", ['cognitect.transit'], ['com.cognitect.transit.eq', 'cljs.core', 'com.cognitect.transit.types', 'com.cognitect.transit', 'goog.math.Long']);
 goog.addDependency("../om/transit.js", ['om.transit'], ['cljs.core', 'cognitect.transit', 'om.tempid', 'com.cognitect.transit']);
 goog.addDependency("../om/next.js", ['om.next'], ['om.next.cache', 'clojure.zip', 'om.next.impl.parser', 'goog.string', 'goog.debug.Console', 'cljs.core', 'goog.object', 'goog.log', 'om.next.protocols', 'om.tempid', 'clojure.walk', 'om.transit', 'om.util']);
-goog.addDependency("../cloudxmark/core.js", ['cloudxmark.core'], ['com.rpl.specter', 'goog.crypt', 'goog.dom', 'goog.net.Jsonp', 'goog.crypt.Cbc', 'goog.Uri', 'cljs.core', 'goog.crypt.base64', 'om.dom', 'cljs.core.async', 'om.core', 'goog.crypt.Aes', 'om.next', 'clojure.string']);
+goog.addDependency("../cloudxmark/core.js", ['cloudxmark.core'], ['com.rpl.specter', 'cloudxmark.common.lst_common', 'goog.crypt', 'goog.dom', 'goog.net.Jsonp', 'goog.crypt.Cbc', 'goog.Uri', 'cljs.core', 'goog.crypt.base64', 'om.dom', 'cljs.core.async', 'om.core', 'goog.crypt.Aes', 'om.next', 'clojure.string']);
 goog.addDependency("../figwheel/client/utils.js", ['figwheel.client.utils'], ['goog.userAgent.product', 'cljs.core', 'clojure.string']);
 goog.addDependency("../figwheel/client/file_reloading.js", ['figwheel.client.file_reloading'], ['goog.string', 'goog.net.jsloader', 'goog.Uri', 'cljs.core', 'goog.object', 'cljs.core.async', 'clojure.set', 'figwheel.client.utils', 'clojure.string']);
 goog.addDependency("../cljs/spec/impl/gen.js", ['cljs.spec.impl.gen'], ['cljs.core']);

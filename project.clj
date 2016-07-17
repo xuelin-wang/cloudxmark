@@ -14,6 +14,7 @@
                  [cheshire "5.6.2"]
                  [environ "1.0.3"]]
   :main ^:skip-aot cloudxmark.web
+  :source-paths ["src" "resources/public/commonsrc"]
   :resource-paths ["resources"]
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.3.1"] [lein-ring "0.8.13"]]

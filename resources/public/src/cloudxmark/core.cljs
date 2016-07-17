@@ -10,7 +10,9 @@
             [com.rpl.specter :as specter]
             [om.core :refer [set-state! get-state]]
             [om.next :as om :refer-macros [defui]]
-            [om.dom :as dom])
+            [om.dom :as dom]
+            [cloudxmark.common.lst-common :as lst-common]
+            )
   (:import [goog Uri]
            [goog.net Jsonp]))
 
@@ -113,8 +115,7 @@
 (defmethod read :lst
   [{:keys [state ast] :as env} _ {:keys [query-ver query-user]}]
   (let [lst (:lst @state)
-        {:keys [lsts curr ver user-id status]} lst]
-    (println (str "curruser:" user-id ",query ver:" query-ver ", ver:" ver ",query-user:" query-user))
+        {:keys [lsts curr-lst-name ver user-id status]} lst]
     (if
       (and (some? user-id) (or (> query-ver ver) (nil? lsts)))
       (do
@@ -153,19 +154,25 @@
    }
   )
 
+(defn get-by-map-val [key val coll]
+  (if (seq coll)
+    (->> coll (filter (fn [elem] (= val (get elem key)))) first)
+    nil
+    )
+  )
+
 (defmethod mutate 'lst/set-item-col
-  [{:keys [state] :as env} _ {:keys [lst-idx item-idx col-name value] :as data-map}]
+  [{:keys [state] :as env} _ {:keys [lst-name item-name col-name value] :as data-map}]
   {:action (fn[]
              (let [
                    lsts (get-in @state [:lst :lsts])
-                   lst (nth lsts lst-idx)
+                   lst (get-by-map-val "name"lst-name lsts)
                    cbc (get-in @state [:lst :cbc])
                    lst-id (get lst "lst_id")
-                   item (nth (get lst "items") item-idx)
-                   orig-name (get item "name")
-                   encoded-value (if (= col-name "value") (cbc-enc-str value cbc (gen-init-vector orig-name)) value)
+                   item (get-by-map-val "name" item-name (get lst "items"))
+                   encoded-value (if (= col-name "value") (cbc-enc-str value cbc (gen-init-vector item-name)) value)
                    ]
-               (put! event-chan [:lst-set-item-col {:lst-id lst-id :orig-name orig-name :col-name col-name :value encoded-value} nil])
+               (put! event-chan [:lst-set-item-col {:lst-id lst-id :lst-name lst-name :item-name  item-name :col-name col-name :value encoded-value} nil])
                ))
    }
   )
@@ -214,10 +221,10 @@
                    dont (println "cbc:" (str cbc))
                    encoded-value (cbc-enc-str value cbc (gen-init-vector name))
                    dontcare (println (str "additem: name: " name ", value:" value ",encoded:" encoded-value))
-                   curr (or (get-in @state [:lst :curr]) 0)
-                   lst-id (get (nth lsts curr) "lst_id")
+                   curr-lst-name (or (get-in @state [:lst :curr-lst-name]) (get (first lsts) "name"))
+                   curr-lst (get-by-map-val "name" curr-lst-name lsts)
+                   lst-id (get curr-lst "lst_id")
                    ]
-             (println (str "state before add-item put chan:" @state " datamap:" data-map))
              (put! event-chan [:lst-add-item {:lst-id lst-id :name name :value encoded-value} nil]))
              )
    }
@@ -270,7 +277,7 @@
          :lst {
                :lsts nil
                :ver 0
-               :curr 0
+               :curr-lst-name nil
                :user-id nil
                }
          })
@@ -294,16 +301,17 @@
                       (om/transact! comp `[(lst/set-field-state {:field-id ~field-id :value ~value})])
                          ))}))))
 (defn item-field
-  [comp lst-idx item-idx item col-name]
+  [comp lst-name item col-name]
   (let [
         field-val (or (get item col-name) "")
+        item-name (get item "name")
         ]
-    (dom/input #js {:key (str "item-field-" lst-idx "-" item-idx "-" col-name)
+    (dom/input #js {:key (str "item-field-" lst-name "-" item-name "-" col-name)
         :value field-val
         :onChange
                   (fn [e]
                     (let [value (.. e -target -value)]
-                      (om/transact! comp `[(lst/set-item-col {:lst-idx ~lst-idx :item-idx  ~item-idx
+                      (om/transact! comp `[(lst/set-item-col {:lst-name ~lst-name :item-name  ~item-name
                                                               :col-name ~col-name :value ~value})])
                          ))})))
 
@@ -354,26 +362,25 @@
               )
   )
 
-(defn lst-select-field [comp idx curr-idx]
-  (let [
-        ]
+(defn lst-select-field [comp lst-name curr-lst-name]
   (dom/input
-   #js {:key (str "lst-lst-check-" idx)
+   #js {:key (str "lst-lst-check-" lst-name)
         :type "radio"
-        :checked (= idx curr-idx)
+        :checked (= lst-name curr-lst-name)
         :onChange
         (fn [e]
           (if (.. e -target -checked)
-            (let [path [:lst :curr]
+            (let [path [:lst :curr-lst-name]
                   merge? false
-                  value idx
+                  value lst-name
                   ]
               (om/transact! comp `[(lst/update-state {:path ~path :merge? ~merge? :value ~value})])
               )
-            (println (str "unchecked: " idx))
+            (println (str "unchecked: " lst-name))
           )
           )
-        })))
+        })
+)
 
 (defn add-lst-button [comp]
   (dom/button #js {:type "button" :key "addLstButton"
@@ -394,26 +401,25 @@
               )
   )
 
-(defn lst-edit-area [comp]
+(defn lst-edit-area [comp selected-lst-name]
   (let [lst (:lst (om/props comp))
-        {:keys [lsts status curr]} lst
-        curr-idx (or curr 0)
-        items (if (seq lsts) (get (nth lsts curr-idx) "items") nil)
+        {:keys [lsts status]} lst
+        selected-lst (get-by-map-val "name" selected-lst-name lsts)
+        items (if (seq lsts) (get selected-lst "items") nil)
         ]
-    (println (str "items are: " items))
     (dom/div #js {}
     (if (seq items)
-    (dom/div #js {:key (str "lst-edit-area-" curr-idx)}
-             (map-indexed (fn [idx item]
-                            (dom/div #js {:key (str "item-" idx)}
-                                     (item-field comp curr-idx idx item "name")
-                                     (item-field comp curr-idx idx item "value")
+    (dom/div #js {:key (str "lst-edit-area-" selected-lst-name)}
+             (map (fn [item]
+                            (dom/div #js {:key (str "item-" (get item "name"))}
+                                     (item-field comp selected-lst-name item "name")
+                                     (item-field comp selected-lst-name item "value")
                                      )
                                       )
                  items)
              )
     )
-    (dom/div #js {:key (str "lst-add-item-" curr-idx)}
+    (dom/div #js {:key (str "lst-add-item-" selected-lst-name)}
              "New Item Name: " (lst-field comp :new-item-name-field)
              " Value: " (lst-field comp :new-item-value-field)
              (add-item-button comp)
@@ -439,18 +445,64 @@
     )
   )
 
-(defn lst-lst [comp lsts curr-idx]
+(defn lst-lst [comp lsts curr-lst-name]
   (dom/div #js {:key "lst-lst"}
-           (if (seq lsts)
-           (map-indexed (fn [idx item] (dom/div #js {:key (str lst-lst idx)}
-                                               (lst-select-field comp idx curr-idx)
-                                               (dom/span #js {:key (str lst-lst idx "span")} (item "name" "?"))
-                                               (if (= idx curr-idx) (lst-edit-area comp) )
-                                               ))
-                        lsts))
+           (let [
+                 settings-lst (get-by-map-val "name" lst-common/settings-lst-name lsts)
+                 settings (get settings-lst "items")
+                 show-all-lsts (= "true" (get settings (get lst-common/setting-names :show-all-lsts)))
+                 display-lsts (if show-all-lsts
+                                  lsts
+                                  (filter (fn [lst] (not (.startsWith (get lst "name") "_-"))) lsts)
+                                  )
+                 selected-lst-name (or curr-lst-name (get (first display-lsts) "name") )
+                 ]
+(if (seq display-lsts)
+  (map (fn [lst]
+         (let [lst-name (get lst "name")]
+         (dom/div #js {:key (str lst-lst "-" (get lst "name") )}
+                                               (lst-select-field comp lst-name selected-lst-name)
+                                               (dom/span #js {:key (str "lst-lst-" lst-name "-span")} lst-name )
+                                               (if (= lst-name selected-lst-name) (lst-edit-area comp selected-lst-name ) )
+                                               )
+           )
+         )
+                        display-lsts))
+             )
+
            (dom/h3 nil "Add new list:")
            (lst-add-area comp)
            ))
+
+(defn settings-editor [comp settings-lst]
+  (if settings-lst
+    (dom/div #js {:key "settings-editor"}
+             (dom/h3 nil "Settings")
+
+             (let [items (get settings-lst "items")]
+               (reduce-kv
+                (fn [result setting-key setting-name]
+                  (let [
+                        setting-editor (dom/div nil
+                                                (dom/span nil setting-name)
+                                                (item-field comp lst-common/settings-lst-name (get-by-map-val "name" setting-name items) "value")
+                                                )
+                        ]
+                    (conj result setting-editor)
+                    )
+                  )
+                []
+                lst-common/setting-names
+                )
+               (map
+                (fn [setting-name]
+                  (dom/span nil setting-name) (lst-field comp (str "setting-" setting-name)) (dom/br nil) )
+                lst-common/setting-names
+                )
+               )
+             )
+    )
+  )
 
 (defn search-field [comp query type]
   (let [[elem-key query-key]
@@ -529,7 +581,7 @@
   )
 
 (defn get-settings [lsts]
-(-> (filter (fn [lst] (= (get lst "name") "_-settings")) lsts) first)
+(-> (filter (fn [lst] (= (get lst "name") lst-common/settings-lst-name)) lsts) first)
 )
 
 (defui Lsts
@@ -544,12 +596,9 @@
           (println (str "om/props in render:" (om/props this)))
           (let [lst (:lst (om/props this))
                 dontcare (println "lists props:" lst)
-                {:keys [lsts curr ver user-id is-admin? status]} lst
+                {:keys [lsts curr-lst-name ver user-id is-admin? status]} lst
                 settings (get-settings lsts)
-                display-lsts (if (get settings "show_all_lsts")
-                               lsts
-                               (filter (fn [lst] (not (.startsWith (get lst "name") "_-"))) lsts)
-                               )
+                settings-lst (get-settings lsts)
                 ]
             (dom/div nil
             (if (nil? user-id)
@@ -566,7 +615,10 @@
                      (dom/h2 nil "Lists")
                      (refresh-lists-button this user-id ver)
                      (status-line (:refresh_lists status))
-                     (lst-lst this lsts (if (nil? curr) 0 curr))))
+                     (lst-lst this lsts curr-lst-name)
+                     (settings-editor this settings-lst )
+                     ))
+
              (if is-admin?
               (dom/div nil (dom/h3 nil "Add new user")
                        "New User id: " (lst-field this :new-user-id-field)
@@ -670,8 +722,8 @@
             (om/transact! lst-reconciler `[(lst/set-lst ~results2)]))
 
           (= type :lst-set-item-col)
-          (let [{:keys [lst-id orig-name col-name value]} data
-                url (str "/updateItem?lst-id=" (js/encodeURIComponent lst-id) "&orig-name=" (js/encodeURIComponent orig-name) "&col-name=" (js/encodeURIComponent col-name) "&value=" (js/encodeURIComponent value))
+          (let [{:keys [lst-id lst-name orig-name col-name value]} data
+                url (str "/updateItem?lst-id=" (js/encodeURIComponent lst-id) "&lst-name=" (js/encodeURIComponent lst-name) "&orig-name=" (js/encodeURIComponent orig-name) "&col-name=" (js/encodeURIComponent col-name) "&value=" (js/encodeURIComponent value))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 nil :add-item)

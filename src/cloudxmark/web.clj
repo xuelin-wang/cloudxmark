@@ -13,7 +13,7 @@
             [environ.core :refer [env]]
             [cloudxmark.lst :refer [get-lsts get-items]]
             [cloudxmark.auth :refer [login is-admin-user? add-auth]]
-            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst add-item update-item]]
+            [cloudxmark.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst check-add-settings-lst add-item update-item]]
             )
   (:import java.security.MessageDigest
            java.util.Base64)
@@ -62,14 +62,20 @@
 
 (defn- handle-login [id pass params session]
   (if (login id pass)
+    (do
+      (check-add-settings-lst id)
     (handle-callback {:user-id id} params (assoc session :user-id id))
+     )
     (handle-callback {:status {:error "Failed to login"}} params session)
     )
   )
 
 (defn- handle-login-get-items [user-id pass params session]
   (if (login user-id pass)
+    (do
+      (check-add-settings-lst user-id)
     (handle-callback (get-items user-id nil) params (assoc session :user-id user-id))
+      )
     (handle-callback {:status {:error "Failed to login"}} params session)
     )
   )

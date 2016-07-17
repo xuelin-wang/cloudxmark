@@ -12,10 +12,9 @@
            )
       )
 
-(defn get-items [owner name]
+(defn get-items [owner lst-name]
   (let [
-        result (store/find-items owner name)
-        firstre (println (first result))
+        result (store/find-items owner lst-name)
         lsts-by-id (reduce (fn [curr-lsts cols]
                              (let [lst-id (:lst_id cols)
                                    lst (if-let [
@@ -34,8 +33,6 @@
                                    new-items (if (nil? item) (:items lst) (conj (:items lst) item) )
                                    new-lst (assoc lst :items new-items)
                                    ]
-                               (println (str "results: " result))
-                               (println (str "lst-id: " lst-id  ", item: " item ", lst: " lst  ))
                                (assoc curr-lsts lst-id new-lst)
                                )
                              ) {} result)
