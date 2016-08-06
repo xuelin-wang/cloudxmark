@@ -12,6 +12,7 @@
             [om.next :as om :refer-macros [defui]]
             [om.dom :as dom]
             [cloudxmark.common.lst-common :as lst-common]
+            [cloudxmark.common.ql :as ql]
             )
   (:import [goog Uri]
            [goog.net Jsonp]))
@@ -22,6 +23,8 @@
 (def seed-init-vector (goog.crypt.hexToByteArray "3ea1bae20d97b4a0b422da8b259f0c8c"))
 (def seed-key-bytes (goog.crypt.hexToByteArray "5zal214336bja15b716e0335341e1ba7"))
 
+(defn xxx [sss] (ql/kebab sss))
+
 (defn create-aes [key-bytes]
   (goog.crypt.Aes. key-bytes))
 
@@ -30,6 +33,7 @@
 
 (defn pad-bytes [bytes target-len ch]
   (let [
+        yyy (xxx "a")
         tmp-len (-> (.-length bytes) (-) (rem target-len))
         pad-len (if (neg? tmp-len) (+ target-len tmp-len) tmp-len)
         pad-str (clojure.string/join (repeat pad-len ch))
@@ -200,6 +204,12 @@
         (put! event-chan [:lst-add-user data-map nil])
      )
    }
+  )
+
+(defmethod mutate 'lst/mutate
+  [{:keys [state] :as env} _ {:keys [type fields] :as data-map}]
+  {:action (fn []
+             nil)}
   )
 
 (defmethod mutate 'lst/add-lst

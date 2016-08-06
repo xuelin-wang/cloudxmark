@@ -1,0 +1,53 @@
+DIR=$(dirname $0)
+COMMON_SRC_DIR=$DIR/../resources/public/commonsrc
+pushd $COMMON_SRC_DIR
+ABS_COMMON_SRC_DIR=$(pwd)
+echo $ABS_COMMON_SRC_DIR
+CLJ_SRC_DIR=$ABS_COMMON_SRC_DIR/../../../src
+CLJS_SRC_DIR=$ABS_COMMON_SRC_DIR/../src
+TMP_FILE=/tmp/tmp.txt
+TMP2_FILE=/tmp/tmp2.txt
+for f in $(find . -name "*.cljc" -print)
+do
+    PARENT_DIR=$(dirname $f)
+    FILE_NAME=$(basename $f)
+    NAME_LEN=${#FILE_NAME}
+    NAME_LEN_1=$(expr $NAME_LEN - 1)
+
+    echo "mkdir -p $CLJ_SRC_DIR/$PARENT_DIR"
+    mkdir -p $CLJ_SRC_DIR/$PARENT_DIR
+    CLJ_FILE_NAME=${FILE_NAME:0:$NAME_LEN_1}
+    CMD="cp $ABS_COMMON_SRC_DIR/$f $TMP_FILE"
+    echo "$CMD"
+    $CMD
+    for pattern in "s/^.*;cljsOnly.*$//g"
+    do
+        echo $pattern
+        cat $TMP_FILE | sed -e $pattern >$TMP2_FILE
+        CMD="cp $TMP2_FILE $TMP_FILE"
+        echo $CMD
+        $CMD
+    done
+    CMD="cp $TMP_FILE $CLJ_SRC_DIR/$PARENT_DIR/$CLJ_FILE_NAME"
+    echo $CMD
+    $CMD
+
+    echo "mkdir -p $CLJS_SRC_DIR/$PARENT_DIR"
+    mkdir -p $CLJS_SRC_DIR/$PARENT_DIR
+    CLJS_FILE_NAME=${FILE_NAME:0:$NAME_LEN_1}s
+    CMD="cp $ABS_COMMON_SRC_DIR/$f $TMP_FILE"
+    echo "$CMD"
+    $CMD
+    for pattern in "s/^.*;clojureOnly.*$//g"
+    do
+        echo $pattern
+        cat $TMP_FILE | sed -e $pattern >$TMP2_FILE
+        CMD="cp $TMP2_FILE $TMP_FILE"
+        echo $CMD
+        $CMD
+    done
+    CMD="cp $TMP_FILE $CLJS_SRC_DIR/$PARENT_DIR/$CLJS_FILE_NAME"
+    echo $CMD
+    $CMD
+done
+popd

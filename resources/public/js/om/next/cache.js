@@ -14,16 +14,16 @@ this.size = size;
 om.next.cache.Cache.prototype.add = (function (id,x){
 var self__ = this;
 var this$ = this;
-var x_SINGLEQUOTE__31859 = cljs.core.vary_meta.call(null,x,cljs.core.assoc,new cljs.core.Keyword(null,"client-time","client-time",-1212214195),(new Date()));
+var x_SINGLEQUOTE__31902 = cljs.core.vary_meta.call(null,x,cljs.core.assoc,new cljs.core.Keyword(null,"client-time","client-time",-1212214195),(new Date()));
 if((self__.size <= self__.arr.length)){
-var id_SINGLEQUOTE__31860 = self__.arr.shift();
-cljs.core.swap_BANG_.call(null,self__.index,((function (id_SINGLEQUOTE__31860,x_SINGLEQUOTE__31859,this$){
-return (function (p1__31858_SHARP_){
-return cljs.core.assoc.call(null,cljs.core.dissoc.call(null,p1__31858_SHARP_,id_SINGLEQUOTE__31860),id,x_SINGLEQUOTE__31859);
-});})(id_SINGLEQUOTE__31860,x_SINGLEQUOTE__31859,this$))
+var id_SINGLEQUOTE__31903 = self__.arr.shift();
+cljs.core.swap_BANG_.call(null,self__.index,((function (id_SINGLEQUOTE__31903,x_SINGLEQUOTE__31902,this$){
+return (function (p1__31901_SHARP_){
+return cljs.core.assoc.call(null,cljs.core.dissoc.call(null,p1__31901_SHARP_,id_SINGLEQUOTE__31903),id,x_SINGLEQUOTE__31902);
+});})(id_SINGLEQUOTE__31903,x_SINGLEQUOTE__31902,this$))
 );
 } else {
-cljs.core.swap_BANG_.call(null,self__.index,cljs.core.assoc,id,x_SINGLEQUOTE__31859);
+cljs.core.swap_BANG_.call(null,self__.index,cljs.core.assoc,id,x_SINGLEQUOTE__31902);
 }
 
 return self__.arr.push(id);
@@ -43,8 +43,8 @@ om.next.cache.Cache.cljs$lang$type = true;
 
 om.next.cache.Cache.cljs$lang$ctorStr = "om.next.cache/Cache";
 
-om.next.cache.Cache.cljs$lang$ctorPrWriter = (function (this__22086__auto__,writer__22087__auto__,opt__22088__auto__){
-return cljs.core._write.call(null,writer__22087__auto__,"om.next.cache/Cache");
+om.next.cache.Cache.cljs$lang$ctorPrWriter = (function (this__22097__auto__,writer__22098__auto__,opt__22099__auto__){
+return cljs.core._write.call(null,writer__22098__auto__,"om.next.cache/Cache");
 });
 
 om.next.cache.__GT_Cache = (function om$next$cache$__GT_Cache(arr,index,size){
@@ -55,4 +55,4 @@ om.next.cache.cache = (function om$next$cache$cache(size){
 return (new om.next.cache.Cache([],cljs.core.atom.call(null,cljs.core.PersistentArrayMap.EMPTY),size));
 });
 
-//# sourceMappingURL=cache.js.map?rel=1468449914147
+//# sourceMappingURL=cache.js.map?rel=1470139190176

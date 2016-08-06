@@ -4,8 +4,10 @@
   :license {:name "Eclipse Public License v1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha10"]
+                 [org.clojure/core.match "0.3.0-alpha4"]
                  [org.clojure/java.jdbc "0.6.1"]
                  [org.postgresql/postgresql "9.4.1208.jre7"]
+                 [org.clojure/test.check "0.9.0"]
                  [compojure "1.5.1"]
                  [ring/ring-core "1.6.0-beta1"]
                  [ring/ring-jetty-adapter "1.6.0-beta1"]
@@ -14,7 +16,7 @@
                  [cheshire "5.6.2"]
                  [environ "1.0.3"]]
   :main ^:skip-aot cloudxmark.web
-  :source-paths ["src" "resources/public/commonsrc"]
+  :source-paths ["src"]
   :resource-paths ["resources"]
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.3.1"] [lein-ring "0.8.13"]]
