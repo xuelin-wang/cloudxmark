@@ -28,7 +28,7 @@
           (let [dot-index (.indexOf name ".")
                 [this-entity this-select]
                 (if (< dot-index 0)
-                  [entity name]
+                  [(unkebab entity) name]
                   [(.substring name 0 dot-index) (.substring name (inc dot-index))])]
              {:selects [:-attr (or (get alias-map this-entity) this-entity) this-select] :params []}
             )
