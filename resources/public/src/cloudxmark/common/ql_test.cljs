@@ -47,7 +47,6 @@
     (test/is (= {:selects [:-attr "d" "aa"] :params []} (ql/parse-attr :table_d.aa vars "table_d" table-alias) ))
     (test/is (= {:selects [:-attr "d" "aa"] :params []} (ql/parse-attr :aa vars "table_d" table-alias) ))
 )
-
 (test/deftest test-parse-exp
   (test/is (= {:selects [:empty? [:-attr :?]] :params ["xy z"]}
               (ql/parse-exp [:empty? "xy z"] vars "table_d" table-alias)
@@ -71,6 +70,41 @@
     (test/is (= {:selects [:empty? [:-attr :?]] :params ["xy z"]} (ql/parse-exp [:empty? ["xy z"]] vars "table_d" table-alias)))
     (test/is (= {:selects [:empty? [:process [:-attr :?]]] :params ["xy z"]} (ql/parse-exp [:empty? [:process "xy z"]] vars "table_d" table-alias)))
     (test/is (= {:selects [:empty? [:process [:item [:-attr :?] ]]] :params ["xy z"]} (ql/parse-exp [:empty? [:process [:item "xy z"]]] vars "table_d" table-alias)))
+    )
+
+(test/deftest test-parse-exp->sql
+  (test/is (= "? > 0"
+              (ql/parsed-exp->sql [:pos? [:-attr :?]])
+              ))
+
+  (test/is (= "? <= 0"
+              (ql/parsed-exp->sql [:not-pos? [:-attr :?]]) ))
+
+  (test/is (thrown? Exception (ql/parsed-exp->sql [:empty? [:-attr :?]])))
+
+  (test/is (= "? > ?"
+              (ql/parsed-exp->sql [:> [:-attr :?] [:-attr :?]]) ))
+
+  (test/is (= "? >= ?"
+              (ql/parsed-exp->sql [:>= [:-attr :?] [:-attr :?]]) ))
+
+  (test/is (thrown? Exception
+              (ql/parsed-exp->sql [:<< [:-attr :?] [:-attr :?]]) ))
+
+  (test/is (= "d.amount BETWEEN ? AND ?"
+              (ql/parsed-exp->sql [:between [:-attr "d" "amount"] [:-attr :?] [:-attr :?]])))
+
+  (test/is (thrown? Exception
+              (ql/parsed-exp->sql [:abc [:-attr "d" "amount"] [:-attr :?] [:-attr :?]])))
+
+  (test/is (= "d.amount"
+              (ql/parsed-exp->sql [:-attr "d" "amount"])))
+
+  (test/is (= "?"
+              (ql/parsed-exp->sql [:-attr :?])))
+
+  (test/is (thrown? Exception
+              (ql/parsed-exp->sql [:-attr :? :? :?])))
 )
 
 (test/deftest test-parse-query

@@ -126,6 +126,31 @@
     )
   )
 
-(defn query->sql []
-  ()
+(defn parsed-exp->sql [exp]
+  (match [exp]
+         [[:-attr :?]] "?"
+         [[:-attr alias col]] (str alias "." col)
+         [[:between sel1 sel2 sel3]] (str (parsed-exp->sql sel1) " BETWEEN " (parsed-exp->sql sel2) " AND " (parsed-exp->sql sel3))
+         [[op sel1 sel2]] (if (#{:> :>= :< :<= :=} op)
+                             (str (parsed-exp->sql sel1) " " (name op) " " (parsed-exp->sql sel2))
+                             (throw (Exception. (str "Unsupported binary operator: " op)))
+                             )
+         [[op sel]] (case op
+                       :pos? (str (parsed-exp->sql sel) " > 0")
+                       :not-pos? (str (parsed-exp->sql sel) " <= 0")
+                       :neg? (str (parsed-exp->sql sel) " < 0")
+                       :not-neg? (str (parsed-exp->sql sel) " >= 0")
+                       (throw (Exception. (str "Unsupported unary operator: " op)))
+                       )
+         )
+  )
+
+(defn parsed-query->sql [{:keys [selects params where vars entity-alias-map]} as parsed-query]
+  (let [sel-str (into [] (map parsed-exp->sql selects))
+        where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map parsed-exp->sql (:selects where))))
+        from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str k " " v))
+                      entity-alias-map))
+        ]
+    (str "SELECT " sel-str " FROM " from-str (if-not (nil? where-sel-str) (str " WHERE " where-sel-str)))
+   )
   )
