@@ -145,10 +145,11 @@
          )
   )
 
-(defn parsed-query->sql [{:keys [selects params where vars entity-alias-map]} as parsed-query]
-  (let [sel-str (into [] (map parsed-exp->sql selects))
+(defn parsed-query->sql [{:keys [selects params where vars entity-alias-map] :as parsed-query}]
+  (let [sel-str (clojure.string/join ", " (map parsed-exp->sql selects))
+
         where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map parsed-exp->sql (:selects where))))
-        from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str k " " v))
+        from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                       entity-alias-map))
         ]
     (str "SELECT " sel-str " FROM " from-str (if-not (nil? where-sel-str) (str " WHERE " where-sel-str)))
