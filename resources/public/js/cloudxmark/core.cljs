@@ -597,10 +597,10 @@
 (defui Lsts
   static om/IQueryParams
   (params [_]
-          {:query-user nil :query-ver 0})
+          {:query-user nil :query-ver 0 :query-query nil})
   static om/IQuery
   (query [_]
-         '[(:lst {:query-user ?query-user :query-ver ?query-ver})])
+         '[(:lst {:query-user ?query-user :query-ver ?query-ver :query-query ?query-query})])
   Object
   (render [this]
           (println (str "om/props in render:" (om/props this)))
@@ -743,8 +743,8 @@
           (= type :lst-search)
           (let [
                 dontcare (println (str "lst query data:" data))
-                {:keys [query-user query-ver]} data
-                url "/getItems"
+                {:keys [query-user query-ver query-query]} data
+                url (str "/getItems?" (if (empty? query-query) "" (str "query=" (js/encodeURIComponent query-query))))
                 results-js (<! (jsonp url))
                 results1 (js->clj results-js)
                 results2 (convert-json-lsts-result results1 query-ver :refresh-lists)

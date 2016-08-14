@@ -1,6 +1,9 @@
 (ns cloudxmark.common.ql
-  (:require [clojure.core.match :refer [match]]) ;clojureOnly
+  (:require
+   [clojure.core.match :refer [match]] ;clojureOnly
 
+   [cloudxmark.common.util :refer [throw-common]]
+)
   )
 
 (def op-types [:query :mutation])
@@ -107,7 +110,7 @@
          (map? attr)
          (if (is-entity? (:entity attr))
            (parse-query attr curr-parsed)
-           (throw (RuntimeException. (str "attribute map's :entity is not an entity: " attr)) )
+           (throw-common (str "attribute map's :entity is not an entity: " attr))
            )
 
          (let [parsed-attr (parse-exp attr vars entity entity-alias-map) ]
@@ -133,14 +136,14 @@
          [[:between sel1 sel2 sel3]] (str (parsed-exp->sql sel1) " BETWEEN " (parsed-exp->sql sel2) " AND " (parsed-exp->sql sel3))
          [[op sel1 sel2]] (if (#{:> :>= :< :<= :=} op)
                              (str (parsed-exp->sql sel1) " " (name op) " " (parsed-exp->sql sel2))
-                             (throw (Exception. (str "Unsupported binary operator: " op)))
+                             (throw-common (str "Unsupported binary operator: " op))
                              )
          [[op sel]] (case op
                        :pos? (str (parsed-exp->sql sel) " > 0")
                        :not-pos? (str (parsed-exp->sql sel) " <= 0")
                        :neg? (str (parsed-exp->sql sel) " < 0")
                        :not-neg? (str (parsed-exp->sql sel) " >= 0")
-                       (throw (Exception. (str "Unsupported unary operator: " op)))
+                       (throw-common (str "Unsupported unary operator: " op))
                        )
          )
   )

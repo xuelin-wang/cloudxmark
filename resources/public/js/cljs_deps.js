@@ -1,7 +1,8 @@
 goog.addDependency("base.js", ['goog'], []);
 goog.addDependency("../cljs/core.js", ['cljs.core'], ['goog.string', 'goog.object', 'goog.math.Integer', 'goog.string.StringBuffer', 'goog.array', 'goog.math.Long']);
+goog.addDependency("../cloudxmark/common/util.js", ['cloudxmark.common.util'], ['cljs.core']);
 goog.addDependency("../cljs/core/match.js", ['cljs.core.match'], ['cljs.core']);
-goog.addDependency("../cloudxmark/common/ql.js", ['cloudxmark.common.ql'], ['cljs.core', 'cljs.core.match']);
+goog.addDependency("../cloudxmark/common/ql.js", ['cloudxmark.common.ql'], ['cljs.core', 'cloudxmark.common.util', 'cljs.core.match']);
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
 goog.addDependency("../cljs/pprint.js", ['cljs.pprint'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer', 'clojure.string']);
 goog.addDependency("../cljs/test.js", ['cljs.test'], ['cljs.core', 'cljs.pprint', 'clojure.string']);

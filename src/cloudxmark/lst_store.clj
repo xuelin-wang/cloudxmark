@@ -3,6 +3,7 @@
       [clojure.java.jdbc :as sql]
       [clojure.string :as str]
       [cloudxmark.common.lst-common :as lst-common]
+      [cloudxmark.common.ql :as ql]
       ))
 
 (def store-uri (or (System/getenv "DATABASE_URL") "postgresql://localhost:5432/lst"))
@@ -69,6 +70,15 @@
         (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN  item i ON l.lst_id = i.lst_id  WHERE l.owner = ? AND l.name = ? ")
                               owner lst-name])
         )
+    )
+  )
+
+(defn query-lst [owner query]
+  (let [
+        {:keys [selects where params vars entity-alias-map] :as parsed-query} (ql/parse-query query {:vars {"lst_owner" owner}})
+        sql (ql/parsed-query->sql parsed-query)
+        ]
+        (sql/query store-uri (into [] (cons sql params)))
     )
   )
 

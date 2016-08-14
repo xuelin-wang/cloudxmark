@@ -1,1 +1,2 @@
 (require 'cloudxmark.web)
+(require 'cloudxmark.common.ql-test)
