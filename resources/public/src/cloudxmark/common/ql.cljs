@@ -29,11 +29,11 @@
         (if (.startsWith name "$")
           {:selects [:-attr :?] :params [(get vars (.substring name 1))]}
           (let [dot-index (.indexOf name ".")
-                [this-entity this-select]
+                [this-alias this-select]
                 (if (< dot-index 0)
-                  [(unkebab entity) name]
+                  [entity-alias name]
                   [(.substring name 0 dot-index) (.substring name (inc dot-index))])]
-             {:selects [:-attr (or (get alias-map this-entity) this-entity) this-select] :params []}
+             {:selects [:-attr this-alias this-select] :params []}
             )
           )
         )
@@ -88,8 +88,8 @@
 (defn parse-query [{:keys [entity alias args attributes] :as query}
                    {:keys [selects where params vars entity-alias-map] :as parsed}]
   (let [
-        this-alias (or alias entity)
-        new-entity-alias-map (merge (or entity-alias-map {}) {entity this-alias})
+        this-alias (or alias (unkebab entity))
+        new-entity-alias-map (merge (or entity-alias-map {}) (if (nil? entity) {} {entity this-alias}))
 
         new-where (reduce
                      (fn [{:keys [selects params] :as curr-parsed} arg]
@@ -148,13 +148,17 @@
          )
   )
 
-(defn parsed-query->sql [{:keys [selects params where vars entity-alias-map] :as parsed-query}]
+(defn parsed-query->sql-params [{:keys [selects params where vars entity-alias-map] :as parsed-query}]
   (let [sel-str (clojure.string/join ", " (map parsed-exp->sql selects))
 
         where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map parsed-exp->sql (:selects where))))
         from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                       entity-alias-map))
         ]
-    (str "SELECT " sel-str " FROM " from-str (if-not (nil? where-sel-str) (str " WHERE " where-sel-str)))
+    [
+     (str "SELECT " sel-str " FROM " from-str (if-not (nil? where-sel-str) (str " WHERE " where-sel-str)))
+     (concat (or params []) (or (:params where) []))
+     ]
+
    )
   )

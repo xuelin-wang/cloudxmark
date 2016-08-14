@@ -3018,3 +3018,181 @@ notifying browser that file changed:  out/cloudxmark/common/lst_common.js
 notifying browser that file changed:  out/cloudxmark/common/ql.js
 notifying browser that file changed:  out/cloudxmark/common/ql_test.js
 notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.265 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.733 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.903 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.341 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.55 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.616 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 2.844 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 2.929 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 2.838 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 2.794 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 2.813 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js

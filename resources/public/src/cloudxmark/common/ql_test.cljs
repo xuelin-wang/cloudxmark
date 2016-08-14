@@ -42,9 +42,9 @@
   (is (= {:selects [:-attr :?] :params [0.5]} (ql/parse-attr :$zz vars "table_d" table-alias) ))
   (is (= {:selects [:-attr :?] :params [nil]} (ql/parse-attr :$aa vars "table_d" table-alias) ))
 
-    (is (= {:selects [:-attr "c" "aa"] :params []} (ql/parse-attr :table_c.aa vars "table_d" table-alias) ))
-    (is (= {:selects [:-attr "c" "aa"] :params []} (ql/parse-attr :table_c.aa vars "table_c" table-alias) ))
-    (is (= {:selects [:-attr "d" "aa"] :params []} (ql/parse-attr :table_d.aa vars "table_d" table-alias) ))
+    (is (= {:selects [:-attr "c" "aa"] :params []} (ql/parse-attr :c.aa vars "table_d" table-alias) ))
+    (is (= {:selects [:-attr "c" "aa"] :params []} (ql/parse-attr :c.aa vars "table_c" table-alias) ))
+    (is (= {:selects [:-attr "d" "aa"] :params []} (ql/parse-attr :d.aa vars "table_d" table-alias) ))
     (is (= {:selects [:-attr "d" "aa"] :params []} (ql/parse-attr :aa vars "table_d" table-alias) ))
 )
 (deftest test-parse-exp
@@ -62,9 +62,9 @@
   (is (= {:selects [:gt? [:-attr :?] [:-attr :?]] :params [0.5 1]} (ql/parse-exp [:gt? :$zz :$yy] vars "table_d" table-alias) ))
   (is (= {:selects [:eq? [:-attr :?] [:-attr :?]] :params [nil 3]} (ql/parse-exp [:eq? :$aa 3] vars "table_d" table-alias) ))
 
-    (is (= {:selects [:empty? [:-attr "c" "aa"]] :params []} (ql/parse-exp [:empty? :table_c.aa] vars "table_d" table-alias) ))
-    (is (= {:selects [:gt? [:-attr "c" "aa"] [:-attr "d" "aa"]] :params []} (ql/parse-exp [:gt? :table_c.aa :table_d.aa] vars "table_c" table-alias) ))
-    (is (= {:selects [:empty? [:-attr "d" "aa"]] :params []} (ql/parse-exp [:empty? :table_d.aa] vars "table_d" table-alias) ))
+    (is (= {:selects [:empty? [:-attr "c" "aa"]] :params []} (ql/parse-exp [:empty? :c.aa] vars "table_d" table-alias) ))
+    (is (= {:selects [:gt? [:-attr "c" "aa"] [:-attr "d" "aa"]] :params []} (ql/parse-exp [:gt? :c.aa :d.aa] vars "table_c" table-alias) ))
+    (is (= {:selects [:empty? [:-attr "d" "aa"]] :params []} (ql/parse-exp [:empty? :d.aa] vars "table_d" table-alias) ))
     (is (= {:selects [:empty? [:-attr "d" "aa"]] :params []} (ql/parse-exp [:empty? :aa] vars "table_d" table-alias) ))
 
     (is (= {:selects [:empty? [:-attr :?]] :params ["xy z"]} (ql/parse-exp [:empty? ["xy z"]] vars "table_d" table-alias)))
@@ -114,7 +114,7 @@
              :selects [[:-attr "lst" "lst_id"]]
              :params []
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -131,7 +131,7 @@
              :selects [[:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "lst" "description"]]
              :params []
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -148,7 +148,7 @@
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr :?] [:-attr :?] [:-attr :?] [:-attr :?] ]
              :params [nil "a b c" 123 nil ""]
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -166,7 +166,7 @@
              :params [101 "a b c" 123 nil ""]
              :vars {"var_1" 101}
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -185,7 +185,7 @@
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
              :params [101]
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
 
@@ -205,7 +205,7 @@
              :selects [[:-attr "lst" "lst_id"]]
              :params []
              :where {:selects [[:pos? [:-attr "lst" "lst_id"]]] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -222,7 +222,7 @@
              :selects [[:-attr "lst" "lst_id"]]
              :params []
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
 
             (ql/parse-query
@@ -239,7 +239,7 @@
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
              :params [101]
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
 
@@ -262,7 +262,7 @@
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]]
                                [:eq? [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]] ]
                      :params ["blah"]}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
 
@@ -278,119 +278,142 @@
              )))
   )
 
-(deftest test-parsed-query->sql
+(deftest test-parsed-query->sql-params
   (is (=
-            (str
+       [
+        (str
              "SELECT lst.lst_id"
              " FROM lst lst"
              )
+        []
+        ]
 
-            (ql/parsed-query->sql
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr "lst" "lst_id"]]
              :params []
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-            (str
+       [
+        (str
              "SELECT lst.lst_id, lst.name, lst.description"
              " FROM lst lst"
              )
+        []
+        ]
 
-            (ql/parsed-query->sql
+
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "lst" "description"]]
              :params []
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-            (str
+       [
+        (str
              "SELECT ?, lst.lst_id, ?, ?, ?, ?"
              " FROM lst lst"
              )
+        [nil "a b c" 123 nil ""]
+        ]
 
-            (ql/parsed-query->sql
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr :?] [:-attr :?] [:-attr :?] [:-attr :?] ]
              :params [nil "a b c" 123 nil ""]
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
 
   (is (=
-            (str
+       [
+    (str
              "SELECT ?, lst.lst_id, item.lst_id"
              " FROM lst lst, item item"
              )
+    [101]
+        ]
 
-            (ql/parsed-query->sql
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
              :params [101]
              :where {:selects [] :params []}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
              )))
 
 
   (is (=
-            (str
+       [
+                    (str
              "SELECT lst.lst_id"
              " FROM lst lst"
              " WHERE lst.lst_id < 0 AND lst.name = ?"
              )
+                    ["blah"]
+        ]
 
-            (ql/parsed-query->sql
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr "lst" "lst_id"]]
              :params []
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst :lst}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-            (str
+       [
+                    (str
              "SELECT ?, lst.lst_id, item.lst_id"
              " FROM lst lst, item item"
              " WHERE lst.lst_id < 0 AND lst.name = ?"
              )
+                    [101 "blah"]
+        ]
 
-            (ql/parsed-query->sql
+
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
              :params [101]
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
              )))
 
 
   (is (=
-            (str
+       [
+        (str
              "SELECT ?, lst.lst_id, lst.name, item.lst_id"
              " FROM lst lst, item item"
              " WHERE lst.lst_id < 0 AND lst.name = ? AND lst.lst_id = item.lst_id"
              )
+        [101 "blah"]
+        ]
 
-            (ql/parsed-query->sql
+            (ql/parsed-query->sql-params
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
              :params [101]
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]]
                                [:= [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]] ]
                      :params ["blah"]}
-             :entity-alias-map {:lst :lst :item :item}
+             :entity-alias-map {:lst "lst" :item "item"}
               :vars {"var_1" 101}
              }
              )))
