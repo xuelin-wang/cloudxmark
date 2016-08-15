@@ -63,7 +63,43 @@
     )
   )
 
+
+
+(defn query-lst [owner query]
+  (let [
+        {:keys [selects where params vars entity-alias-map] :as parsed-query}
+          (ql/parse-query query {:vars {"lst_owner" owner}})
+        dontcare1 (println (str "parsedquery:" parsed-query))
+        [sql sql-params] (ql/parsed-query->sql-params parsed-query)
+        dontcare (println (str "sql:" sql ", sql-params:" sql-params))
+        ]
+        (sql/query store-uri (into [] (cons sql sql-params)))
+    )
+  )
+
 (defn find-items [owner lst-name]
+  (let [
+        query
+             {:entity :lst
+              :alias "l"
+              :args (if (nil? lst-name)
+                      [[:= :owner :$lst_owner]]
+                      [[:= :owner :$lst_owner] [:= :name :$lst_name]]
+                      )
+              :vars (if (nil? lst-name) {} {"lst_name" lst-name})
+              :attributes [
+                           :lst-id :owner
+                           :name :description :labels
+                           {:entity :item :alias "i"
+                            :args [[:= :l.lst_id :i.lst_id]] :attributes [:name :value :labels]}]
+              }
+        ]
+    (query-lst owner query)
+    (println (str (into []     (query-lst owner query) )))
+    )
+
+
+  (comment
   (let [select-cols "l.lst_id AS lst_id, l.owner AS lst_owner, l.name AS lst_name, l.description AS lst_discription, l.labels AS lst_labels, i.name AS name, i.value AS value, i.labels AS labels "]
     (if (nil? lst-name)
         (sql/query store-uri [(str "SELECT " select-cols " FROM lst l LEFT OUTER JOIN item i ON l.lst_id = i.lst_id  WHERE l.owner = ?") owner])
@@ -71,17 +107,8 @@
                               owner lst-name])
         )
     )
-  )
-
-(defn query-lst [owner query]
-  (let [
-        {:keys [selects where params vars entity-alias-map] :as parsed-query} (ql/parse-query query {:vars {"lst_owner" owner}})
-        dontcare1 (println (str "parsedquery:" parsed-query))
-        [sql sql-params] (ql/parsed-query->sql-params parsed-query)
-        dontcare (println (str "sql:" sql ", sql-params:" sql-params))
-        ]
-        (sql/query store-uri (into [] (cons sql sql-params)))
     )
+
   )
 
 (defn get-pass [id]

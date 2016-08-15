@@ -85,15 +85,16 @@
   (entity-names name)
   )
 
-(defn parse-query [{:keys [entity alias args attributes] :as query}
+(defn parse-query [{:keys [entity alias args  attributes] :as query}
                    {:keys [selects where params vars entity-alias-map] :as parsed}]
   (let [
         this-alias (or alias (unkebab entity))
         new-entity-alias-map (merge (or entity-alias-map {}) (if (nil? entity) {} {entity this-alias}))
+        merged-vars (merge {} vars (:vars query))
 
         new-where (reduce
                      (fn [{:keys [selects params] :as curr-parsed} arg]
-                       (let [parsed-arg (parse-exp arg vars entity new-entity-alias-map)]
+                       (let [parsed-arg (parse-exp arg merged-vars entity new-entity-alias-map)]
                          {:selects (apply merge selects [(:selects parsed-arg)] )
                           :params (apply merge params (:params parsed-arg))
                           }
@@ -123,6 +124,7 @@
      (merge parsed {
                     :where new-where
                     :params (or params [])
+                    :vars merged-vars
                     :entity-alias-map new-entity-alias-map})
      attributes
      )
