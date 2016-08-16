@@ -135,6 +135,7 @@
   (match [exp]
          [[:-attr :?]] "?"
          [[:-attr alias col]] (str alias "." col)
+         [[:count]] "COUNT(*)"
          [[:between sel1 sel2 sel3]] (str (parsed-exp->sql sel1) " BETWEEN " (parsed-exp->sql sel2) " AND " (parsed-exp->sql sel3))
          [[op sel1 sel2]] (if (#{:> :>= :< :<= :=} op)
                              (str (parsed-exp->sql sel1) " " (name op) " " (parsed-exp->sql sel2))
@@ -145,6 +146,9 @@
                        :not-pos? (str (parsed-exp->sql sel) " <= 0")
                        :neg? (str (parsed-exp->sql sel) " < 0")
                        :not-neg? (str (parsed-exp->sql sel) " >= 0")
+                       :max (str "MAX(" (parsed-exp->sql sel) ")")
+                       :min (str "MIN(" (parsed-exp->sql sel) ")")
+                       :average (str "AVG(" (parsed-exp->sql sel) ")")
                        (throw-common (str "Unsupported unary operator: " op))
                        )
          )

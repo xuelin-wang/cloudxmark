@@ -54,27 +54,59 @@
                                                ))
        )
 
-(defn find-lsts [owner name]
-  (let [select-cols "lst_id, owner, name, description, labels "]
-    (if (nil? name)
-        (sql/query store-uri [(str "SELECT " select-cols "FROM lst WHERE owner = ?") owner])
-        (sql/query store-uri [(str "SELECT " select-cols "FROM lst WHERE owner = ? AND name = ? ") owner name])
-        )
-    )
-  )
-
-
-
 (defn query-lst [owner query]
   (let [
         {:keys [selects where params vars entity-alias-map] :as parsed-query}
           (ql/parse-query query {:vars {"lst_owner" owner}})
         dontcare1 (println (str "parsedquery:" parsed-query))
         [sql sql-params] (ql/parsed-query->sql-params parsed-query)
-        dontcare (println (str "sql:" sql ", sql-params:" sql-params))
+        dontcare (println (str "sql:" sql ", sql-params:" (into [] (cons sql sql-params))))
+        results (sql/query store-uri (into [] (cons sql sql-params)))
         ]
-        (sql/query store-uri (into [] (cons sql sql-params)))
+    (println (str (into [] results)))
+    results
     )
+  )
+
+(defn get-pass [id]
+  (let [query {:entity :auth :alias "a"
+               :args [[:= :id id]]
+               :attributes [:password]
+               }
+        ]
+    (query-lst nil query)
+    )
+  (comment
+(let [
+            results (sql/query store-uri ["SELECT password FROM auth WHERE id = ?" id])
+            ]
+           (:password (first results))
+           )
+    )
+      )
+
+(defn find-lsts [owner lst-name]
+  (let [query {:entity :lst  :alias "l"
+               :args (if (nil? lst-name)
+                      [[:= :owner :$lst_owner]]
+                      [[:= :owner :$lst_owner] [:= :name :$lst_name]]
+                      )
+               :vars (if (nil? lst-name) {} {"lst_name" lst-name})
+               :attributes [:lst-id :owner :name :description :labels]
+               }
+        ]
+    (query-lst owner query)
+    )
+
+  (comment
+  (let [select-cols "lst_id, owner, name, description, labels "]
+    (if (nil? name)
+        (sql/query store-uri [(str "SELECT " select-cols "FROM lst WHERE owner = ?") owner])
+        (sql/query store-uri [(str "SELECT " select-cols "FROM lst WHERE owner = ? AND name = ? ") owner name])
+        )
+    )
+    )
+
   )
 
 (defn find-items [owner lst-name]
@@ -88,14 +120,12 @@
                       )
               :vars (if (nil? lst-name) {} {"lst_name" lst-name})
               :attributes [
-                           :lst-id :owner
-                           :name :description :labels
+                           :lst-id :owner :name :description :labels
                            {:entity :item :alias "i"
                             :args [[:= :l.lst_id :i.lst_id]] :attributes [:name :value :labels]}]
               }
         ]
-    (query-lst owner query)
-    (println (str (into []     (query-lst owner query) )))
+        (query-lst owner query)
     )
 
 
@@ -111,20 +141,30 @@
 
   )
 
-(defn get-pass [id]
-      (let [
-            results (sql/query store-uri ["SELECT password FROM auth WHERE id = ?" id])
-            ]
-           (:password (first results))
-           )
-      )
+
 
 (defn no-auth? []
+  (let [
+        query
+             {:entity :auth
+              :alias "a"
+              :args []
+              :vars {}
+              :attributes [[:count]]
+              }
+        results (query-lst nil query)
+            [_ cnt] (first (first results))
+        ]
+    (zero? cnt)
+    )
+  (comment
       (let [
             results (sql/query store-uri ["SELECT count(*) AS cnt FROM auth"])
+
             ]
            (zero? (:cnt (first results)))
            )
+    )
       )
 
 (defn- no-lst? []
