@@ -3,9 +3,12 @@
             [com.rpl.specter.prot-opt-invoke
               :refer [mk-optimized-invocation]]
             [com.rpl.specter.defhelpers :refer [define-ParamsNeededPath]]
+            [com.rpl.specter.util-macros :refer [doseqres]]
             )
   (:use [com.rpl.specter.protocols :only
-    [select* transform* collect-val]])
+          [select* transform* collect-val]]
+                                                            
+)
   (:require [com.rpl.specter.protocols :as p]
             [clojure.walk :as walk]
                                                
@@ -14,8 +17,10 @@
                                             
             )
        
-                                  
+                                              
   )
+
+(def NONE ::NONE)
 
 (defn spy [e]
   (println "SPY:")
@@ -30,6 +35,21 @@
 (defn smart-str [& elems]
   (apply str (map smart-str* elems)))
 
+(defn fast-constantly [v]
+  (fn ([] v)
+      ([a1] v)
+      ([a1 a2] v)
+      ([a1 a2 a3] v)
+      ([a1 a2 a3 a4] v)
+      ([a1 a2 a3 a4 a5] v)
+      ([a1 a2 a3 a4 a5 a6] v)
+      ([a1 a2 a3 a4 a5 a6 a7] v)
+      ([a1 a2 a3 a4 a5 a6 a7 a8] v)
+      ([a1 a2 a3 a4 a5 a6 a7 a8 a9] v)
+      ([a1 a2 a3 a4 a5 a6 a7 a8 a9 a10] v)
+      ([a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 & r] v)
+      ))
+
      
                                
                                            
@@ -43,28 +63,25 @@
 (defn throw-illegal [& args]
   (throw (js/Error. (apply str args))))
 
-;; these macroexpand functions are for path macro in bootstrap cljs environment
+;; need to get the expansion function like this so that 
+;; this code compiles in a clojure environment where cljs.analyzer
+;; namespace does not exist
+     
+                                    
+                                      
+
+;; this version is for bootstrap cljs
       
-(defn macroexpand'
-  [form]
-  (let [orig-eval-fn ^:cljs.analyzer/no-resolve cljs.js/*eval-fn*]
-    (try
-      (set! ^:cljs.analyzer/no-resolve cljs.js/*eval-fn* ^:cljs.analyzer/no-resolve cljs.js/js-eval)
-      (^:cljs.analyzer/no-resolve cljs.js/eval (^:cljs.analyzer/no-resolve cljs.js/empty-state)
-        `(macroexpand (quote ~form))
-        identity)
-      (finally
-        (set! ^:cljs.analyzer/no-resolve cljs.js/*eval-fn* orig-eval-fn)))))
+(defn cljs-analyzer-macroexpand-1 []
+  ^:cljs.analyzer/no-resolve cljs.analyzer/macroexpand-1)
+
+     
+                                
+                                 
 
       
-(defn do-macroexpand-all
-  "Recursively performs all possible macroexpansions in form."
-  {:added "1.1"}
-  [form]
-  (walk/prewalk (fn [x]
-                  (if (seq? x)
-                    (macroexpand' x)
-                    x)) form))
+(defn clj-macroexpand-all [form]
+  (throw-illegal "not implemented"))
 
      
                                                  
@@ -72,10 +89,6 @@
       
 (defn intern* [ns name val]
   (throw-illegal "intern not supported in ClojureScript"))
-
-     
-                               
-                                 
 
 ;; so that macros.clj compiles appropriately when
 ;; run in cljs (this code isn't called in that case)
@@ -92,15 +105,18 @@
    (dotimes [_ iters]
      (afn))))
 
-(deftype ExecutorFunctions [type select-executor transform-executor])
+(deftype ExecutorFunctions [type traverse-executor transform-executor])
 
 (def RichPathExecutor
   (->ExecutorFunctions
     :richpath
-    (fn [params params-idx selector structure]
+    (fn [params params-idx selector result-fn structure]
       (selector params params-idx [] structure
         (fn [_ _ vals structure]
-          (if-not (identical? [] vals) [(conj vals structure)] [structure]))))
+          (result-fn
+            (if (identical? vals [])
+              structure
+              (conj vals structure))))))
     (fn [params params-idx transformer transform-fn structure]
       (transformer params params-idx [] structure
         (fn [_ _ vals structure]
@@ -112,8 +128,8 @@
 (def LeanPathExecutor
   (->ExecutorFunctions
     :leanpath
-    (fn [params params-idx selector structure]
-      (selector structure (fn [structure] [structure])))
+    (fn [params params-idx selector result-fn structure]
+      (selector structure result-fn))
     (fn [params params-idx transformer transform-fn structure]
       (transformer structure transform-fn))
     ))
@@ -416,29 +432,47 @@
 (defn num-needed-params [path]
   (if (instance? CompiledPath path)
     0
-    (:num-needed-params path)))
+    (.-num-needed-params ^ParamsNeededPath path)))
 
 
 ;; cell implementation idea taken from prismatic schema library
+      
 (defprotocol PMutableCell
-                         
   (set_cell [cell x]))
 
+      
 (deftype MutableCell [^:volatile-mutable q]
   PMutableCell
-                           
   (set_cell [this x] (set! q x)))
 
+      
 (defn mutable-cell
   ([] (mutable-cell nil))
   ([init] (MutableCell. init)))
 
+      
 (defn set-cell! [cell val]
   (set_cell cell val))
 
+      
 (defn get-cell [cell]
                                (.-q cell)
   )
+
+
+     
+                  
+                         
+                         
+
+     
+                               
+           
+
+     
+                                  
+             
+
 
 (defn update-cell! [cell afn]
   (let [ret (afn (get-cell cell))]
@@ -453,6 +487,12 @@
   (prepend-all [structure elements]))
 
 (extend-protocol AddExtremes
+  nil
+  (append-all [_ elements]
+    elements)
+  (prepend-all [_ elements]
+    elements)
+
                                              cljs.core/PersistentVector
   (append-all [structure elements]
     (reduce conj structure elements))
@@ -512,7 +552,8 @@
       (assoc v 0 (afn val))
       ))
   (update-last [v afn]
-    (let [c (vec-count v)]
+    ;; type-hinting vec-count to ^int caused weird errors with case
+    (let [c (int (vec-count v))]
       (case c
         1 (let [[e] v] [(afn e)])
         2 (let [[e1 e2] v] [e1 (afn e2)])
@@ -541,6 +582,9 @@
 
 
 (extend-protocol FastEmpty
+  nil
+  (fast-empty? [_] true)
+
                                               cljs.core/PersistentVector
   (fast-empty? [v]
     (= 0 (vec-count v)))
@@ -573,15 +617,157 @@
         ret
         ))))
 
-(defn- conj-all! [cell elems]
-  (set-cell! cell (concat (get-cell cell) elems)))
 
-(defn compiled-select*
-  [^com.rpl.specter.impl.CompiledPath path structure]
-  (let [^com.rpl.specter.impl.TransformFunctions tfns (.-transform-fns path)
-        ^com.rpl.specter.impl.ExecutorFunctions ex (.-executors tfns)]
-    ((.-select-executor ex) (.-params path) (.-params-idx path) (.-selector tfns) structure)
+(def collected?*
+  (->ParamsNeededPath
+    (->TransformFunctions
+      RichPathExecutor
+      (fn [params params-idx vals structure next-fn]
+        (let [afn (aget ^objects params params-idx)]
+          (if (afn vals)
+            (next-fn params (inc params-idx) vals structure)
+            NONE
+            )))
+      (fn [params params-idx vals structure next-fn]
+        (let [afn (aget ^objects params params-idx)]
+          (if (afn vals)
+            (next-fn params (inc params-idx) vals structure)
+            structure
+            ))))
+    1
     ))
+
+(def DISPENSE*
+  (no-params-compiled-path
+    (->TransformFunctions
+      RichPathExecutor
+      (fn [params params-idx vals structure next-fn]
+        (next-fn params params-idx [] structure))
+      (fn [params params-idx vals structure next-fn]
+        (next-fn params params-idx [] structure))
+      )))
+
+(defn transform-fns-field [^CompiledPath path]
+  (.-transform-fns path))
+
+(defn executors-field [^TransformFunctions tfns]
+  (.-executors tfns))
+
+(defn traverse-executor-field [^ExecutorFunctions ex]
+  (.-traverse-executor ex))
+
+(defn params-field [^CompiledPath path]
+  (.-params path))
+
+(defn params-idx-field [^CompiledPath path]
+  (.-params-idx path))
+
+(defn selector-field [^TransformFunctions tfns]
+  (.-selector tfns))
+
+;; amazingly doing this as a macro shows a big effect in the 
+;; benchmark for getting a value out of a nested map
+     
+                                                       
+                                          
+                                     
+                                  
+                          
+                              
+                            
+                
+                 
+      
+
+      
+(defn compiled-traverse* [path result-fn structure]
+  (let [tfns (transform-fns-field path)
+        ex (executors-field tfns)]
+    ((traverse-executor-field ex)
+      (params-field path)
+      (params-idx-field path)
+      (selector-field tfns)
+      result-fn
+      structure)
+    ))
+
+(defn do-compiled-traverse [apath structure]
+  (reify                                   cljs.core/IReduce
+    (                    -reduce
+      [this afn]
+      (                     -reduce this afn (afn)))
+    (                    -reduce
+      [this afn start]
+      (let [cell (mutable-cell start)]
+        (compiled-traverse*
+          apath
+          (fn [elem]
+            (let [curr (get-cell cell)]
+              (set-cell! cell (afn curr elem))
+              ))
+          structure
+          )
+        (get-cell cell)
+        ))))
+
+(defn compiled-select* [path structure]
+  (let [res (mutable-cell (transient []))
+        result-fn (fn [structure]
+                    (let [curr (get-cell res)]
+                      (set-cell! res (conj! curr structure))
+                      ))]
+    (compiled-traverse* path result-fn structure)
+    (persistent! (get-cell res))
+    ))
+
+(defn compiled-select-one* [path structure]
+  (let [res (mutable-cell NONE)
+        result-fn (fn [structure]
+                    (let [curr (get-cell res)]
+                      (if (identical? curr NONE)
+                        (set-cell! res structure)
+                        (throw-illegal "More than one element found in structure: " structure)
+                        )))]
+    (compiled-traverse* path result-fn structure)
+    (let [ret (get-cell res)]
+      (if (identical? ret NONE)
+        nil
+        ret
+        ))))
+
+(defn compiled-select-one!* [path structure]
+  (let [res (mutable-cell NONE)
+        result-fn (fn [structure]
+                    (let [curr (get-cell res)]
+                      (if (identical? curr NONE)
+                        (set-cell! res structure)
+                        (throw-illegal "More than one element found in structure: " structure)
+                        )))]
+    (compiled-traverse* path result-fn structure)
+    (let [ret (get-cell res)]
+      (if (identical? NONE ret)
+        (throw-illegal "Found no elements for select-one! on " structure))
+      ret
+      )))
+
+(defn compiled-select-first* [path structure]
+  (let [res (mutable-cell NONE)
+        result-fn (fn [structure]
+                    (let [curr (get-cell res)]
+                      (if (identical? curr NONE)
+                        (set-cell! res structure))))]
+    (compiled-traverse* path result-fn structure)
+    (let [ret (get-cell res)]
+      (if (identical? ret NONE)
+        nil
+        ret
+        ))))
+
+(defn compiled-select-any* [path structure]
+  (compiled-traverse* path identity structure))
+
+(defn compiled-selected-any?* [path structure]
+  (not= NONE (compiled-select-any* path structure)))
 
 (defn compiled-transform*
   [^com.rpl.specter.impl.CompiledPath path transform-fn structure]
@@ -593,21 +779,24 @@
 (defn not-selected?*
   [compiled-path structure]
   (->> structure
-       (compiled-select* compiled-path)
-       empty?))
+       (compiled-select-any* compiled-path)
+       (identical? NONE)))
 
 (defn selected?*
   [compiled-path structure]
   (not (not-selected?* compiled-path structure)))
 
-;; returns vector of all results
 (defn walk-select [pred continue-fn structure]
-  (let [ret (mutable-cell [])
+  (let [ret (mutable-cell NONE)
         walker (fn this [structure]
                  (if (pred structure)
-                   (conj-all! ret (continue-fn structure))
-                   (walk/walk this identity structure))
-                 )]
+                   (let [r (continue-fn structure)]
+                     (if-not (identical? r NONE)
+                       (set-cell! ret r))
+                     r
+                     )
+                   (walk/walk this identity structure)
+                   ))]
     (walker structure)
     (get-cell ret)
     ))
@@ -619,13 +808,9 @@
   (assoc structure akey (next-fn (get structure akey))
   ))
 
-     
-                                    
-                                         
-
-      
 (defn all-select [structure next-fn]
-  (into [] (mapcat #(next-fn %)) structure))
+  (doseqres NONE [e structure]
+    (next-fn e)))
 
       
 (defn queue? [coll]
@@ -667,14 +852,31 @@
   (all-transform [structure next-fn]
     (mapv next-fn structure))
 
-                                               cljs.core/PersistentArrayMap
+       
+                                 
+       
+                                    
+                                       
+                                        
+                    
+                           
+                              
+                              
+                                            
+                                          
+             
+              
+
+        
+  cljs.core/PersistentArrayMap
+        
   (all-transform [structure next-fn]
     (non-transient-map-all-transform structure next-fn {})
     )
 
                                               cljs.core/PersistentTreeMap
   (all-transform [structure next-fn]
-    (non-transient-map-all-transform structure next-fn (sorted-map))
+    (non-transient-map-all-transform structure next-fn (empty structure))
     )
 
                                               cljs.core/PersistentHashMap
@@ -748,14 +950,35 @@
     structure))
 
 (extend-protocol MapValsTransformProtocol
-                                               cljs.core/PersistentArrayMap
+  nil
+  (map-vals-transform [structure next-fn]
+    nil
+    )
+
+       
+                                 
+       
+                                         
+                                       
+                                        
+                    
+                           
+                              
+                               
+                                              
+             
+              
+
+        
+  cljs.core/PersistentArrayMap
+        
   (map-vals-transform [structure next-fn]
     (map-vals-non-transient-transform structure {} next-fn)
     )
 
                                               cljs.core/PersistentTreeMap
   (map-vals-transform [structure next-fn]
-    (map-vals-non-transient-transform structure (sorted-map) next-fn)
+    (map-vals-non-transient-transform structure (empty structure) next-fn)
     )
 
                                               cljs.core/PersistentHashMap
@@ -793,7 +1016,8 @@
   PosNavigator
   (select* [this structure next-fn]
     (if-not (fast-empty? structure)
-      (next-fn ((.-getter this) structure))))
+      (next-fn ((.-getter this) structure))
+      NONE))
   (transform* [this structure next-fn]
     (if (fast-empty? structure)
       structure
@@ -866,23 +1090,45 @@
           path
           )))
 
-(defn if-select [structure next-fn then-tester late-then late-else]
-  (let [apath (if (then-tester structure)
-                late-then
-                late-else)]
-    (doall (mapcat next-fn (compiled-select* apath structure)))
-    ))
 
-(defn if-transform [structure next-fn then-tester late-then late-else]
-  (let [apath (if (then-tester structure)
-                late-then
-                late-else)]
-    (compiled-transform* apath next-fn structure)
-    ))
+
+(defn if-select [params params-idx vals structure next-fn then-tester then-s then-params else-s]
+  (let [test? (then-tester structure)
+        sel (if test?
+              then-s
+              else-s)
+        idx (if test? params-idx (+ params-idx then-params))]
+    (sel params
+         idx
+         vals
+         structure
+         next-fn
+         )))
+
+(defn if-transform [params params-idx vals structure next-fn then-tester then-t then-params else-t]
+  (let [test? (then-tester structure)
+        tran (if test?
+               then-t
+               else-t)
+        idx (if test? params-idx (+ params-idx then-params))]
+    (tran params
+          idx
+          vals
+          structure
+          next-fn
+          )))
+
+(defn terminal* [params params-idx vals structure]
+  (let [afn (aget ^objects params params-idx)]
+    (if (identical? vals [])
+      (afn structure)
+      (apply afn (conj vals structure)))
+      ))
 
 (defn filter-select [afn structure next-fn]
   (if (afn structure)
-    (next-fn structure)))
+    (next-fn structure)
+    NONE))
 
 (defn filter-transform [afn structure next-fn]
   (if (afn structure)
@@ -990,6 +1236,7 @@
         (let [afn (aget ^objects params params-idx)]
           (if (afn structure)
             (next-fn params (inc params-idx) vals structure)
+            NONE
             )))
       (fn [params params-idx vals structure next-fn]
         (let [afn (aget ^objects params params-idx)]
@@ -1069,9 +1316,17 @@
       (instance? VarUse p)
       (let [v (:var p)
             vv (:val p)]
-        (cond (-> v meta :dynamic) (magic-fail! "Var " (:sym p) " is dynamic")
-              (valid-navigator? vv) vv
-              :else (magic-fail! "Var " (:sym p) " is not a navigator")
+        (cond (-> v meta :dynamic)
+              (magic-fail! "Var " (:sym p) " is dynamic")
+
+              (and (fn? vv) (-> v meta :pathedfn))
+              (throw-illegal "Cannot use pathed fn '" (:sym p) "' where navigator expected")
+
+              (valid-navigator? vv)
+              vv
+
+              :else
+              (magic-fail! "Var " (:sym p) " is not a navigator")
               ))
 
       (instance? SpecialFormUse p)
@@ -1147,7 +1402,7 @@
                 :else
                 (magic-fail! "Var " (:sym op) " must be either a parameterized "
                   "navigator, a higher order pathed constructor function, "
-                  "or a nav consructor")
+                  "or a nav constructor")
                 )))
           (magic-fail! "Code at " (extract-original-code p) " is in "
             "function invocation position and must be either a parameterized "
@@ -1226,24 +1481,9 @@
     ))
 
 
-(defn compiled-select-one* [path structure]
-  (let [res (compiled-select* path structure)]
-    (when (> (count res) 1)
-      (throw-illegal "More than one element found for params: " path structure))
-    (first res)
-    ))
-
-(defn compiled-select-one!* [path structure]
-  (let [res (compiled-select* path structure)]
-    (when (not= 1 (count res)) (throw-illegal "Expected exactly one element for params: " path structure))
-    (first res)
-    ))
-
-(defn compiled-select-first* [path structure]
-  (first (compiled-select* path structure)))
 
 (defn compiled-setval* [path val structure]
-  (compiled-transform* path (fn [_] val) structure))
+  (compiled-transform* path (fast-constantly val) structure))
 
 (defn compiled-replace-in*
   [path transform-fn structure & {:keys [merge-fn] :or {merge-fn concat}}]
@@ -1263,6 +1503,14 @@
      (get-cell state)]
     ))
 
+(defn- multi-transform-error-fn [& nav]
+  (throw-illegal
+    "All navigation in multi-transform must end in 'terminal' "
+    "navigators. Instead navigated to: " nav))
+
+(defn compiled-multi-transform* [path structure]
+  (compiled-transform* path multi-transform-error-fn structure))
+
      
                                                               
                                            
@@ -1278,4 +1526,20 @@
                                                     
             
 
+(defn parameterize-path [apath params params-idx]
+  (if (instance? CompiledPath apath)
+    apath
+    (bind-params* apath params params-idx)
+    ))
+
+(defn extract-rich-tfns [apath]
+  (let [tfns (coerce-tfns-rich (:transform-fns apath))]
+    [(:selector tfns) (:transformer tfns)]
+    ))
+
+(defn mk-jump-next-fn [next-fn init-idx total-params]
+  (let [jumped (+ init-idx total-params)]
+    (fn [params params-idx vals structure]
+      (next-fn params jumped vals structure)
+      )))
 ;;;;;;;;;;;; This file autogenerated from src/clj/com/rpl/specter/impl.cljx

@@ -167,42 +167,50 @@
     )
       )
 
-(defn- no-lst? []
-      (let [
-            results (sql/query store-uri ["SELECT count(*) AS cnt FROM lst"])
-            ]
-           (zero? (:cnt (first results)))
-           )
+(defn no-lst? []
+  (let [query {:entity :lst :alias "l" :args [] :vars {} :attributes [[:count]]}
+        results (query-lst nil query)
+        [_ cnt] (first (first results))
+        ]
+    (zero? cnt)
+    )
       )
 
 
+(defn has-table? [table-name]
+  (let [
+      query {:entity :information_schema.tables :alias "tbls" :args [[:= :table_name table-name]]
+             :attributes [[:count]]
+             }
+      results (query-lst nil query)
+      [_ cnt] (first (first results))
+        ]
+  (pos? cnt)
+      )
+)
 
-(defn hasLstTable? []
-      (-> (sql/query store-uri
-                     [(str "select count(*) from information_schema.tables "
-                           "where table_name='lst'")])
-          first :count pos?))
+(defn has-lst-table? []
+  (has-table? "lst")
+  )
 
-(defn hasAuthTable? []
-      (-> (sql/query store-uri
-                     [(str "select count(*) from information_schema.tables "
-                           "where table_name='auth'")])
-          first :count pos?))
+(defn has-auth-table? []
+  (has-table? "auth")
+)
 
 (defn migrate []
-      (when (not (hasAuthTable?))
+      (when (not (has-auth-table?))
             (create-schema-auth)
             (println " done"))
-      (when (not (hasLstTable?))
+      (when (not (has-lst-table?))
             (create-schema-lst)
             (create-schema-item)
             (println " done")))
 
 (defn drop-tables []
-      (when hasAuthTable?
+      (when has-auth-table?
             (drop-schema-auth)
             (println " done"))
-      (when hasLstTable?
+      (when has-lst-table?
             (drop-schema-lst)
             (println " done")))
 

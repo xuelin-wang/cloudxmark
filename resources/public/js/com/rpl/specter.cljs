@@ -8,7 +8,11 @@
                defcollector
                defnav
                defpathedfn
+               richnav
+               defnavconstructor
               ]]
+            [com.rpl.specter.util-macros :refer
+              [doseqres]]
             )
   (:use [com.rpl.specter.protocols :only [Navigator]]
                                        
@@ -17,7 +21,10 @@
                              
                          
                    
-                          
+                        
+                    
+                                
+                                                        
     )
   (:require [com.rpl.specter.impl :as i]
             [clojure.set :as set])
@@ -55,7 +62,7 @@
   (compiled-select (i/comp-paths* path)
                    structure))
 
-(def ^{:doc "Version of select-one that takes in a path pre-compiled with comp-paths"}
+(def ^{:doc "Version of select-one that takes in a path precompiled with comp-paths"}
   compiled-select-one i/compiled-select-one*)
 
 (defn select-one*
@@ -63,7 +70,7 @@
   [path structure]
   (compiled-select-one (i/comp-paths* path) structure))
 
-(def ^{:doc "Version of select-one! that takes in a path pre-compiled with comp-paths"}
+(def ^{:doc "Version of select-one! that takes in a path precompiled with comp-paths"}
   compiled-select-one! i/compiled-select-one!*)
 
 (defn select-one!*
@@ -71,19 +78,50 @@
   [path structure]
   (compiled-select-one! (i/comp-paths* path) structure))
 
-(def ^{:doc "Version of select-first that takes in a path pre-compiled with comp-paths"}
+(def ^{:doc "Version of select-first that takes in a path precompiled with comp-paths"}
   compiled-select-first i/compiled-select-first*)
 
 
 (defn select-first*
-  "Returns first element found. Not any more efficient than select, just a convenience"
+  "Returns first element found."
   [path structure]
   (compiled-select-first (i/comp-paths* path) structure))
 
+(def ^{:doc "Version of select-any that takes in a path precompiled with comp-paths"}
+  compiled-select-any i/compiled-select-any*)
+
+(def ^{:doc "Global value used to indicate no elements selected during
+             [[select-any]]."}
+  NONE i/NONE)
+
+(defn select-any*
+  "Returns any element found or [[NONE]] if nothing selected. This is the most
+   efficient of the various selection operations."
+  [path structure]
+  (compiled-select-any (i/comp-paths* path) structure))
+
+(def ^{:doc "Version of selected-any? that takes in a path precompiled with comp-paths"}
+  compiled-selected-any? i/compiled-selected-any?*)
+
+(defn selected-any?*
+  "Returns true if any element was selected, false otherwise."
+  [path structure]
+  (compiled-selected-any? (i/comp-paths* path) structure))
+
+;; Reducible traverse functions
+
+(def ^{:doc "Version of traverse that takes in a path precompiled with comp-paths"}
+  compiled-traverse i/do-compiled-traverse)
+
+(defn traverse*
+  "Return a reducible object that traverses over `structure` to every element
+   specified by the path"
+  [apath structure]
+  (compiled-traverse (i/comp-paths* apath) structure))
 
 ;; Transformation functions
 
-(def ^{:doc "Version of transform that takes in a path pre-compiled with comp-paths"}
+(def ^{:doc "Version of transform that takes in a path precompiled with comp-paths"}
   compiled-transform i/compiled-transform*)
 
 (defn transform*
@@ -91,6 +129,19 @@
   the transform-fn on it"
   [path transform-fn structure]
   (compiled-transform (i/comp-paths* path) transform-fn structure))
+
+(def ^{:doc "Version of `multi-transform` that takes in a path precompiled with `comp-paths`"}
+  compiled-multi-transform i/compiled-multi-transform*)
+
+
+(defn multi-transform*
+  "Just like `transform` but expects transform functions to be specified
+   inline in the path using `terminal`. Error is thrown if navigation finishes
+   at a non-`terminal` navigator. `terminal-val` is a wrapper around `terminal` and is 
+   the `multi-transform` equivalent of `setval`."
+  [path structure]
+  (compiled-multi-transform (i/comp-paths* path) structure))
+
 
 (def ^{:doc "Version of setval that takes in a path precompiled with comp-paths"}
   compiled-setval i/compiled-setval*)
@@ -143,7 +194,7 @@
   STOP
   []
   (select* [this structure next-fn]
-    nil )
+    NONE )
   (transform* [this structure next-fn]
     structure
     ))
@@ -157,6 +208,27 @@
   (transform* [this structure next-fn]
     (next-fn structure)))
 
+
+(def
+  ^{:doc "For usage with `multi-transform`, defines an endpoint in the navigation
+          that will have the parameterized transform function run. The transform
+          function works just like it does in `transform`, with collected values
+          given as the first arguments"}
+  terminal
+  (richnav 1
+    (select* [params params-idx vals structure next-fn]
+      (i/throw-illegal "'terminal' should only be used in multi-transform"))
+    (transform* [params params-idx vals structure next-fn]
+      (i/terminal* params params-idx vals structure)
+      )))
+
+(defnavconstructor terminal-val
+  "Like `terminal` but specifies a val to set at the location regardless of
+   the collected values or the value at the location."
+  [p terminal]
+  [v]
+  (p (i/fast-constantly v)))
+
 (def
   ^{:doc "Navigate to every element of the collection. For maps navigates to
           a vector of `[key value]`."}
@@ -169,7 +241,9 @@
   MAP-VALS
   []
   (select* [this structure next-fn]
-    (doall (mapcat next-fn (vals structure))))
+    (doseqres NONE [v (vals structure)]
+      (next-fn v)
+      ))
   (transform* [this structure next-fn]
     (i/map-vals-transform structure next-fn)
     ))
@@ -216,11 +290,9 @@
   continuous-subseqs
   [pred]
   (select* [this structure next-fn]
-    (doall
-      (mapcat
-        (fn [[s e]] (i/srange-select structure s e next-fn))
-        (i/matching-ranges structure pred)
-        )))
+    (doseqres NONE [[s e] (i/matching-ranges structure pred)]
+      (i/srange-select structure s e next-fn)
+      ))
   (transform* [this structure next-fn]
     (reduce
       (fn [structure [s e]]
@@ -338,7 +410,8 @@
   [k]
   (select* [this structure next-fn]
     (if (contains? structure k)
-      (next-fn (get structure k))))
+      (next-fn (get structure k))
+      NONE))
   (transform* [this structure next-fn]
    (if (contains? structure k)
      (assoc structure k (next-fn (get structure k)))
@@ -498,6 +571,15 @@
   NIL->VECTOR
   (nil->val []))
 
+(defnav ^{:doc "Navigates to the metadata of the structure, or nil if
+  the structure has no metadata or may not contain metadata."}
+  META
+  []
+  (select* [this structure next-fn]
+    (next-fn (meta structure)))
+  (transform* [this structure next-fn]
+    (with-meta structure (next-fn (meta structure)))))
+
 (defpathedfn
   ^{:doc "Adds the result of running select with the given path on the
           current value to the collected vals."}
@@ -531,26 +613,77 @@
   (collect-val [this structure]
     val ))
 
+(def
+  ^{:doc "Drops all collected values for subsequent navigation."}
+  DISPENSE i/DISPENSE*)
+
+
 (defpathedfn if-path
   "Like cond-path, but with if semantics."
   ([cond-p then-path]
     (if-path cond-p then-path STOP))
   ([cond-p then-path else-path]
-    (if-let [afn (i/extract-basic-filter-fn cond-p)]
-      (fixed-pathed-nav [late-then then-path
-                         late-else else-path]
-        (select* [this structure next-fn]
-          (i/if-select structure next-fn afn late-then late-else))
-        (transform* [this structure next-fn]
-          (i/if-transform structure next-fn afn late-then late-else)))
-      (fixed-pathed-nav [late-cond cond-p
-                         late-then then-path
-                         late-else else-path]
-        (select* [this structure next-fn]
-          (i/if-select structure next-fn #(i/selected?* late-cond %) late-then late-else))
-        (transform* [this structure next-fn]
-          (i/if-transform structure next-fn #(i/selected?* late-cond %) late-then late-else))
-        ))))
+    (let [then-comp (i/comp-paths* then-path)
+          else-comp (i/comp-paths* else-path)
+          then-needed (i/num-needed-params then-comp)
+          else-needed (i/num-needed-params else-comp)
+          [then-s then-t] (i/extract-rich-tfns then-comp)
+          [else-s else-t] (i/extract-rich-tfns else-comp)]
+      (if-let [afn (i/extract-basic-filter-fn cond-p)]
+        (richnav (+ then-needed else-needed)
+          (select* [params params-idx vals structure next-fn]
+            (i/if-select
+              params
+              params-idx
+              vals
+              structure
+              next-fn
+              afn
+              then-s
+              then-needed
+              else-s
+              ))
+          (transform* [params params-idx vals structure next-fn]
+            (i/if-transform
+              params
+              params-idx
+              vals
+              structure
+              next-fn
+              afn
+              then-t
+              then-needed
+              else-t
+              ))))
+        (let [cond-comp (i/comp-paths* cond-p)            
+              cond-needed (i/num-needed-params cond-comp)]
+          (richnav (+ then-needed else-needed cond-needed)
+            (select* [params params-idx vals structure next-fn]
+              (let [late-cond (i/parameterize-path cond-comp params params-idx)]
+                (i/if-select
+                  params
+                  (+ params-idx cond-needed)
+                  vals
+                  structure
+                  next-fn
+                  #(i/selected?* late-cond %)
+                  then-s
+                  then-needed
+                  else-s
+                  )))
+            (transform* [params params-idx vals structure next-fn]
+              (let [late-cond (i/parameterize-path cond-comp params params-idx)]
+                (i/if-transform
+                  params
+                  (+ params-idx cond-needed)
+                  vals
+                  structure
+                  next-fn
+                  #(i/selected?* late-cond %)
+                  then-t
+                  then-needed
+                  else-t
+                  ))))))))
 
 (defpathedfn cond-path
   "Takes in alternating cond-path path cond-path path...
@@ -574,21 +707,30 @@
 (defpathedfn multi-path
   "A path that branches on multiple paths. For updates,
    applies updates to the paths in order."
-  [& paths]
-  (variable-pathed-nav [compiled-paths paths]
-    (select* [this structure next-fn]
-      (->> compiled-paths
-           (mapcat #(compiled-select % structure))
-           (mapcat next-fn)
-           doall
-           ))
-    (transform* [this structure next-fn]
-      (reduce
-        (fn [structure path]
-          (compiled-transform path next-fn structure))
-        structure
-        compiled-paths
-        ))))
+  ([] STAY)
+  ([path] (i/comp-paths* path))
+  ([path1 path2]
+    (let [comp1 (i/comp-paths* path1)
+          comp2 (i/comp-paths* path2)
+          comp1-needed (i/num-needed-params comp1)
+          [s1 t1] (i/extract-rich-tfns comp1)
+          [s2 t2] (i/extract-rich-tfns comp2)
+          ]
+      (richnav (+ comp1-needed (i/num-needed-params comp2))
+        (select* [params params-idx vals structure next-fn]
+          (let [res1 (s1 params params-idx vals structure next-fn)
+                res2 (s2 params (+ params-idx comp1-needed) vals structure next-fn)]
+            (if (identical? NONE res2)
+              res1
+              res2
+              )))
+        (transform* [params params-idx vals structure next-fn]
+          (let [s1 (t1 params params-idx vals structure next-fn)]
+            (t2 params (+ params-idx comp1-needed) vals s1 next-fn)
+            )))))
+  ([path1 path2 & paths]
+    (reduce multi-path (multi-path path1 path2) paths)
+    ))
 
 (defpathedfn stay-then-continue
   "Navigates to the current element and then navigates via the provided path.

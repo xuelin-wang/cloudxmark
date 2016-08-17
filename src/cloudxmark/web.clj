@@ -200,8 +200,8 @@
        (handle-add-auth user-id pass desc params session)
        )
 
-  (GET "/getItems" {params :params session :session}
-       (handle-auth-action
+    (GET "/getItems" {params :params session :session}
+         (handle-auth-action
         (get-items (get-user-id session) nil)
         params session
         )
