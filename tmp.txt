@@ -1,3 +1,14 @@
-abc
-bbb
-ccc
+ (not (= 
+
+{
+:selects [[:-attr "lst" "lst_id"]], 
+:params [], 
+:where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]]], 
+:params ["blah"]}, 
+:entity-alias-map {:lst "lst"}} 
+
+{
+:where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]]], :params ["blah"]}, 
+:params [], :vars {}, 
+:entity-alias-map {:lst "lst"}, 
+:selects [[:-attr "lst" "lst_id"]]}))

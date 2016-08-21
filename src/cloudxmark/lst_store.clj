@@ -58,12 +58,10 @@
   (let [
         {:keys [selects where params vars entity-alias-map] :as parsed-query}
           (ql/parse-query query {:vars {"lst_owner" owner}})
-        dontcare1 (println (str "parsedquery:" parsed-query))
         [sql sql-params] (ql/parsed-query->sql-params parsed-query)
-        dontcare (println (str "sql:" sql ", sql-params:" (into [] (cons sql sql-params))))
         results (sql/query store-uri (into [] (cons sql sql-params)))
         ]
-    (println (str (into [] results)))
+;    (println (str (into [] results)))
     results
     )
   )

@@ -74,37 +74,43 @@
 
 (deftest test-parse-exp->sql
   (is (= "? > 0"
-              (ql/parsed-exp->sql [:pos? [:-attr :?]])
+              (ql/parsed-exp->sql [:pos? [:-attr :?]] nil)
               ))
 
   (is (= "? <= 0"
-              (ql/parsed-exp->sql [:not-pos? [:-attr :?]]) ))
+              (ql/parsed-exp->sql [:not-pos? [:-attr :?]] nil) ))
 
-  (is (thrown? Exception (ql/parsed-exp->sql [:empty? [:-attr :?]]))) ;clojureOnly
+  (is (thrown? Exception (ql/parsed-exp->sql [:empty? [:-attr :?]] nil))) ;clojureOnly
 
 
   (is (= "? > ?"
-              (ql/parsed-exp->sql [:> [:-attr :?] [:-attr :?]]) ))
+              (ql/parsed-exp->sql [:> [:-attr :?] [:-attr :?]] nil) ))
 
   (is (= "? >= ?"
-              (ql/parsed-exp->sql [:>= [:-attr :?] [:-attr :?]]) ))
+              (ql/parsed-exp->sql [:>= [:-attr :?] [:-attr :?]] nil) ))
 
-  (is (thrown? Exception (ql/parsed-exp->sql [:<< [:-attr :?] [:-attr :?]]) )) ;clojureOnly
+  (is (thrown? Exception (ql/parsed-exp->sql [:<< [:-attr :?] [:-attr :?]] nil) )) ;clojureOnly
 
 
   (is (= "d.amount BETWEEN ? AND ?"
-              (ql/parsed-exp->sql [:between [:-attr "d" "amount"] [:-attr :?] [:-attr :?]])))
+              (ql/parsed-exp->sql [:between [:-attr "d" "amount"] [:-attr :?] [:-attr :?]] nil)))
+  (is (= "amount BETWEEN ? AND ?"
+         (ql/parsed-exp->sql [:between [:-attr "d" "amount"] [:-attr :?] [:-attr :?]] "d")))
 
-  (is (thrown? Exception (ql/parsed-exp->sql [:abc [:-attr "d" "amount"] [:-attr :?] [:-attr :?]]))) ;clojureOnly
+  (is (thrown? Exception (ql/parsed-exp->sql [:abc [:-attr "d" "amount"] [:-attr :?] [:-attr :?]] nil))) ;clojureOnly
 
 
   (is (= "d.amount"
-              (ql/parsed-exp->sql [:-attr "d" "amount"])))
+              (ql/parsed-exp->sql [:-attr "d" "amount"] nil)))
+  (is (= "amount"
+         (ql/parsed-exp->sql [:-attr "d" "amount"] "d")))
 
   (is (= "?"
-              (ql/parsed-exp->sql [:-attr :?])))
+         (ql/parsed-exp->sql [:-attr :?] nil)))
+  (is (= "?"
+              (ql/parsed-exp->sql [:-attr :?] "d")))
 
-  (is (thrown? Exception (ql/parsed-exp->sql [:-attr :? :? :?])))  ;clojureOnly
+  (is (thrown? Exception (ql/parsed-exp->sql [:-attr :? :? :?] nil)))  ;clojureOnly
 
 )
 
@@ -115,6 +121,7 @@
              :params []
              :where {:selects [] :params []}
              :entity-alias-map {:lst "lst"}
+             :vars {}
              }
 
             (ql/parse-query
@@ -132,6 +139,7 @@
              :params []
              :where {:selects [] :params []}
              :entity-alias-map {:lst "lst"}
+             :vars {}
              }
 
             (ql/parse-query
@@ -149,6 +157,7 @@
              :params [nil "a b c" 123 nil ""]
              :where {:selects [] :params []}
              :entity-alias-map {:lst "lst"}
+             :vars {}
              }
 
             (ql/parse-query
@@ -206,6 +215,7 @@
              :params []
              :where {:selects [[:pos? [:-attr "lst" "lst_id"]]] :params []}
              :entity-alias-map {:lst "lst"}
+             :vars {}
              }
 
             (ql/parse-query
@@ -223,6 +233,7 @@
              :params []
              :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
              :entity-alias-map {:lst "lst"}
+             :vars {}
              }
 
             (ql/parse-query
@@ -313,6 +324,184 @@
              :params []
              :where {:selects [] :params []}
              :entity-alias-map {:lst "lst"}
+             }
+             )))
+
+  (is (=
+       [
+        (str
+             "SELECT ?, lst.lst_id, ?, ?, ?, ?"
+             " FROM lst lst"
+             )
+        [nil "a b c" 123 nil ""]
+        ]
+
+            (ql/parsed-query->sql-params
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr :?] [:-attr :?] [:-attr :?] [:-attr :?] ]
+             :params [nil "a b c" 123 nil ""]
+             :where {:selects [] :params []}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+
+
+  (is (=
+       [
+    (str
+             "SELECT ?, lst.lst_id, item.lst_id"
+             " FROM lst lst, item item"
+             )
+    [101]
+        ]
+
+            (ql/parsed-query->sql-params
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
+             :params [101]
+             :where {:selects [] :params []}
+             :entity-alias-map {:lst "lst" :item "item"}
+              :vars {"var_1" 101}
+             }
+             )))
+
+
+  (is (=
+       [
+                    (str
+             "SELECT lst.lst_id"
+             " FROM lst lst"
+             " WHERE lst.lst_id < 0 AND lst.name = ?"
+             )
+                    ["blah"]
+        ]
+
+            (ql/parsed-query->sql-params
+            {
+             :selects [[:-attr "lst" "lst_id"]]
+             :params []
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+
+  (is (=
+       [
+                    (str
+             "SELECT ?, lst.lst_id, item.lst_id"
+             " FROM lst lst, item item"
+             " WHERE lst.lst_id < 0 AND lst.name = ?"
+             )
+                    [101 "blah"]
+        ]
+
+
+            (ql/parsed-query->sql-params
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
+             :params [101]
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "item"}
+              :vars {"var_1" 101}
+             }
+             )))
+
+
+  (is (=
+       [
+        (str
+             "SELECT ?, lst.lst_id, lst.name, item.lst_id"
+             " FROM lst lst, item item"
+             " WHERE lst.lst_id < 0 AND lst.name = ? AND lst.lst_id = item.lst_id"
+             )
+        [101 "blah"]
+        ]
+
+            (ql/parsed-query->sql-params
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
+             :params [101]
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]]
+                               [:= [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]] ]
+                     :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "item"}
+              :vars {"var_1" 101}
+             }
+             )))
+  )
+
+(deftest test-parsed-insert->sql-params
+
+  (is (thrown? Exception (ql/parsed-ql->sql-params ;clojureOnly
+        :insert ;clojureOnly
+        :lst ;clojureOnly
+            { ;clojureOnly
+             :selects [[:-attr "lst" "lst_id"]] ;clojureOnly
+             :params [] ;clojureOnly
+             :where {:selects [] :params []} ;clojureOnly
+             :entity-alias-map {:lst "lst"} ;clojureOnly
+             } ;clojureOnly
+            ))) ;clojureOnly
+
+
+
+
+
+
+
+
+
+
+
+
+
+  (is (=
+       [
+        (str
+             "INSERT INTO lst (lst_id, name) VALUES (?, ?)")
+        [1, "name 1"]
+        ]
+
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
+            {
+             :selects [[:= [:-attr "lst" :lst-id] [:-attr :?]] [:= [:-attr "lst" :name] [:-attr :?]]]
+             :params [1, "name 1"]
+             :where {}
+             :entity-alias-map {:lst "lst"}
+             }
+            )))
+
+  (is (=
+       ["INSERT INTO lst (lst_id) VALUES (?)"
+        [1]
+        ]
+
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
+            {
+             :selects [[:= [:-attr "lst" :lst-id] [:-attr :?]]]
+             :params [1]
+             :where {}
+             :entity-alias-map {:lst "lst"}
+             }
+            )))
+
+  (is (=
+       ["INSERT INTO lst (lst_id) SELECT MAX(l.lst_id) + ? FROM lst l WHERE ?"
+        [1 true]
+        ]
+
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
+            {
+             :selects [[:= [:-attr "l" :lst-id] [:+ [:max [:-attr "l" :lst-id]] [:-attr :?]]]]
+             :params [1]
+             :where {:selects [[:-attr :?]] :params [true]}
+             :entity-alias-map {:lst "l"}
              }
              )))
 

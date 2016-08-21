@@ -233,6 +233,7 @@
 
 (defn -main [& [port]]
   (migrate)
+
   (let [port (Integer. (or port (env :port) 5000))]
     (jetty/run-jetty application {:port port :join? false})))
 

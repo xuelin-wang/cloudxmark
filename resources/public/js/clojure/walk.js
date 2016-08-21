@@ -1,4 +1,4 @@
-// Compiled by ClojureScript 1.9.211 {}
+// Compiled by ClojureScript 1.9.225 {}
 goog.provide('clojure.walk');
 goog.require('cljs.core');
 /**
@@ -47,10 +47,10 @@ return clojure.walk.walk.call(null,cljs.core.partial.call(null,clojure$walk$prew
  * Recursively transforms all map keys from strings to keywords.
  */
 clojure.walk.keywordize_keys = (function clojure$walk$keywordize_keys(m){
-var f = (function (p__23094){
-var vec__23095 = p__23094;
-var k = cljs.core.nth.call(null,vec__23095,(0),null);
-var v = cljs.core.nth.call(null,vec__23095,(1),null);
+var f = (function (p__24958){
+var vec__24959 = p__24958;
+var k = cljs.core.nth.call(null,vec__24959,(0),null);
+var v = cljs.core.nth.call(null,vec__24959,(1),null);
 if(typeof k === 'string'){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.keyword.call(null,k),v], null);
 } else {
@@ -71,10 +71,10 @@ return x;
  * Recursively transforms all map keys from keywords to strings.
  */
 clojure.walk.stringify_keys = (function clojure$walk$stringify_keys(m){
-var f = (function (p__23102){
-var vec__23103 = p__23102;
-var k = cljs.core.nth.call(null,vec__23103,(0),null);
-var v = cljs.core.nth.call(null,vec__23103,(1),null);
+var f = (function (p__24966){
+var vec__24967 = p__24966;
+var k = cljs.core.nth.call(null,vec__24967,(0),null);
+var v = cljs.core.nth.call(null,vec__24967,(1),null);
 if((k instanceof cljs.core.Keyword)){
 return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [cljs.core.name.call(null,k),v], null);
 } else {
@@ -120,4 +120,4 @@ return x;
 }),form);
 });
 
-//# sourceMappingURL=walk.js.map?rel=1471419407182
+//# sourceMappingURL=walk.js.map?rel=1471653222584

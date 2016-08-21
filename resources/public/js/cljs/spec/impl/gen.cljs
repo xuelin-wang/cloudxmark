@@ -68,7 +68,7 @@
 
 (lazy-combinators hash-map list map not-empty set vector vector-distinct fmap elements
   bind choose one-of such-that tuple sample return
-  large-integer*)
+  large-integer* double*)
 
 (lazy-prims any any-printable boolean char char-alpha char-alphanumeric char-ascii double
   int keyword keyword-ns large-integer ratio simple-type simple-type-printable
@@ -124,6 +124,7 @@ gen-builtins
        nil? (return nil)
        false? (return false)
        true? (return true)
+       boolean? (boolean)
        zero? (return 0)
        ;rational? (one-of [(large-integer) (ratio)])
        coll? (one-of [(map simple simple)
