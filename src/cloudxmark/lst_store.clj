@@ -61,7 +61,6 @@
         [sql sql-params] (ql/parsed-query->sql-params parsed-query)
         results (sql/query store-uri (into [] (cons sql sql-params)))
         ]
-;    (println (str (into [] results)))
     results
     )
   )

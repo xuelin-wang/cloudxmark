@@ -506,80 +506,48 @@
              )))
 
   (is (=
-       [
-        (str
-             "SELECT ?, lst.lst_id, ?, ?, ?, ?"
-             " FROM lst lst"
-             )
-        [nil "a b c" 123 nil ""]
+       [ "INSERT INTO lst (name, lst_id) VALUES (?, ?)"
+        ["a b c" 123]
         ]
-
-            (ql/parsed-query->sql-params
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
             {
-             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr :?] [:-attr :?] [:-attr :?] [:-attr :?] ]
-             :params [nil "a b c" 123 nil ""]
-             :where {:selects [] :params []}
-             :entity-alias-map {:lst "lst"}
+             :selects [[:= [:-attr "l" :name] [:-attr :?] ] [:= [:-attr "l" "lst_id"] [:-attr :?]]]
+             :params ["a b c" 123]
+             :where {}
+             :entity-alias-map {:lst "l"}
              }
              )))
 
-
   (is (=
-       [
-    (str
-             "SELECT ?, lst.lst_id, item.lst_id"
-             " FROM lst lst, item item"
-             )
-    [101]
+       ["INSERT INTO lst (lst_id, name) SELECT ?, l.name FROM lst l WHERE l.lst_id < 0 AND l.name = ?"
+                    [11, "blah"]
         ]
-
-            (ql/parsed-query->sql-params
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
             {
-             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
-             :params [101]
-             :where {:selects [] :params []}
-             :entity-alias-map {:lst "lst" :item "item"}
-              :vars {"var_1" 101}
+             :selects [[:= [:-attr "l" "lst_id"] [:-attr :?] ] [:= [:-attr "l" "name"] [:-attr "l" "name"]] ]
+             :params [11]
+             :where {:selects [[:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "l"}
              }
              )))
 
-
   (is (=
-       [
-                    (str
-             "SELECT lst.lst_id"
-             " FROM lst lst"
-             " WHERE lst.lst_id < 0 AND lst.name = ?"
-             )
-                    ["blah"]
+       ["INSERT INTO lst (lst_id, name) SELECT l.lst_id, i.name FROM lst l, item i WHERE l.lst_id = i.lst_id AND l.lst_id < 0 AND l.name = ?"
+            ["blah"]
         ]
 
-            (ql/parsed-query->sql-params
+       (ql/parsed-ql->sql-params
+        :insert
+        :lst
             {
-             :selects [[:-attr "lst" "lst_id"]]
+             :selects [[:= [:-attr "l" "lst_id"] [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr "i" "name"]]]
              :params []
-             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "lst"}
-             }
-             )))
-
-  (is (=
-       [
-                    (str
-             "SELECT ?, lst.lst_id, item.lst_id"
-             " FROM lst lst, item item"
-             " WHERE lst.lst_id < 0 AND lst.name = ?"
-             )
-                    [101 "blah"]
-        ]
-
-
-            (ql/parsed-query->sql-params
-            {
-             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]]
-             :params [101]
-             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "lst" :item "item"}
+             :where {:selects [[:= [:-attr "l" "lst_id"] [:-attr "i" "lst_id"]] [:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "l" :item "i"}
               :vars {"var_1" 101}
              }
              )))
