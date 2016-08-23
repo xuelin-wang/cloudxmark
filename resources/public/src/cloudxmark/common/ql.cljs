@@ -223,15 +223,18 @@
                 [cols vals] (parse-columns-name-val selects)
                 vals-sql (map #(parsed-exp->sql % nil) vals)
                 alias-to-ignore (get entity-alias-map entity)
-                set-sql (clojure.string/join ", " (map #(str %1 " = " (parsed-exp->sql %2 alias-to-ignore)) cols vals))
+                set-sql (clojure.string/join ", " (map #(str %1 " = " (parsed-exp->sql %2 alias-to-ignore)) (map #(unkebab (parsed-exp->sql % alias-to-ignore)) cols) vals))
 
                 where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % alias-to-ignore) (:selects where))))
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                                                         entity-alias-map))
                 ]
             [
-             (str "UPDATE " (unkebab entity) " SET " set-sql " FROM " from-str (if-not (nil? where-sel-str) (str " WHERE " where-sel-str)) )
-             (concat (or params []) (or (:params where) []))
+             (str "UPDATE " (unkebab entity) " SET " set-sql
+                  (if (empty? where-sel-str)
+                          ""
+                          (str " FROM " from-str (str " WHERE " where-sel-str))))
+             (into [] (concat (or params []) (or (:params where) [])))
              ]
             )
 
