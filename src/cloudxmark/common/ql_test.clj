@@ -675,3 +675,56 @@
              }
              )))
   )
+
+(deftest test-parsed-delete->sql-params
+  (is (=
+       [
+        (str
+             "DELETE FROM lst")
+        []
+        ]
+
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {}
+             :entity-alias-map {:lst "lst"}
+             }
+            )))
+
+
+  (is (=
+       ["DELETE FROM lst WHERE ?"
+        [true]
+        ]
+
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {:selects [[:-attr :?]] :params [true]}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+
+
+  (is (=
+       ["DELETE FROM lst WHERE lst_id < 0 AND name = ?"
+                    ["blah"]
+        ]
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+  )
