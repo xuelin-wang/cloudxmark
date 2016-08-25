@@ -223,9 +223,9 @@
                 [cols vals] (parse-columns-name-val selects)
                 vals-sql (map #(parsed-exp->sql % nil) vals)
                 alias-to-ignore (get entity-alias-map entity)
-                set-sql (clojure.string/join ", " (map #(str %1 " = " (parsed-exp->sql %2 alias-to-ignore)) (map #(unkebab (parsed-exp->sql % alias-to-ignore)) cols) vals))
+                set-sql (clojure.string/join ", " (map #(str %1 " = " (parsed-exp->sql %2 nil)) (map #(unkebab (parsed-exp->sql % alias-to-ignore)) cols) vals))
 
-                where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % alias-to-ignore) (:selects where))))
+                where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % nil) (:selects where))))
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                                                         (dissoc entity-alias-map entity) ))
                 ]

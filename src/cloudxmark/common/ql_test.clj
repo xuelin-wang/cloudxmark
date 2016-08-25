@@ -613,7 +613,7 @@
             )))
 
   (is (=
-       ["UPDATE lst SET lst_id = lst_id + ? WHERE lst_id = ?"
+       ["UPDATE lst SET lst_id = lst.lst_id + ? WHERE lst.lst_id = ?"
         [100 2]
         ]
 
@@ -621,10 +621,10 @@
         :update
         :lst
             {
-             :selects [[:= [:-attr "l" :lst-id] [:+ [:-attr "l" :lst-id] [:-attr :?]]]]
+             :selects [[:= [:-attr "lst" :lst-id] [:+ [:-attr "lst" :lst-id] [:-attr :?]]]]
              :params [100]
-             :where {:selects [[:= [:-attr "l" :lst-id] [:-attr :?]]]  :params [2]}
-             :entity-alias-map {:lst "l"}
+             :where {:selects [[:= [:-attr "lst" :lst-id] [:-attr :?]]]  :params [2]}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
@@ -636,30 +636,30 @@
         :update
         :lst
             {
-             :selects [[:= [:-attr "l" :name] [:-attr :?] ] [:= [:-attr "l" "lst_id"] [:-attr :?]]]
+             :selects [[:= [:-attr "lst" :name] [:-attr :?] ] [:= [:-attr "lst" "lst_id"] [:-attr :?]]]
              :params ["a b c" 123]
              :where {}
-             :entity-alias-map {:lst "l"}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-       ["UPDATE lst SET lst_id = ?, description = name WHERE lst_id < 0 AND name = ?"
+       ["UPDATE lst SET lst_id = ?, description = lst.name WHERE lst.lst_id < 0 AND lst.name = ?"
                     [11, "blah"]
         ]
        (ql/parsed-ql->sql-params
         :update
         :lst
             {
-             :selects [[:= [:-attr "l" "lst_id"] [:-attr :?] ] [:= [:-attr "l" "description"] [:-attr "l" "name"]] ]
+             :selects [[:= [:-attr "lst" "lst_id"] [:-attr :?] ] [:= [:-attr "lst" "description"] [:-attr "lst" "name"]] ]
              :params [11]
-             :where {:selects [[:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "l"}
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-       ["UPDATE lst SET lst_id = lst_id + ?, name = i.name FROM item i WHERE lst_id = i.lst_id AND lst_id < 0 AND name = ?"
+       ["UPDATE lst SET lst_id = lst.lst_id + ?, name = i.name FROM item i WHERE lst.lst_id = i.lst_id AND lst.lst_id < 0 AND lst.name = ?"
             [1, "blah"]
         ]
 
@@ -667,10 +667,10 @@
         :update
         :lst
             {
-             :selects [[:= [:-attr "l" "lst_id"] [:+ [:-attr "l" "lst_id"] [:-attr :?] ]] [:= [:-attr "l" "name"] [:-attr "i" "name"]]]
+             :selects [[:= [:-attr "lst" "lst_id"] [:+ [:-attr "lst" "lst_id"] [:-attr :?] ]] [:= [:-attr "lst" "name"] [:-attr "i" "name"]]]
              :params [1]
-             :where {:selects [[:= [:-attr "l" "lst_id"] [:-attr "i" "lst_id"]] [:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "l" :item "i"}
+             :where {:selects [[:= [:-attr "lst" "lst_id"] [:-attr "i" "lst_id"]] [:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "i"}
               :vars {"var_1" 101}
              }
              )))
