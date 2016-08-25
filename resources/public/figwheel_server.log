@@ -1831,3 +1831,194 @@ notifying browser that file changed:  out/cloudxmark/common/lst_common.js
 notifying browser that file changed:  out/cloudxmark/common/ql.js
 notifying browser that file changed:  out/cloudxmark/common/ql_test.js
 notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/core.cljs to js/cljs/core.cljs
+Compiling js/cljs/core.cljs
+Using cached cljs.core js/cljs/core.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/clojure/string.cljs to js/clojure/string.cljs
+Compiling js/clojure/string.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/pprint.cljs to js/cljs/pprint.cljs
+Compiling js/cljs/pprint.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/test.cljs to js/cljs/test.cljs
+Compiling js/cljs/test.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/clojure/set.cljs to js/clojure/set.cljs
+Compiling js/clojure/set.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/clojure/walk.cljs to js/clojure/walk.cljs
+Compiling js/clojure/walk.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/com/rpl/specter/0.12.0/specter-0.12.0.jar!/com/rpl/specter/protocols.cljs to js/com/rpl/specter/protocols.cljs
+Compiling js/com/rpl/specter/protocols.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/com/rpl/specter/0.12.0/specter-0.12.0.jar!/com/rpl/specter/impl.cljs to js/com/rpl/specter/impl.cljs
+Compiling js/com/rpl/specter/impl.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/com/rpl/specter/0.12.0/specter-0.12.0.jar!/com/rpl/specter.cljs to js/com/rpl/specter.cljs
+Compiling js/com/rpl/specter.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.match/0.3.0-alpha4/core.match-0.3.0-alpha4.jar!/cljs/core/match.cljs to js/cljs/core/match.cljs
+Compiling js/cljs/core/match.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/util.cljc to js/om/util.cljc
+Compiling js/om/util.cljc
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/dom.cljs to js/om/dom.cljs
+Compiling js/om/dom.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/protocols.cljs to js/cljs/core/async/impl/protocols.cljs
+Compiling js/cljs/core/async/impl/protocols.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/buffers.cljs to js/cljs/core/async/impl/buffers.cljs
+Compiling js/cljs/core/async/impl/buffers.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/dispatch.cljs to js/cljs/core/async/impl/dispatch.cljs
+Compiling js/cljs/core/async/impl/dispatch.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/channels.cljs to js/cljs/core/async/impl/channels.cljs
+Compiling js/cljs/core/async/impl/channels.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/ioc_helpers.cljs to js/cljs/core/async/impl/ioc_helpers.cljs
+Compiling js/cljs/core/async/impl/ioc_helpers.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async/impl/timers.cljs to js/cljs/core/async/impl/timers.cljs
+Compiling js/cljs/core/async/impl/timers.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/core.async/0.2.374/core.async-0.2.374.jar!/cljs/core/async.cljs to js/cljs/core/async.cljs
+Compiling js/cljs/core/async.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/core.cljs to js/om/core.cljs
+Compiling js/om/core.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/next/cache.cljs to js/om/next/cache.cljs
+Compiling js/om/next/cache.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/clojure/zip.cljs to js/clojure/zip.cljs
+Compiling js/clojure/zip.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/next/impl/parser.cljc to js/om/next/impl/parser.cljc
+Compiling js/om/next/impl/parser.cljc
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/next/protocols.cljc to js/om/next/protocols.cljc
+Compiling js/om/next/protocols.cljc
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/tempid.cljc to js/om/tempid.cljc
+Compiling js/om/tempid.cljc
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-cljs/0.8.239/transit-cljs-0.8.239.jar!/cognitect/transit.cljs to js/cognitect/transit.cljs
+Compiling js/cognitect/transit.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/transit.cljc to js/om/transit.cljc
+Compiling js/om/transit.cljc
+Copying jar:file:/Users/xuelin/.m2/repository/org/omcljs/om/1.0.0-alpha41/om-1.0.0-alpha41.jar!/om/next.cljs to js/om/next.cljs
+Compiling js/om/next.cljs
+Compiling src/cloudxmark/core.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/figwheel/figwheel/0.5.4-7/figwheel-0.5.4-7.jar!/figwheel/client/utils.cljs to js/figwheel/client/utils.cljs
+Compiling js/figwheel/client/utils.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/figwheel/figwheel/0.5.4-7/figwheel-0.5.4-7.jar!/figwheel/client/file_reloading.cljs to js/figwheel/client/file_reloading.cljs
+Compiling js/figwheel/client/file_reloading.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/spec/impl/gen.cljs to js/cljs/spec/impl/gen.cljs
+Compiling js/cljs/spec/impl/gen.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/spec.cljs to js/cljs/spec.cljs
+Compiling js/cljs/spec.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/repl.cljs to js/cljs/repl.cljs
+Compiling js/cljs/repl.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/reader.cljs to js/cljs/reader.cljs
+Compiling js/cljs/reader.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/figwheel/figwheel/0.5.4-7/figwheel-0.5.4-7.jar!/figwheel/client/socket.cljs to js/figwheel/client/socket.cljs
+Compiling js/figwheel/client/socket.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/figwheel/figwheel/0.5.4-7/figwheel-0.5.4-7.jar!/figwheel/client/heads_up.cljs to js/figwheel/client/heads_up.cljs
+Compiling js/figwheel/client/heads_up.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/figwheel/figwheel/0.5.4-7/figwheel-0.5.4-7.jar!/figwheel/client.cljs to js/figwheel/client.cljs
+Compiling js/figwheel/client.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/base.js to js/goog/base.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/string/string.js to js/goog/string/string.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/object/object.js to js/goog/object/object.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/math/integer.js to js/goog/math/integer.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/string/stringbuffer.js to js/goog/string/stringbuffer.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/error.js to js/goog/debug/error.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/nodetype.js to js/goog/dom/nodetype.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/asserts/asserts.js to js/goog/asserts/asserts.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/array/array.js to js/goog/array/array.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/reflect/reflect.js to js/goog/reflect/reflect.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/math/long.js to js/goog/math/long.js
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/relativetimeprovider.js to js/goog/debug/relativetimeprovider.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/labs/useragent/util.js to js/goog/labs/useragent/util.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/tagname.js to js/goog/dom/tagname.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/tags.js to js/goog/dom/tags.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/string/typedstring.js to js/goog/string/typedstring.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/string/const.js to js/goog/string/const.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/safestyle.js to js/goog/html/safestyle.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/safestylesheet.js to js/goog/html/safestylesheet.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/fs/url.js to js/goog/fs/url.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/i18n/bidi.js to js/goog/i18n/bidi.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/safeurl.js to js/goog/html/safeurl.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/trustedresourceurl.js to js/goog/html/trustedresourceurl.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/labs/useragent/browser.js to js/goog/labs/useragent/browser.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/safehtml.js to js/goog/html/safehtml.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/safescript.js to js/goog/html/safescript.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/html/uncheckedconversions.js to js/goog/html/uncheckedconversions.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/structs/structs.js to js/goog/structs/structs.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/structs/collection.js to js/goog/structs/collection.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/functions/functions.js to js/goog/functions/functions.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/math/math.js to js/goog/math/math.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/iter/iter.js to js/goog/iter/iter.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/structs/map.js to js/goog/structs/map.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/structs/set.js to js/goog/structs/set.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/labs/useragent/engine.js to js/goog/labs/useragent/engine.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/labs/useragent/platform.js to js/goog/labs/useragent/platform.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/useragent/useragent.js to js/goog/useragent/useragent.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/debug.js to js/goog/debug/debug.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/logrecord.js to js/goog/debug/logrecord.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/logbuffer.js to js/goog/debug/logbuffer.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/logger.js to js/goog/debug/logger.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/formatter.js to js/goog/debug/formatter.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/console.js to js/goog/debug/console.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/browserfeature.js to js/goog/dom/browserfeature.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/promise/thenable.js to js/goog/promise/thenable.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/async/freelist.js to js/goog/async/freelist.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/async/workqueue.js to js/goog/async/workqueue.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/debug/entrypointregistry.js to js/goog/debug/entrypointregistry.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/async/nexttick.js to js/goog/async/nexttick.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/async/run.js to js/goog/async/run.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/promise/resolver.js to js/goog/promise/resolver.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/promise/promise.js to js/goog/promise/promise.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library-third-party/0.0-20160609-f42b4a24/google-closure-library-third-party-0.0-20160609-f42b4a24.jar!/goog/mochikit/async/deferred.js to js/goog/mochikit/async/deferred.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/safe.js to js/goog/dom/safe.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/math/coordinate.js to js/goog/math/coordinate.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/math/size.js to js/goog/math/size.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/dom.js to js/goog/dom/dom.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/net/jsloader.js to js/goog/net/jsloader.js
+Copying jar:file:/Users/xuelin/.m2/repository/cljsjs/react/15.2.1-0/react-15.2.1-0.jar!/cljsjs/react/development/react.inc.js to js/react.inc.js
+Copying jar:file:/Users/xuelin/.m2/repository/cljsjs/react-dom/15.2.1-0/react-dom-15.2.1-0.jar!/cljsjs/react-dom/development/react-dom.inc.js to js/react-dom.inc.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/util.js to js/com/cognitect/transit/util.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/delimiters.js to js/com/cognitect/transit/delimiters.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/caching.js to js/com/cognitect/transit/caching.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/eq.js to js/com/cognitect/transit/eq.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/types.js to js/com/cognitect/transit/types.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/impl/decoder.js to js/com/cognitect/transit/impl/decoder.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/impl/reader.js to js/com/cognitect/transit/impl/reader.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/useragent/product.js to js/goog/useragent/product.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/handlers.js to js/com/cognitect/transit/handlers.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit/impl/writer.js to js/com/cognitect/transit/impl/writer.js
+Copying jar:file:/Users/xuelin/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar!/com/cognitect/transit.js to js/com/cognitect/transit.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/uri/utils.js to js/goog/uri/utils.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/uri/uri.js to js/goog/uri/uri.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/net/jsonp.js to js/goog/net/jsonp.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/ui/idgenerator.js to js/goog/ui/idgenerator.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/blockcipher.js to js/goog/crypt/blockcipher.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/aes.js to js/goog/crypt/aes.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/log/log.js to js/goog/log/log.js
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/dom/dataset.js to js/goog/dom/dataset.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/crypt.js to js/goog/crypt/crypt.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/base64.js to js/goog/crypt/base64.js
+Copying jar:file:/Users/xuelin/.m2/repository/org/clojure/google-closure-library/0.0-20160609-f42b4a24/google-closure-library-0.0-20160609-f42b4a24.jar!/goog/crypt/cbc.js to js/goog/crypt/cbc.js
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs to js/cloudxmark/core.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/target/figwheel_temp/dev/figwheel/connect.cljs to js/figwheel/connect.cljs
+[32mSuccessfully compiled "js/main.js" in 31.526 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.496 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js

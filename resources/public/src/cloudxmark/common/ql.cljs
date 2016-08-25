@@ -227,13 +227,14 @@
 
                 where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % alias-to-ignore) (:selects where))))
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
-                                                        entity-alias-map))
+                                                        (dissoc entity-alias-map entity) ))
                 ]
             [
              (str "UPDATE " (unkebab entity) " SET " set-sql
+                  (if (empty? from-str) ""  (str " FROM " from-str))
                   (if (empty? where-sel-str)
-                          ""
-                          (str " FROM " from-str (str " WHERE " where-sel-str))))
+                    ""
+                    (str " WHERE " where-sel-str)))
              (into [] (concat (or params []) (or (:params where) [])))
              ]
             )
