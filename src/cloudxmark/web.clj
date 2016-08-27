@@ -85,31 +85,25 @@
     (is-admin-user? user-id))
   )
 
-(defn- handle-admin-action [result params session]
-  (if (or (no-auth?) (is-admin? session))
-    (handle-callback result params session)
-    (permission-denied params session)
-    )
-  )
 
 (defn- handle-drop-table [table params session]
-  (handle-admin-action
+  (if (or (no-auth?) (is-admin? session))
     (do
       (drop-table table)
       (handle-callback ok-result params session)
       )
-    params session
+    (permission-denied params session)
     )
   )
 
 (defn- handle-add-auth [id pass desc params session]
-  (handle-admin-action
+  (if (or (no-auth?) (is-admin? session))
     (do
       (add-auth {:id id :password pass :description desc})
-      ok-result
+      (handle-callback ok-result params session)
       )
-    params session
-   )
+    (permission-denied params session)
+    )
   )
 
 (defn- handle-add-lst [name desc params session]

@@ -2022,3 +2022,868 @@ notifying browser that file changed:  out/cloudxmark/common/lst_common.js
 notifying browser that file changed:  out/cloudxmark/common/ql.js
 notifying browser that file changed:  out/cloudxmark/common/ql_test.js
 notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Reading analysis cache for jar:file:/Users/xuelin/.m2/repository/org/clojure/clojurescript/1.9.225/clojurescript-1.9.225.jar!/cljs/test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.681 seconds.[0m
+notifying browser that file changed:  js/goog/deps.js
+notifying browser that file changed:  js/cljs_deps.js
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.069 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.349 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.13 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:301  column:3  ----[0m
+
+  [1mWrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+
+  [36m297[0m  [36m             :entity-alias-map {:lst "lst" :item "item"}[0m
+  [36m298[0m  [36m              :vars {"var_1" 101}[0m
+  [36m299[0m  [36m             }[0m
+  [36m300[0m  [36m[0m
+  [33m301[0m  [1m  (ql/parse-query[0m
+  [0m   [0m  [33m  ^--- Wrong number of args (3) passed to cloudxmark.common.ql/parse-query[0m
+  [36m302[0m  [36m             {:entity :auth[0m
+  [36m303[0m  [36m              :alias "auth"[0m
+  [36m304[0m  [36m              :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m                     [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                     [:= :auth.description (:description auth)][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:304  column:46  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [33m304[0m  [1m            :attributes [[:= :auth.id (:id auth)][0m
+  [0m   [0m  [33m                                           ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m305[0m  [36m                   [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:305  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m301[0m  [36m(ql/parse-query[0m
+  [36m302[0m  [36m           {:entity :auth[0m
+  [36m303[0m  [36m            :alias "auth"[0m
+  [36m304[0m  [36m            :attributes [[:= :auth.id (:id auth)][0m
+  [33m305[0m  [1m                   [:= :auth.password (:password auth)][0m
+  [0m   [0m  [33m                                                 ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m306[0m  [36m                   [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m                   [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m                   [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m                   ][0m
+  [36m310[0m  [36m             }[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:306  column:58  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m302[0m  [36m{:entity :auth[0m
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [33m306[0m  [1m        [:= :auth.description (:description auth)][0m
+  [0m   [0m  [33m                                            ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:307  column:44  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m303[0m  [36m :alias "auth"[0m
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [33m307[0m  [1m        [:= :auth.seed (:seed auth)][0m
+  [0m   [0m  [33m                              ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m308[0m  [36m        [:= :auth.reserved (:reserved auth)][0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+[36m----  Compiler Warning on   src/cloudxmark/common/ql_test.cljs   line:308  column:52  ----[0m
+
+  [1mUse of undeclared Var cloudxmark.common.ql-test/auth[0m
+
+  [36m304[0m  [36m :attributes [[:= :auth.id (:id auth)][0m
+  [36m305[0m  [36m        [:= :auth.password (:password auth)][0m
+  [36m306[0m  [36m        [:= :auth.description (:description auth)][0m
+  [36m307[0m  [36m        [:= :auth.seed (:seed auth)][0m
+  [33m308[0m  [1m        [:= :auth.reserved (:reserved auth)][0m
+  [0m   [0m  [33m                                      ^--- Use of undeclared Var cloudxmark.common.ql-test/auth[0m
+  [36m309[0m  [36m        ][0m
+  [36m310[0m  [36m  }[0m
+  [36m311[0m  [36m{:entity :lst[0m
+  [36m312[0m  [36m :alias nil[0m
+  [36m313[0m  [36m :args [[:neg? :lst-id] [:eq? :name "blah"]][0m
+
+[36m----  Compiler Warning : Please see src/cloudxmark/common/ql_test.cljs  ----[0m
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.111 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.016 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.496 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.904 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.589 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 3.92 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 6.353 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.231 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 5.498 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.015 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.549 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js
+[0mCompiling "js/main.js" from ["src"]...[0m
+Compiling src/cloudxmark/common/lst_common.cljs
+Compiling src/cloudxmark/common/util.cljs
+Compiling src/cloudxmark/common/ql.cljs
+Compiling /Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/core.cljs
+Compiling target/figwheel_temp/dev/figwheel/connect.cljs
+Compiling src/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/util.cljs to js/cloudxmark/common/util.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql.cljs to js/cloudxmark/common/ql.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/ql_test.cljs to js/cloudxmark/common/ql_test.cljs
+Copying file:/Users/xuelin/dev/cloudxmark/resources/public/src/cloudxmark/common/lst_common.cljs to js/cloudxmark/common/lst_common.cljs
+[32mSuccessfully compiled "js/main.js" in 4.166 seconds.[0m
+notifying browser that file changed:  out/cloudxmark/common/lst_common.js
+notifying browser that file changed:  out/cloudxmark/common/ql.js
+notifying browser that file changed:  out/cloudxmark/common/ql_test.js
+notifying browser that file changed:  out/cloudxmark/common/util.js

@@ -8,8 +8,8 @@ while(true){
 if((cnt < len)){
 (dest[(dest_start + cnt)] = (src[(src_start + cnt)]));
 
-var G__51172 = (cnt + (1));
-cnt = G__51172;
+var G__30631 = (cnt + (1));
+cnt = G__30631;
 continue;
 } else {
 return null;
@@ -113,14 +113,14 @@ var n__22603__auto__ = self__.length;
 var x = (0);
 while(true){
 if((x < n__22603__auto__)){
-var v_51173 = this$.pop();
-if(keep_QMARK_.call(null,v_51173)){
-this$.unshift(v_51173);
+var v_30632 = this$.pop();
+if(keep_QMARK_.call(null,v_30632)){
+this$.unshift(v_30632);
 } else {
 }
 
-var G__51174 = (x + (1));
-x = G__51174;
+var G__30633 = (x + (1));
+x = G__30633;
 continue;
 } else {
 return null;
@@ -165,7 +165,6 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 })
-
 cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = true;
 
 cljs.core.async.impl.buffers.FixedBuffer.prototype.cljs$core$async$impl$protocols$Buffer$full_QMARK_$arity$1 = (function (this$){
@@ -232,9 +231,7 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 })
-
 cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = true;
-
 
 cljs.core.async.impl.buffers.DroppingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = true;
 
@@ -305,9 +302,7 @@ this.n = n;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 })
-
 cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = true;
-
 
 cljs.core.async.impl.buffers.SlidingBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = true;
 
@@ -386,9 +381,7 @@ this.val = val;
 this.cljs$lang$protocol_mask$partition0$ = 2;
 this.cljs$lang$protocol_mask$partition1$ = 0;
 })
-
 cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$UnblockingBuffer$ = true;
-
 
 cljs.core.async.impl.buffers.PromiseBuffer.prototype.cljs$core$async$impl$protocols$Buffer$ = true;
 
@@ -455,4 +448,4 @@ cljs.core.async.impl.buffers.promise_buffer = (function cljs$core$async$impl$buf
 return (new cljs.core.async.impl.buffers.PromiseBuffer(cljs.core.async.impl.buffers.NO_VAL));
 });
 
-//# sourceMappingURL=buffers.js.map?rel=1471999067608
+//# sourceMappingURL=buffers.js.map?rel=1472129937956

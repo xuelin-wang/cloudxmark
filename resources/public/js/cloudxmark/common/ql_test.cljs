@@ -265,7 +265,6 @@
               }
              )))
 
-
   (is (=
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
@@ -278,6 +277,29 @@
              }
 
             (ql/parse-query
+             {:entity :lst
+              :alias nil
+              :args [[:neg? :lst-id] [:eq? :name "blah"]]
+              :attributes [:$var_1 :lst-id :name {:entity :item :alias nil :args [[:eq? :lst.lst_id :item.lst_id]] :attributes [:lst-id]}]
+              }
+             {
+              :vars {"var_1" 101}
+              }
+             )))
+
+  (is (=
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
+             :params [101]
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]]
+                               [:eq? [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]] ]
+                     :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "item"}
+              :vars {"var_1" 101}
+             }
+
+  (ql/parse-query
+
              {:entity :lst
               :alias nil
               :args [[:neg? :lst-id] [:eq? :name "blah"]]
@@ -613,65 +635,119 @@
             )))
 
   (is (=
-       ["INSERT INTO lst (lst_id) SELECT MAX(l.lst_id) + ? FROM lst l WHERE ?"
-        [1 true]
+       ["UPDATE lst SET lst_id = lst.lst_id + ? WHERE lst.lst_id = ?"
+        [100 2]
         ]
 
        (ql/parsed-ql->sql-params
-        :insert
+        :update
         :lst
             {
-             :selects [[:= [:-attr "l" :lst-id] [:+ [:max [:-attr "l" :lst-id]] [:-attr :?]]]]
-             :params [1]
-             :where {:selects [[:-attr :?]] :params [true]}
-             :entity-alias-map {:lst "l"}
+             :selects [[:= [:-attr "lst" :lst-id] [:+ [:-attr "lst" :lst-id] [:-attr :?]]]]
+             :params [100]
+             :where {:selects [[:= [:-attr "lst" :lst-id] [:-attr :?]]]  :params [2]}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-       [ "INSERT INTO lst (name, lst_id) VALUES (?, ?)"
+       [ "UPDATE lst SET name = ?, lst_id = ?"
         ["a b c" 123]
         ]
        (ql/parsed-ql->sql-params
-        :insert
+        :update
         :lst
             {
-             :selects [[:= [:-attr "l" :name] [:-attr :?] ] [:= [:-attr "l" "lst_id"] [:-attr :?]]]
+             :selects [[:= [:-attr "lst" :name] [:-attr :?] ] [:= [:-attr "lst" "lst_id"] [:-attr :?]]]
              :params ["a b c" 123]
              :where {}
-             :entity-alias-map {:lst "l"}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-       ["INSERT INTO lst (lst_id, name) SELECT ?, l.name FROM lst l WHERE l.lst_id < 0 AND l.name = ?"
+       ["UPDATE lst SET lst_id = ?, description = lst.name WHERE lst.lst_id < 0 AND lst.name = ?"
                     [11, "blah"]
         ]
        (ql/parsed-ql->sql-params
-        :insert
+        :update
         :lst
             {
-             :selects [[:= [:-attr "l" "lst_id"] [:-attr :?] ] [:= [:-attr "l" "name"] [:-attr "l" "name"]] ]
+             :selects [[:= [:-attr "lst" "lst_id"] [:-attr :?] ] [:= [:-attr "lst" "description"] [:-attr "lst" "name"]] ]
              :params [11]
-             :where {:selects [[:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "l"}
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst"}
              }
              )))
 
   (is (=
-       ["INSERT INTO lst (lst_id, name) SELECT l.lst_id, i.name FROM lst l, item i WHERE l.lst_id = i.lst_id AND l.lst_id < 0 AND l.name = ?"
-            ["blah"]
+       ["UPDATE lst SET lst_id = lst.lst_id + ?, name = i.name FROM item i WHERE lst.lst_id = i.lst_id AND lst.lst_id < 0 AND lst.name = ?"
+            [1, "blah"]
         ]
 
        (ql/parsed-ql->sql-params
-        :insert
+        :update
         :lst
             {
-             :selects [[:= [:-attr "l" "lst_id"] [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr "i" "name"]]]
-             :params []
-             :where {:selects [[:= [:-attr "l" "lst_id"] [:-attr "i" "lst_id"]] [:neg? [:-attr "l" "lst_id"]] [:= [:-attr "l" "name"] [:-attr :?]] ] :params ["blah"]}
-             :entity-alias-map {:lst "l" :item "i"}
+             :selects [[:= [:-attr "lst" "lst_id"] [:+ [:-attr "lst" "lst_id"] [:-attr :?] ]] [:= [:-attr "lst" "name"] [:-attr "i" "name"]]]
+             :params [1]
+             :where {:selects [[:= [:-attr "lst" "lst_id"] [:-attr "i" "lst_id"]] [:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "i"}
               :vars {"var_1" 101}
              }
              )))
+  )
+
+(deftest test-parsed-delete->sql-params
+  (is (=
+       [
+        (str
+             "DELETE FROM lst")
+        []
+        ]
+
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {}
+             :entity-alias-map {:lst "lst"}
+             }
+            )))
+
+
+  (is (=
+       ["DELETE FROM lst WHERE ?"
+        [true]
+        ]
+
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {:selects [[:-attr :?]] :params [true]}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+
+
+  (is (=
+       ["DELETE FROM lst WHERE lst_id < 0 AND name = ?"
+                    ["blah"]
+        ]
+       (ql/parsed-ql->sql-params
+        :delete
+        :lst
+            {
+             :selects []
+             :params []
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:= [:-attr "lst" "name"] [:-attr :?]] ] :params ["blah"]}
+             :entity-alias-map {:lst "lst"}
+             }
+             )))
+
   )

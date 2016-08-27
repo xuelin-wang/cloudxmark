@@ -2,6 +2,7 @@
   (:require
    [clojure.core.match :refer [match]] ;clojureOnly
 
+
    [cloudxmark.common.util :refer [throw-common]]
    )
   )
@@ -21,7 +22,7 @@
   )
 
 (defn parse-attr [select vars entity alias-map]
-  (let [entity-alias (alias-map entity)
+  (let [entity-alias (alias-map (unkebab entity))
         ]
     (if
         (keyword? select)
@@ -102,7 +103,7 @@
                    {:keys [selects where params vars entity-alias-map] :as parsed}]
   (let [
         this-alias (or alias (unkebab entity))
-        new-entity-alias-map (merge (or entity-alias-map {}) (if (nil? entity) {} {entity this-alias}))
+        new-entity-alias-map (merge (or entity-alias-map {}) (if (nil? entity) {} {(unkebab entity) (unkebab this-alias)}))
         merged-vars (merge {} vars (:vars query))
 
         new-where (reduce
@@ -127,7 +128,7 @@
            (throw-common (str "attribute map's :entity is not an entity: " attr))
            )
 
-         (let [parsed-attr (parse-exp attr vars entity entity-alias-map) ]
+         (let [parsed-attr (parse-exp attr vars entity new-entity-alias-map) ]
            (merge (or curr-parsed {}) {:selects (apply merge (or selects []) [(:selects parsed-attr)])
                                        :params (apply merge (or params []) (:params parsed-attr))
                                        })
@@ -150,7 +151,7 @@
          [[:-attr :?]] "?"
          [[:-attr alias col]]
          (let [col-str (unkebab col)]
-           (if (= alias alias-to-ignore) col-str (str alias "." col-str))
+           (if (= (unkebab alias) alias-to-ignore) col-str (str alias "." col-str))
            )
          [[:count]] "COUNT(*)"
          [[:between sel1 sel2 sel3]] (str (parsed-exp->sql sel1 alias-to-ignore) " BETWEEN " (parsed-exp->sql sel2 alias-to-ignore) " AND " (parsed-exp->sql sel3 alias-to-ignore))
@@ -202,7 +203,7 @@
           (let [
                 [cols vals] (parse-columns-name-val selects)
                 vals-sql (map #(parsed-exp->sql % nil) vals)
-                alias-to-ignore (get entity-alias-map entity)
+                alias-to-ignore (get entity-alias-map (unkebab entity))
                 where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % nil) (:selects where))) "")
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                                                         entity-alias-map))
@@ -222,12 +223,13 @@
           (let [
                 [cols vals] (parse-columns-name-val selects)
                 vals-sql (map #(parsed-exp->sql % nil) vals)
-                alias-to-ignore (get entity-alias-map entity)
+                alias-to-ignore (get entity-alias-map (unkebab entity))
+
                 set-sql (clojure.string/join ", " (map #(str %1 " = " (parsed-exp->sql %2 nil)) (map #(unkebab (parsed-exp->sql % alias-to-ignore)) cols) vals))
 
                 where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % nil) (:selects where))))
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
-                                                        (dissoc entity-alias-map entity) ))
+                                                        (dissoc entity-alias-map (unkebab entity)) ))
                 ]
             [
              (str "UPDATE " (unkebab entity) " SET " set-sql
@@ -241,7 +243,7 @@
 
           :delete
 
-          (let [        alias-to-ignore (get entity-alias-map entity)
+          (let [alias-to-ignore (get entity-alias-map (unkebab entity))
                 where-sel-str (if (seq (:selects where)) (clojure.string/join " AND " (map #(parsed-exp->sql % alias-to-ignore) (:selects where))))
                 from-str (clojure.string/join ", " (map (fn [[k v :as e]] (str (unkebab k) " " (unkebab v)))
                                                         entity-alias-map))

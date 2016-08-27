@@ -265,7 +265,6 @@
               }
              )))
 
-
   (is (=
             {
              :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
@@ -278,6 +277,29 @@
              }
 
             (ql/parse-query
+             {:entity :lst
+              :alias nil
+              :args [[:neg? :lst-id] [:eq? :name "blah"]]
+              :attributes [:$var_1 :lst-id :name {:entity :item :alias nil :args [[:eq? :lst.lst_id :item.lst_id]] :attributes [:lst-id]}]
+              }
+             {
+              :vars {"var_1" 101}
+              }
+             )))
+
+  (is (=
+            {
+             :selects [[:-attr :?] [:-attr "lst" "lst_id"] [:-attr "lst" "name"] [:-attr "item" "lst_id"]]
+             :params [101]
+             :where {:selects [[:neg? [:-attr "lst" "lst_id"]] [:eq? [:-attr "lst" "name"] [:-attr :?]]
+                               [:eq? [:-attr "lst" "lst_id"] [:-attr "item" "lst_id"]] ]
+                     :params ["blah"]}
+             :entity-alias-map {:lst "lst" :item "item"}
+              :vars {"var_1" 101}
+             }
+
+  (ql/parse-query
+
              {:entity :lst
               :alias nil
               :args [[:neg? :lst-id] [:eq? :name "blah"]]
@@ -727,4 +749,5 @@
              :entity-alias-map {:lst "lst"}
              }
              )))
+
   )
