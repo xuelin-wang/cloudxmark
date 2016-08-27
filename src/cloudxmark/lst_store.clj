@@ -1,6 +1,7 @@
 (ns cloudxmark.lst-store
   (:require
    [clojure.java.jdbc :as sql]
+   [clojure.spec :as s]
    [clojure.string :as str]
    [cloudxmark.common.lst-common :as lst-common]
    [cloudxmark.common.ql :as ql]
@@ -8,17 +9,34 @@
 
 (def store-uri (or (System/getenv "DATABASE_URL") "postgresql://localhost:5432/lst"))
 
+(defprotocol IEntitySchema
+  (fields [this])
+  )
+
+(defrecord EntitySchema [entity key-fields non-key-fields]
+  IEntitySchema
+  (fields [this] (clojure.set/union (set (.key-fields this)) (set (.non-key-fields this))))
+  )
+
+(def schema
+  {:auth (EntitySchema. :auth [:id :version] [:password :description :seed :reserved] )
+   :lst (EntitySchema. :lst [:lst-id :version] [:owner :name :description :labels :reserved])
+   :item (EntitySchema. :item [:lst-id :name :version] [:value :labels :seed :reserved] )
+   }
+  )
+
 (defn- create-schema-lst []
   (sql/db-do-commands store-uri
                       (sql/create-table-ddl :lst
                                             [[:lst_id "int" "NOT NULL"]
+                                             [:version "int" "NOT NULL"]
                                              [:owner "varchar(64)" "NOT NULL"]
                                              [:name "varchar(1024)" "NOT NULL"]
                                              [:description "varchar(4096)"]
                                              [:labels "varchar(1024)"]
                                              [:reserved "varchar(4096)"]
-                                             [:constraint " PK_lst PRIMARY KEY(lst_id) "]
-                                             [:constraint " UK_lst unique(owner, name) "]
+                                             [:constraint " PK_lst PRIMARY KEY(lst_id, version) "]
+                                             [:constraint " UK_lst unique(owner, name, version) "]
                                              ]
                                             ))
   )
@@ -28,11 +46,12 @@
                       (sql/create-table-ddl :item
                                             [[:lst_id "int" "NOT NULL"]
                                              [:name "varchar(1024)" "NOT NULL"]
+                                             [:version "int" "NOT NULL"]
                                              [:value "varchar(4096)"]
                                              [:labels "varchar(1024)"]
                                              [:seed "varchar(4096)"]
                                              [:reserved "varchar(4096)"]
-                                             [:constraint " PK_item PRIMARY KEY(lst_id, name) "]
+                                             [:constraint " PK_item PRIMARY KEY(lst_id, name, version) "]
                                              ]
                                             ))
   )
@@ -45,11 +64,13 @@
 
 (defn- create-schema-auth []
   (sql/db-do-commands store-uri
-                      (sql/create-table-ddl :auth [ [:id "varchar(64)" "NOT NULL" "PRIMARY KEY"]
+                      (sql/create-table-ddl :auth [ [:id "varchar(64)" "NOT NULL"]
+                                                    [:version "int" "NOT NULL"]
                                                     [:password "varchar(512)" "NOT NULL"]
                                                     [:description "varchar(4096)" "NOT NULL"]
                                                     [:seed "varchar(4096)"]
                                                     [:reserved "varchar(4096)"]
+                                                    [:constraint " PK_auth PRIMARY KEY(id, version) "]
                                                     ]
                                             ))
   )
@@ -232,22 +253,37 @@
       ))
   )
 
-
-(defn add-auth [auth]
+(defn add-row [data entity-schema]
   (let [
-        query {:entity :auth
-             :alias "auth"
-              :attributes [[:= :auth.id (:id auth)]
-                     [:= :auth.password (:password auth)]
-                     [:= :auth.description (:description auth)]
-                     [:= :auth.seed (:seed auth)]
-                     [:= :auth.reserved (:reserved auth)]
-                     ]
+        entity (.entity entity-schema)
+        query {
+               :entity entity
+               :alias (ql/unkebab entity)
+               :attributes
+               (into [] (map (fn [field] [:= field (field data)]) (.fields entity-schema)) )
                }
         ]
-    (execute-ql-db nil query :insert  "auth" )
+    (execute-ql-db nil query :insert entity)
     )
+  )
 
+(defn update-row [data entity-schema]
+  (let [
+        entity (.entity entity-schema)
+        query {
+               :entity entity
+               :alias (ql/unkebab entity)
+               :attributes
+               (into [] (map (fn [field] [:= field (field data)]) (.non-key-fields entity-schema)))
+               :args (into [] (map (fn [field] [:= field (field data)]) (.key-fields entity-schema)))
+               }
+        ]
+    (execute-ql-db nil query :update entity)
+    )
+  )
+
+(defn add-auth [auth]
+  (add-row auth (:auth schema))
   )
 
 
