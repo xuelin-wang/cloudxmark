@@ -8,7 +8,7 @@
    [{:id "dev"
      :figwheel true
      :source-paths ["src"]
-     :compiler {:main 'cloudxmark.core
+     :compiler {:main 'xl.core
                 :asset-path "js"
                 :output-to "js/main.js"
                 :output-dir "js"

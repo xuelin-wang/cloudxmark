@@ -86,4 +86,4 @@ throw cljs.core.missing_protocol.call(null,"Collector.collect-val",this$);
 });
 
 
-//# sourceMappingURL=protocols.js.map?rel=1472129932982
+//# sourceMappingURL=protocols.js.map?rel=1472381609162

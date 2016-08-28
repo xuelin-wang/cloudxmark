@@ -15,13 +15,13 @@
                  [com.rpl/specter "0.12.0"]
                  [cheshire "5.6.3"]
                  [environ "1.1.0"]]
-  :main ^:skip-aot cloudxmark.web
+  :main ^:skip-aot xl.web
   :source-paths ["src" "testsrc"]
   :resource-paths ["resources"]
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.3.1"] [lein-ring "0.8.13"]]
-  :ring {:handler cloudxmark.web/appolication
-         :init cloudxmark.bookmark-store/migrate}
+  :ring {:handler xl.web/appolication
+         :init xl.lst-store/migrate}
   :uberjar-name "cloudxmark.jar"
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring-mock "0.1.5"]]}

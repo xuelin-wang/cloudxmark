@@ -1,12 +1,12 @@
 goog.addDependency("base.js", ['goog'], []);
 goog.addDependency("../cljs/core.js", ['cljs.core'], ['goog.string', 'goog.object', 'goog.math.Integer', 'goog.string.StringBuffer', 'goog.array', 'goog.math.Long']);
-goog.addDependency("../cloudxmark/common/util.js", ['cloudxmark.common.util'], ['cljs.core']);
 goog.addDependency("../clojure/string.js", ['clojure.string'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer']);
-goog.addDependency("../cljs/core/match.js", ['cljs.core.match'], ['cljs.core']);
-goog.addDependency("../cloudxmark/common/ql.js", ['cloudxmark.common.ql'], ['cljs.core', 'cloudxmark.common.util', 'clojure.string', 'cljs.core.match']);
 goog.addDependency("../cljs/pprint.js", ['cljs.pprint'], ['goog.string', 'cljs.core', 'goog.string.StringBuffer', 'clojure.string']);
 goog.addDependency("../cljs/test.js", ['cljs.test'], ['cljs.core', 'cljs.pprint', 'clojure.string']);
-goog.addDependency("../cloudxmark/common/ql_test.js", ['cloudxmark.common.ql_test'], ['cloudxmark.common.ql', 'cljs.core', 'cljs.test']);
+goog.addDependency("../xl/common/util.js", ['xl.common.util'], ['cljs.core']);
+goog.addDependency("../cljs/core/match.js", ['cljs.core.match'], ['cljs.core']);
+goog.addDependency("../xl/common/ql.js", ['xl.common.ql'], ['cljs.core', 'xl.common.util', 'clojure.string', 'cljs.core.match']);
+goog.addDependency("../xl/common/ql_test.js", ['xl.common.ql_test'], ['cljs.core', 'cljs.test', 'xl.common.ql']);
 goog.addDependency("../clojure/zip.js", ['clojure.zip'], ['cljs.core']);
 goog.addDependency("../om/next/cache.js", ['om.next.cache'], ['cljs.core']);
 goog.addDependency("../cljs/core/async/impl/protocols.js", ['cljs.core.async.impl.protocols'], ['cljs.core']);
@@ -41,7 +41,6 @@ goog.addDependency("../com/rpl/specter/protocols.js", ['com.rpl.specter.protocol
 goog.addDependency("../com/rpl/specter/impl.js", ['com.rpl.specter.impl'], ['cljs.core', 'clojure.string', 'clojure.walk', 'com.rpl.specter.protocols']);
 goog.addDependency("../om/tempid.js", ['om.tempid'], ['cljs.core']);
 goog.addDependency("../om/transit.js", ['om.transit'], ['cljs.core', 'cognitect.transit', 'om.tempid', 'com.cognitect.transit']);
-goog.addDependency("../cloudxmark/common/lst_common.js", ['cloudxmark.common.lst_common'], ['cljs.core']);
 goog.addDependency("../com/rpl/specter.js", ['com.rpl.specter'], ['cljs.core', 'clojure.set', 'com.rpl.specter.impl', 'com.rpl.specter.protocols']);
 goog.addDependency("../om/next/impl/parser.js", ['om.next.impl.parser'], ['cljs.core', 'clojure.set', 'om.util']);
 goog.addDependency("../om/next/protocols.js", ['om.next.protocols'], ['cljs.core']);
@@ -51,6 +50,7 @@ goog.addDependency("../cljs/spec/impl/gen.js", ['cljs.spec.impl.gen'], ['cljs.co
 goog.addDependency("../cljs/spec.js", ['cljs.spec'], ['cljs.core', 'goog.object', 'cljs.spec.impl.gen', 'clojure.string', 'clojure.walk']);
 goog.addDependency("../om/core.js", ['om.core'], ['goog.dom', 'cljs.core', 'om.dom', 'goog.dom.dataset', 'goog.object', 'cljsjs.react', 'goog.ui.IdGenerator']);
 goog.addDependency("../cljs/repl.js", ['cljs.repl'], ['cljs.core', 'cljs.spec']);
-goog.addDependency("../cloudxmark/core.js", ['cloudxmark.core'], ['com.rpl.specter', 'cloudxmark.common.lst_common', 'goog.crypt', 'cloudxmark.common.ql', 'goog.dom', 'goog.net.Jsonp', 'goog.crypt.Cbc', 'goog.Uri', 'cljs.core', 'goog.crypt.base64', 'om.dom', 'cljs.core.async', 'om.core', 'goog.crypt.Aes', 'om.next', 'clojure.string']);
+goog.addDependency("../xl/common/lst_common.js", ['xl.common.lst_common'], ['cljs.core']);
+goog.addDependency("../xl/core.js", ['xl.core'], ['com.rpl.specter', 'goog.crypt', 'goog.dom', 'goog.net.Jsonp', 'goog.crypt.Cbc', 'goog.Uri', 'cljs.core', 'goog.crypt.base64', 'om.dom', 'cljs.core.async', 'xl.common.ql', 'om.core', 'xl.common.lst_common', 'goog.crypt.Aes', 'om.next', 'clojure.string']);
 goog.addDependency("../figwheel/client.js", ['figwheel.client'], ['goog.userAgent.product', 'goog.Uri', 'cljs.core', 'goog.object', 'cljs.core.async', 'figwheel.client.file_reloading', 'figwheel.client.utils', 'cljs.repl', 'figwheel.client.heads_up', 'figwheel.client.socket', 'clojure.string', 'cljs.reader']);
-goog.addDependency("../figwheel/connect.js", ['figwheel.connect'], ['cloudxmark.core', 'cljs.core', 'figwheel.client', 'figwheel.client.utils']);
+goog.addDependency("../figwheel/connect.js", ['figwheel.connect'], ['cljs.core', 'xl.core', 'figwheel.client', 'figwheel.client.utils']);

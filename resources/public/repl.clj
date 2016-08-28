@@ -3,7 +3,7 @@
 (require 'cljs.repl.browser)
 
 (cljs.build.api/build "src"
-                      {:main 'cloudxmark.core
+                      {:main 'xl.core
                        :output-to "js/main.js"
                        :verbose true})
 

@@ -28,7 +28,7 @@
         {:entity :auth
          :alias "auth"
          :args [[:= :id "testid"]]
-         :attributes [:id :version :password :description :seed :reserved ]
+         :attributes [:id :version :password :description :seed :enc-version :reserved ]
          }
         results (store/query-db owner query)
         ]
@@ -49,7 +49,7 @@
 
   (is (= 1
          (let [owner "xuelin"
-               auth {:id "testid" :version 0 :password "test pass" :description "test description" :seed "test seed" :reserved "XXX"}
+               auth {:id "testid" :version 0 :password "test pass" :description "test description" :seed "test seed" :enc-version 1 :reserved "XXX"}
                results (store/add-auth auth)
                ]
            (println (str "results:" (into [] results)))
