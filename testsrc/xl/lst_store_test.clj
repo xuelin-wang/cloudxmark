@@ -1,6 +1,6 @@
-(ns cloudxmark.lst-store-test
+(ns xl.lst-store-test
   (:require  [clojure.test :refer [deftest is run-tests]]
-             [cloudxmark.lst-store :as store]
+             [xl.lst-store :as store]
              )
   )
 
