@@ -3,6 +3,7 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [clojure.spec :as s]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [compojure.response :as response]
@@ -16,7 +17,8 @@
             [xl.lst-store :refer [migrate drop-tables drop-table no-auth? add-lst check-add-settings-lst add-item update-item]]
             )
   (:import java.security.MessageDigest
-           java.util.Base64)
+           java.util.Base64
+           java.util.UUID)
   (:gen-class)
   )
 
@@ -53,10 +55,45 @@
   (:user-id session)
   )
 
-(defn- handle-auth-action [result params session]
-  (if (nil? (get-user-id session))
-    (permission-denied params session)
-    (handle-callback result params session)
+(defn- create-uuid-hex []
+  (let [uuid (UUID/randomUUID)
+        ]
+    (str
+     (Long/toHexString (.getMostSignificantBits uuid))
+    (Long/toHexString (.getLeastSignificantBits uuid))
+     )
+    )
+  )
+
+(defn- get-uuid-hex [session name create]
+  {:pre [(s/valid? map? session)
+         (s/valid? string? name)
+         (s/valid? boolean? create)
+         ]
+   :post [(s/valid? (s/or :nil-and-not-create (s/and nil? (constantly (not create)))
+                          :string32 (s/and string? #(= (count %) 32))) %)
+          ]
+   }
+  (let [uuid-map (:uuid-hex session)
+        curr-uuid (if (nil? uuid-map) nil (get uuid-map name))]
+    (if (and (nil? curr-uuid) create)
+      (create-uuid-hex)
+      curr-uuid
+      )
+    )
+  )
+
+(defmacro handle-auth-action [action params session]
+  `(if (nil? (get-user-id ~session))
+    (permission-denied ~params ~session)
+    (handle-callback ~action ~params ~session)
+  )
+  )
+
+(defmacro handle-auth-or-init-action [action params session]
+  `(if (and (not (no-auth?)) (nil? (get-user-id ~session)))
+    (permission-denied ~params ~session)
+    (handle-callback ~action ~params ~session)
   )
   )
 
@@ -162,8 +199,14 @@
        (handle-drop-table table params session)
        )
 
+  (GET "/getUUID" [name create :as {params :params session :session}]
+       (handle-auth-or-init-action {"uuid-hex" (get-uuid-hex session name (= "true" create))} params session)
+       )
+
   (GET "/addAuth"  [user-id pass desc :as {params :params session :session}]
+       (let [ ]
        (handle-add-auth user-id pass (or desc "") params session)
+         )
        )
 
   (GET "/addLst"  [name desc :as {params :params session :session}]

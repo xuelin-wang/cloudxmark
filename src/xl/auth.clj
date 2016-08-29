@@ -32,7 +32,10 @@
       )
 
 (defn login [id pass]
+  (println (str "in login id: " id ", noauth:" (store/no-auth?) ",isadmin:" (is-admin-user? id) ))
   (if (store/no-auth?)
-    (add-auth {:id id :password pass :description ""}))
-      (= (encrypt-pass pass) (store/get-pass id))
+    (is-admin-user? id)
+    (= (encrypt-pass pass) (store/get-pass id))
+;    (add-auth {:id id :password pass :description ""})
+    )
       )

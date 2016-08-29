@@ -192,18 +192,33 @@
     )
   )
 
-(defn find-lsts [owner lst-name]
-  (let [query {:entity :lst  :alias "l"
-               :args (if (nil? lst-name)
-                       [[:= :owner :$lst_owner]]
-                       [[:= :owner :$lst_owner] [:= :name :$lst_name]]
-                       )
-               :vars (if (nil? lst-name) {} {"lst_name" lst-name})
-               :attributes [:lst-id :owner :name :description :labels]
+(defn find-lsts [owner lst-name version]
+  {:pre [(s/valid? string? owner)
+         (s/valid? string? lst-name)
+         (s/valid? integer? version)]
+   }
+  (let [query {:entity :lst
+               :alias "l"
+               :args [[:= :owner :$lst_owner] [:= :name :$lst_name] [:= :version :$version]]
+               :vars {"lst_name" lst-name "lst_owner" owner "version" version}
+               :attributes [:lst-id :owner :name :description :labels :version :reserved]
                }
         ]
     (query-db owner query)
     )
+  )
+
+(defn find-next-lst-id []
+  (let [query {:entity :lst
+               :alias "l"
+               :args []
+               :vars {}
+               :attributes [[:max [:+ :lst-id 1]]]
+               }
+   [_ next-lst-id] (first (first (query-db nil query)))
+        ]
+  (if (nil? next-lst-id) 1 next-lst-id)
+   )
   )
 
 (defn find-items [owner lst-name]
@@ -336,34 +351,20 @@
   )
 
 
-
-
-
-(defn add-lst [{:keys [owner name description labels] :as lst}]
-  (let
-      [
-       sql-str0 "INSERT INTO lst (lst_id, owner, name, description, labels) "
-       sql-str1 (str ",'" owner "','" name "','" (or description "") "','"
-                     (or labels "") "' " )
-       sql-str (if (no-lst?)
-                 (str sql-str0 " VALUES (1" sql-str1 ")")
-                 (str sql-str0 " SELECT MAX(lst_id + 1)" sql-str1 " FROM lst")
-                 )
-
-       cmd-result (sql/db-do-commands store-uri sql-str)
-       ]
-    (first cmd-result)
-    )
+(defn add-lst [lst]
+  (let [next-lst-id (find-next-lst-id)]
+  (db-insert-simple! (assoc lst :lst-id next-lst-id) (:lst schema))
+      )
   )
 
 (defn check-add-settings-lst [owner]
-  (if (-> (find-lsts owner lst-common/settings-lst-name) empty?)
-    (add-lst {:owner owner :name lst-common/settings-lst-name :description "" :labels ""} )
+  (if (-> (find-lsts owner lst-common/settings-lst-name (int 0)) empty?)
+    (add-lst {:owner owner :name lst-common/settings-lst-name :version (int 0) :description "" :labels ""} )
     )
-  (let [settings-lst (-> (find-lsts owner lst-common/settings-lst-name) first)
+  (let [settings-lst (-> (find-lsts owner lst-common/settings-lst-name (int 0)) first)
         settings-lst-id (get settings-lst "lst_id")
         ]
-    ()
+    settings-lst-id
     )
   )
 
